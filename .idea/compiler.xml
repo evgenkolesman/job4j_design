@@ -9,8 +9,5 @@
         <module name="job4j_design" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="job4j_design" target="14" />
-    </bytecodeTargetLevel>
   </component>
 </project>
