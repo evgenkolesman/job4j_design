@@ -26,7 +26,7 @@
             CLASS_DEF, ENUM_DEF, INTERFACE_DEF, CTOR_DEF, STATIC_INIT, INSTANCE_INIT, VARIABLE_DEF, METHOD_DEF"/>
             <property name="allowNoEmptyLineBetweenFields" value="true"/>
             <property name="allowMultipleEmptyLines" value="false"/>
-            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+           <!-- <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/> -->
         </module>
 
         <!-- Checks for Naming Conventions.                  -->
