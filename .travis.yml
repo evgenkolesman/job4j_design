@@ -16,6 +16,6 @@ after_success:
 notifications:
   email:
     recipients:
-      -glavstroi_e@mail.ru
+      - glavstroi_e@mail.ru
     on_success: never # default: change
     on_failure: always # default: always
