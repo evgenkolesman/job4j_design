@@ -1,9 +1,7 @@
 Package ru.job4j;
 
-public class Trigger
-{
-    public int someLogic ()
-    {
+public class Trigger {
+    public int someLogic () {
         return -1;
     }
 }
