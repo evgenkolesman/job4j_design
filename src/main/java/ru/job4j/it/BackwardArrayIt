@@ -3,6 +3,9 @@ package ru.job4j.it;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import org.apache.commons.lang3.ArrayUtils;
+import java.util.Arrays;
+
 public class BackwardArrayIt implements Iterator<Integer> {
     private final int data [];
     private int point=0;
@@ -17,6 +20,6 @@ public class BackwardArrayIt implements Iterator<Integer> {
         if(!hasNext()){
             throw new NoSuchElementException();
         }
-        return data[]
+        return AraysUtils.reverse(data);
     }
 }
