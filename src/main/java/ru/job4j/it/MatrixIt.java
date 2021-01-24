@@ -4,10 +4,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class MatrixIt implements Iterator<Integer> {
-    private int[][]data; // убрал final так как выдает в дальнейшем ошибку
+    private final int[][]data; // убрал final так как выдает в дальнейшем ошибку
     private int row=0;
     private int column=0;
-    public MatrixIt() {
+    public MatrixIt(int[][] data) {
         this.data = data;
     }
     public boolean hasNext(){
