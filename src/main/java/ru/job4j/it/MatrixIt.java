@@ -10,11 +10,11 @@ public class MatrixIt implements Iterator<Integer> {
     public MatrixIt() {
         this.data = data;
     }
-    public boolean hasNext()//{
-     /*if (row < data.length&& column < data[row].length) return true;
+    public boolean hasNext(){
+     if (row < data.length&& column < data[row].length) return true;
     else
-        return false;*/ // это по условиям задачи, но есть вариант сократить просто
-     return (row < data.length && column < data[row].length); //- думаю вот так
+        return false; // это по условиям задачи, но есть вариант сократить просто
+     //return (row < data.length && column < data[row].length); - думаю вот так
     }
     public Integer next() // включаем перербор
     {

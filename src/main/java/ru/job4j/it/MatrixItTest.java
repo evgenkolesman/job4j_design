@@ -7,8 +7,10 @@ import java.util.NoSuchElementException;
 public class MatrixItTest {
     @Test
     public void when4el(){
-        int [][]in={1};
-        MatrixIt it=new MatrixIt(in);
+        int [][]in={
+                {1}
+        };
+        MatrixIt it = new MatrixIt(in);
         assertThat(it.next(),is(1));
     }
     @Test

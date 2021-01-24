@@ -21,8 +21,7 @@ public class BackwardArrayIt implements Iterator<Integer> {
         if(!hasNext()){
             throw new NoSuchElementException();
         }
-
-        return Arrays.sort(data, Comparator.reverseOrder());
+        return data.next(Arrays.sort(data, Comparator.reverseOrder()));
     }
 }
 
