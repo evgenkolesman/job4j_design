@@ -1,13 +1,14 @@
 package ru.job4j.it;
 
+
+//import java.util.Collections;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.apache.commons.lang3.ArrayUtils;
-import java.util.Arrays;
-
 public class BackwardArrayIt implements Iterator<Integer> {
-    private final int data [];
+    private int data [];
     private int point=0;
 
     public BackwardArrayIt(int data[]){
@@ -20,6 +21,8 @@ public class BackwardArrayIt implements Iterator<Integer> {
         if(!hasNext()){
             throw new NoSuchElementException();
         }
-        return Arrays.sort(data, Comparator.naturalOrder());;
+
+        return Arrays.sort(data, Comparator.reverseOrder());
     }
 }
+

@@ -7,23 +7,33 @@ import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
-public class BackwardArrayItTest{
+public class BackwardArrayItTest {
+
+
     @Test
-    public void henMultiCallhasNextThenTrue(){
-        BackwardArrayItTest it=new BackwardArrayItTest (data{1,2,3});
-        assertThat(it.hasNext(),true);
-        assertThat(it.hasNext(),true);
+    public void whenMultiCallhasNextThenTrue() {
+        BackwardArrayIt it = new BackwardArrayIt(
+                new int[] {1, 2, 3}
+        );
+        assertThat(it.hasNext(), is(true));
+        assertThat(it.hasNext(), is(true));
     }
+
     @Test
-    public void whenReadSequence(){
-        BackwardArrayItTest it = new BackwardArrayItTest(data{1,2,3});
+    public void whenReadSequence() {
+        BackwardArrayIt it = new BackwardArrayIt(
+                new int[] {1, 2, 3}
+        );
         assertThat(it.next(), is(3));
         assertThat(it.next(), is(2));
         assertThat(it.next(), is(1));
     }
+
     @Test(expected = NoSuchElementException.class)
-    public void whenNextFromEmpty(){
-        BackwardArrayItTest it = new BackwardArrayItTest(new int[]{});
+    public void whenNextFromEmpty() {
+        BackwardArrayIt it = new BackwardArrayIt(
+                new int[] {}
+        );
         it.next();
     }
 }
