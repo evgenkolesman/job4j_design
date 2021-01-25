@@ -28,4 +28,3 @@ return data[data.length - 1 - point++ ];
 //import java.util.Arrays;
 //import java.util.Comparator;
 }- варианты решения не верные*/
-
