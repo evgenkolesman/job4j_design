@@ -4,20 +4,18 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class MatrixIt implements Iterator<Integer> {
-    private final int[][]data; // убрал final так как выдает в дальнейшем ошибку
+    private final int[][]data; // убрал final так как выдает в дальнейшем ошибку, ошибка была из-за того что не объявил в методе MatrixIt
     private int row=0;
     private int column=0;
     public MatrixIt(int[][] data) {
         this.data = data;
     }
     public boolean hasNext(){
-     if (row < data.length&& column < data[row].length){
-         while (row <= data.length && column>=data[row].length) // это для исключения пустых частей
-         row=0;
-         column++;
-     return (row < data.length && column < data[row].length);}
-     else
-         return false;
+     //if (row < data.length&& column < data[row].length)
+         return (row < data.length && column < data[row].length);
+         //return true;
+     //(row < data.length && column < data[row].length);}
+     //else return false;
     }
 
      public Integer next() // включаем перербор
@@ -28,6 +26,9 @@ public class MatrixIt implements Iterator<Integer> {
             }
             int data1 = data[row][column];
             column++;
+            while (row <= data.length && column>=data[row].length){ // это для исключения пустых частей
+                row=0;
+            column++;}
      return data1;
         }
 }
@@ -50,4 +51,4 @@ public class MatrixIt implements Iterator<Integer> {
             row=0;
             column++;
         }*/
-      // было return data1ж
+      // было return data1;
