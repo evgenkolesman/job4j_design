@@ -2,10 +2,10 @@ package ru.job4j.it;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class EventIt implements Iterator <Integer>{
-    //Iterator it = new EventIt (new int[] {4, 2, 1, 1});
+public class EvenIt implements Iterator <Integer>{
+    //Iterator it = new EvenIt (new int[] {4, 2, 1, 1});
     private final int [] data;
-    public EventIt (int [] data){
+    public EvenIt (int [] data){
         this.data=data;
     }
 
