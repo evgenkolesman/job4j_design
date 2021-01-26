@@ -1,29 +1,36 @@
 package ru.job4j.it;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class EvenIt implements Iterator <Integer>{
-    //Iterator it = new EvenIt (new int[] {4, 2, 1, 1});
-    private final int [] data;
-    public EvenIt (int [] data){
-        this.data=data;
+public class EvenIt implements Iterator<Integer> {
+
+    Iterator it = new EvenIt(new int[]{4, 2, 1, 1});
+
+    private int[] data;
+    private int column = 0;
+
+    public EvenIt(int[] data) {
+        this.data = data;
     }
 
     public boolean hasNext() {
         for (int i = 0; i <= data.length; i++) {
-            if (data[i] % 2 == 0){
-                return true;}
-                else return false;
+            if (data[i] % 2 == 0) {
+                return true;
+            }
+        }
+        return false;
     }
-
 
     public Integer next() {
-        if(!hasNext())
-        {
+        if (!hasNext()) {
             throw new NoSuchElementException(); // это для исключений
         }
-
-            return data[];
+        //data [column];
+        column++;
+        return data[column];
     }
-
 }
+
+

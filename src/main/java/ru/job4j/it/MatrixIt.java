@@ -11,6 +11,7 @@ public class MatrixIt implements Iterator<Integer> {
     public MatrixIt(int[][] data) {
         this.data = data;
     }
+
     public boolean hasNext() {
         return (row < data.length && column < data[row].length);
     }
