@@ -16,7 +16,7 @@ public class EvenIt implements Iterator<Integer> {
 
     public boolean hasNext() {
         //if
-        return ((data[column] % 2) == 0 && column <= data.length); //{
+        return ((data[column] % 2) == 0); //{
         /*column++;
             return true;
         } else {
