@@ -15,12 +15,13 @@ public class EvenIt implements Iterator<Integer> {
     }
 
     public boolean hasNext() {
-        if ((data[column] % 2) == 0 && column < data.length) {
-        column++;
+        //if
+        return ((data[column] % 2) == 0 && column < data.length); //{
+        /*column++;
             return true;
         } else {
             return false;
-        }
+        }*/
     }
 
     public Integer next() {
@@ -28,8 +29,7 @@ public class EvenIt implements Iterator<Integer> {
             throw new NoSuchElementException(); // это для исключений
         }
         //data [column];
-        column++;
-        return data[column];
+        return data[column++];
     }
 }
 
