@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 
 public class EvenIt implements Iterator<Integer> {
 
-    Iterator it = new EvenIt(new int[]{4, 2, 1, 1});
+    //Iterator it = new EvenIt(new int[]{4, 2, 1, 1});
 
     private int[] data;
     private int column = 0;
@@ -16,7 +16,7 @@ public class EvenIt implements Iterator<Integer> {
 
     public boolean hasNext() {
         //if
-        return ((data[column] % 2) == 0 && column < data.length); //{
+        return ((data[column] % 2) == 0 && column <= data.length); //{
         /*column++;
             return true;
         } else {
