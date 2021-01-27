@@ -3,7 +3,7 @@ package ru.job4j.it;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class MatrixIt implements Iterator<Integer> {
+/*public class MatrixIt implements Iterator<Integer> {
     private final int[][] data; // убрал final так как выдает в дальнейшем ошибку
     private int row = 0;
     private int column = 0;
@@ -28,10 +28,9 @@ public class MatrixIt implements Iterator<Integer> {
         }
         return data1;
     }
+}*/
 
-
-}
-/*public class MatrixIt implements Iterator<Integer>
+public class MatrixIt implements Iterator<Integer>
 {
     private final int  [][] data; // убрал final так как выдает в дальнейшем ошибку
     private int row=0;
@@ -73,6 +72,6 @@ public class MatrixIt implements Iterator<Integer> {
         }
         return data1;
     }
-}*/
+}
 
 
