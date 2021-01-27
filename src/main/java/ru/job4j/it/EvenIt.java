@@ -15,12 +15,12 @@ public class EvenIt implements Iterator<Integer> {
     }
 
     public boolean hasNext() {
-        for (int i = 0; i <= data.length; i++) {
-            if (data[i] % 2 == 0) {
-                return true;
-            }
+        if ((data[column] % 2) == 0 && column < data.length) {
+        column++;
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public Integer next() {
