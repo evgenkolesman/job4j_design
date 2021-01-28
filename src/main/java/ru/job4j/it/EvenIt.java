@@ -17,19 +17,27 @@ public class EvenIt implements Iterator<Integer> {
     public boolean hasNext() {
         // ограничиваем по четности,
         // по размеру не надо так как всегда true.
-        return data[column] % 2 == 0;
+        /*while (column < data.length) {
+            column++;
+        }*/
+        while (column < data.length)
+            if (data[column] % 2 == 0) {
+                column++;
+                return true;
+            }
+        return false;
     }
-    //else return false;
 
     public Integer next() {
-        if (column >= data.length) {
+        if (!hasNext()) {
+            //if (column >= data.length) {
             throw new NoSuchElementException(); // это для исключений
         }
-        //data [column];
-        column++;
+        //column++;
         return data[column];
     }
 }
+
 
 
 
