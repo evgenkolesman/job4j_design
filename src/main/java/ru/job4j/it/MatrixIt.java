@@ -36,6 +36,7 @@ public class MatrixIt implements Iterator<Integer> {
     private int column = 0;
     private int size;
     private int poz = 0;
+    int[] a = {};
 
     public MatrixIt(int[][] data) {
         this.data = data;
@@ -51,19 +52,28 @@ public class MatrixIt implements Iterator<Integer> {
     }
 
     public boolean hasNext() {
-        return poz < size;
+        return (poz < size);
     }
+    /*public boolean hasNext() {
+        while (data.length > row && column == data[row].length) {
+            column = 0;
+            row++;
+
+        }
+        return data.length > row && data[row].length > column;
+    }*/
 
     public Integer next() {
         if (poz >= size) {
             throw new NoSuchElementException();
         }
-        int data1 = data[row][column];
-        column++;
-        while (row <= data.length && column >= data[row].length) {
-            row = 0;
-            column++;
+        if (column == data[row].length && row < data.length) {
+            row++;
+            column = 0;
+            return data[row][column];
         }
+        int data1 = data[row][column];
+        //column++;
         return data1;
     }
 }

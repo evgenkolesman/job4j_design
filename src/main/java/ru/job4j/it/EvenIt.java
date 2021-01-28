@@ -7,7 +7,7 @@ public class EvenIt implements Iterator<Integer> {
 
     //Iterator it = new EvenIt(new int[]{4, 2, 1, 1});
 
-    private int[] data;
+    private final int[] data;
     private int column = 0;
 
     public EvenIt(int[] data) {
@@ -15,22 +15,25 @@ public class EvenIt implements Iterator<Integer> {
     }
 
     public boolean hasNext() {
-        //if
-        return ((data[column] % 2) == 0); //{
-        /*column++;
-            return true;
-        } else {
-            return false;
-        }*/
+        // ограничиваем по четности,
+        // по размеру не надо так как всегда true.
+        return data[column] % 2 == 0;
     }
+    //else return false;
 
     public Integer next() {
-        if (!hasNext()) {
+        if (column >= data.length) {
             throw new NoSuchElementException(); // это для исключений
         }
         //data [column];
-        return data[column++];
+        column++;
+        return data[column];
     }
 }
+
+
+
+
+
 
 
