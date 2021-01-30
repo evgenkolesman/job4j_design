@@ -14,7 +14,7 @@ public class EvenIt implements Iterator<Integer> {
         this.data = data;
     }
 
-    public boolean hasNext() {
+ /* public boolean hasNext() {
         for (int i = column; i < data.length; i++) {
             // было     if (data[column] % 2 == 1) column++;
             //        return column < data.length;
@@ -38,11 +38,25 @@ public class EvenIt implements Iterator<Integer> {
         return next();
         }
     }
+}*/
+
+    public boolean hasNext() {
+        while (column < data.length) {
+            if (data[column] % 2 == 0) {
+                break;
+            }
+            column++;
+        }
+        return column < data.length;
+    }
+
+    public Integer next() throws NoSuchElementException {
+        if (!hasNext()) {
+            throw new NoSuchElementException(); // это для исключений
+        }
+        return data[column++];
+    }
 }
-
-
-
-
 
 
 
