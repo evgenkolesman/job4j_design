@@ -1,9 +1,11 @@
 package ru.job4j.generics;
 
 public class Animal {
-    private String animal;
+
+    //public String animal = "зверь";
 
     public Animal() {
-        this.animal =animal;
+        //this.animal = ani;
     }
+
 }
