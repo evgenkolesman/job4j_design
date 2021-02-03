@@ -1,14 +1,9 @@
 package ru.job4j.generics;
 
 public class Predator extends Animal {
-
-    private String predator = "хищник";
-
-   /* public Predator(String predator) {
-        super (predator);
-    }*/
+    private String predator;
 
     public Predator() {
-        super();
+        super (predator);
     }
 }
