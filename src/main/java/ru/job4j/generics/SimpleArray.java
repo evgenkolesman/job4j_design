@@ -1,49 +1,66 @@
 /*package ru.job4j.generics;
 
 import java.util.Iterator;
-import java.util.List;
+import java.util.NoSuchElementException;
 
 // Каркас.
 
-public class SimpleArray<T> implements Iterable<T> {
+public class SimpleArray<T> {
 
-    public List<T> list;
+    private T[] array;
     private T model;
-    private int index=0;
+    private int index;
 
     public SimpleArray() {
-        this.list= list;
+        this.index = index;
     }
 
-    public static void main(String [] args) {
-        SimpleArray sim = new SimpleArray();
-        for (int i = 0; i < list.size(); i++) {
-            new SimpleArray().add(list);
+    public static void main(String[] args) {
+        for (int i = 0; i < args.length; i++) {
+            new SimpleArray().add(args);
         }
-        System.out.println(sim);
+
+        System.out.println();
+    }
+
+    public getSize() {
+        return array.length;
     }
 
     public void add(T model) {
-        list.add(model);
+        if (index < array.length) {
+            throw new IllegalStateException("Mistake");
+        }
     }
 
-    public T set(int index, T model) {
-        return list.set(index, model);
+
+    public void set(int index, T model) {
+        if (index < array.length) {
+            throw new IllegalStateException("Mistake");
+        }
     }
 
-    public void remove(int index) {
-        list.remove(index);
-        index++;
+    public remove(int index) {
+        return index--;
     }
 
-    public void get(int index) {
-        list.get(index);
-    }
+    public get(int index) {
+        if (index < array.length) {
+            throw IllegalStateException("Mistake");
+        }
 
-    public Iterator<T> iterator() {
-        Object next = null;
-        for (Iterator<?> it = list.iterator(); it.hasNext();) {
-            next = it.next(); }
-        return (Iterator<T>) next;
+        public Iterator<T> iterator (T[]array){
+            this.array = array;
+            public boolean hasNext () {
+                return index < array.length;
+            }
+
+            public Integer next () {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return array[index++];
+            }
+        }
     }
-}*/
+*/
