@@ -1,30 +1,52 @@
-/*package ru.job4j.generics;
+package ru.job4j.generics;
+
+import jdk.internal.jimage.ImageReader;
 
 import java.util.Iterator;
+import java.util.List;
 
 // Каркас.
-public class SimpleArray<T> {
 
+public class SimpleArray<T> implements Iterable<T> {
+
+    public List<T> list;
     private T model;
-    int index;
+    private int index=0;
 
-    public static void main (int index, T model) {
-        System.out.println();
+    public SimpleArray() {
+        this.model = model;
+        this.list= list;
     }
 
-    public add(T model) {
+    public static void main(String [] args) {
+        SimpleArray sim = new SimpleArray();
+        for (int i = 0; i < list.size(); i++) {
+            new SimpleArray().add(list);
+        }
+        System.out.println(sim);
     }
 
-    public set(int index, T model) {
+    public void add(T model) {
+        list.add(model);
     }
 
-    public remove(int index) {
+    public T set(int index, T model) {
+        return list.set(index, model);
     }
 
-    public get(int index) {
+    public void remove(int index) {
+        list.remove(index);
+        index++;
     }
 
-    Iterable<T> (Iterator<T> it) {
-        return it = model.iterator(); it.hasNext();
+    public void get(int index) {
+        list.get(index);
     }
-}*/
+
+    public Iterator<T> iterator() {
+        Object next = null;
+        for (Iterator<?> it = list.iterator(); it.hasNext();) {
+            next = it.next(); }
+        return (Iterator<T>) next;
+    }
+}
