@@ -1,6 +1,4 @@
-package ru.job4j.generics;
-
-import jdk.internal.jimage.ImageReader;
+/*package ru.job4j.generics;
 
 import java.util.Iterator;
 import java.util.List;
@@ -48,4 +46,4 @@ public class SimpleArray<T> implements Iterable<T> {
             next = it.next(); }
         return (Iterator<T>) next;
     }
-}
+}*/

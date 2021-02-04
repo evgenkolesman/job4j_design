@@ -1,9 +1,10 @@
 package ru.job4j.generics;
 
 public class Animal {
-    private String animal;
+    private String name;
 
-    public Animal() {
-        this.animal =animal;
+    public Animal(String name) {
+        this.name = name;
     }
 }
+
