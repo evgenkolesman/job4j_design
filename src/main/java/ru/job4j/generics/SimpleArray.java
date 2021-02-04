@@ -14,7 +14,6 @@ public class SimpleArray<T> implements Iterable<T> {
     private int index=0;
 
     public SimpleArray() {
-        this.model = model;
         this.list= list;
     }
 
