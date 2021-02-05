@@ -1,6 +1,5 @@
-/*package ru.job4j.generics;
+package ru.job4j.generics;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 // Каркас.
@@ -13,17 +12,17 @@ public class SimpleArray<T> {
 
     public SimpleArray() {
         this.index = index;
+        this.array=array;
     }
 
     public static void main(String[] args) {
         for (int i = 0; i < args.length; i++) {
             new SimpleArray().add(args);
         }
-
         System.out.println();
     }
 
-    public getSize() {
+    public int getSize() {
         return array.length;
     }
 
@@ -33,34 +32,36 @@ public class SimpleArray<T> {
         }
     }
 
-
     public void set(int index, T model) {
         if (index < array.length) {
             throw new IllegalStateException("Mistake");
         }
     }
 
-    public remove(int index) {
+    public Object remove(int index) {
         return index--;
     }
 
-    public get(int index) {
+    public Object get(int index) {
         if (index < array.length) {
-            throw IllegalStateException("Mistake");
+            throw new IllegalStateException("Mistake");
+        }
+        return array[index];
+    }
+
+    public boolean iterator (T[]array) { //пока ошибка в Итераторе
+
+        public boolean hasNext() {
+            return index < array.length;
         }
 
-        public Iterator<T> iterator (T[]array){
-            this.array = array;
-            public boolean hasNext () {
-                return index < array.length;
+        public Integer next () {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
             }
-
-            public Integer next () {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                return array[index++];
-            }
+            T data=array[index++];
+            return data;
         }
     }
-*/
+
+}
