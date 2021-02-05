@@ -1,10 +1,11 @@
-package ru.job4j.generics;
+/*package ru.job4j.generics;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 // Каркас.
 
-public class SimpleArray<T> {
+public class SimpleArray<T> implements Iterable<T> {
 
     private T[] array;
     private T model;
@@ -12,13 +13,12 @@ public class SimpleArray<T> {
 
     public SimpleArray() {
         this.index = index;
-        this.array=array;
+        //this.array=array;
     }
 
-    public static void main(String[] args) {
-        for (int i = 0; i < args.length; i++) {
-            new SimpleArray().add(args);
-        }
+    public static void main(String[] args) {// на до понять что я печатаю
+        SimpleArray sim = new SimpleArray();
+        sim.printObject();
         System.out.println();
     }
 
@@ -38,30 +38,39 @@ public class SimpleArray<T> {
         }
     }
 
-    public Object remove(int index) {
-        return index--;
+    public int remove(int index) {
+        index--;
+        return remove(array[index]);
     }
 
-    public Object get(int index) {
+    public T get(T[] array) {
         if (index < array.length) {
             throw new IllegalStateException("Mistake");
         }
         return array[index];
     }
 
-    public boolean iterator (T[]array) { //пока ошибка в Итераторе
-
-        public boolean hasNext() {
-            return index < array.length;
+    public void printObject(T[] array) {
+        for (Iterator<T> it = array.iterator(); it.hasNext(); ) {
+            Object next = it.next();
+            System.out.println("Текущий элемент" + next);
         }
 
-        public Integer next () {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
+        public Iterator<T> iterator () { //пока ошибка в Итераторе
+            public boolean hasNext () {
+                return false;
             }
-            T data=array[index++];
-            return data;
+
+            public Integer next () {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return iterator.next();
+            }
         }
     }
-
-}
+}*/
+    /*@Override
+    public Iterator<T> iterator() {
+        return null;
+    }*/
