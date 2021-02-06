@@ -16,6 +16,7 @@ public class SimpleArray<T> implements Iterable<T> {
         //this.array=array;
     }
 
+    @SuppressWarnings("checkstyle:InnerAssignment")
     public int getSize() {
         return size = array.length;
     }
@@ -28,7 +29,9 @@ public class SimpleArray<T> implements Iterable<T> {
     }*/
 
     public void add(T model, int index) {
-        if (index < array.length) throw new IllegalStateException("Mistake");
+        if (index < array.length) {
+            throw new IllegalStateException("Mistake");
+        }
         array[index] = model;
         index++;
     }
@@ -68,7 +71,8 @@ public class SimpleArray<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         if (hasNext()) {
             return (Iterator<T>) next();
-        } else
+        } else {
             return null;
+        }
     }
 }
