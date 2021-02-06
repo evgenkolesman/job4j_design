@@ -9,9 +9,10 @@ public class SimpleArray<T> implements Iterable<T> {
     private T[] array;
     private T model;
     private int size = 0;
+
     // по конструктору пока есть вопросы
-    public SimpleArray (int length) {
-        this.array = (T[]) new Object [length];
+    public SimpleArray(int length) {
+        this.array = (T[]) new Object[length];
         //this.array=array;
     }
 
@@ -53,19 +54,19 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public Iterator<T> iterator() {
         //class SimArIt {
-            int index = 0;
+        int index = 0;
 
-            public boolean hasNext() {
-               return  array.length > size;
-            }
+        public boolean hasNext () {
+            return array.length > size;
+        }
 
-            public T next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                T data = array[index++];
-                return (Iterator<T>) data;
+        public T next () {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
             }
+            T data = array[index++];
+            return (Iterator<T>) data;
+        }
         //}
         return index++;
     }
