@@ -48,26 +48,27 @@ public class SimpleArray<T> implements Iterable<T> {
         if (index < 0 || index > array.length) {
             throw new IndexOutOfBoundsException();
         }
-        Object element;
         System.arraycopy(array, index + 1, array, index, size - 1);
     }
 
-    public Iterator<T> iterator() {
-        //class SimArIt {
+    public boolean hasNext() {
+        return array.length > size;
+    }
+
+    public T next() {
         int index = 0;
-
-        public boolean hasNext () {
-            return array.length > size;
+        if (!hasNext()) {
+            throw new NoSuchElementException();
         }
+        T data = array[index++];
+        return data;
+    }
 
-        public T next () {
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
-            T data = array[index++];
-            return (Iterator<T>) data;
-        }
-        //}
-        return index++;
+    @Override
+    public Iterator<T> iterator() {
+        if (hasNext()) {
+            return (Iterator<T>) next();
+        } else
+            return null;
     }
 }
