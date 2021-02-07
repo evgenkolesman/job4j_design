@@ -2,6 +2,7 @@ package ru.job4j.generics;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 // Каркас.
 public class SimpleArray<T> implements Iterable<T> {
@@ -37,6 +38,7 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public T get(int index) {
+        Objects.checkIndex(index, size);
         return array[index];
     }
 
