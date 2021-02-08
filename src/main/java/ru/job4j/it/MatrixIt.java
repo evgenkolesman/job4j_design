@@ -15,18 +15,7 @@ public class MatrixIt implements Iterator<Integer> {
         //this.size = countEl(data);
     }
 
-    /*public int countEl(int[][] data) {
-        int count = 0;
-        for (int[] row : data) {
-            count += row.length;
-        }
-        return count;
-    }*/
 
-    /*public boolean hasNext() {
-
-        return (poz < size);
-    }*/
     public boolean hasNext() {
         while (data.length > row && column == data[row].length) {
             column = 0;
@@ -42,6 +31,18 @@ public class MatrixIt implements Iterator<Integer> {
         return data[row][column++];
     }
 }
+ /*public int countEl(int[][] data) {
+        int count = 0;
+        for (int[] row : data) {
+            count += row.length;
+        }
+        return count;
+    }*/
+
+    /*public boolean hasNext() {
+
+        return (poz < size);
+    }*/
 
 /* на память о мучениях))
 public class MatrixIt implements Iterator<Integer> {
