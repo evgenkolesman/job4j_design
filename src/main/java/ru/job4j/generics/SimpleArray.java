@@ -14,12 +14,12 @@ public class SimpleArray<T> implements Iterable<T> {
     // по конструктору пока есть вопросы
     public SimpleArray(int length) {
         this.array = (T[]) new Object[length];
+        this.size = length;
         //this.array=array;
     }
 
-    @SuppressWarnings("checkstyle:InnerAssignment")
-    public int getSize() {
-        return size = array.length;
+    public int getSize(int length) {
+        return size;
     }
 
     /*public static void main(String[] args) {// на до понять что я печатаю
@@ -30,6 +30,7 @@ public class SimpleArray<T> implements Iterable<T> {
     }*/
 
     public void add(T model, int index) {
+        // тут можно применить Objects.checkIndex(index, size);
         if (index < array.length) {
             throw new IllegalStateException("Mistake");
         }
@@ -42,18 +43,21 @@ public class SimpleArray<T> implements Iterable<T> {
         return array[index];
     }
 
+    @SuppressWarnings("checkstyle:AvoidNestedBlocks")
     public void set(int index, T model) {
-        array[index] = model;
+        Objects.checkIndex(index, size);
+            array[index] = model;
     }
 
     public void remove(int index) {
         /*for (int i = index; i < array.length; i++) {
             array[index] = array[index--];
         }*/
-        if (index < 0 || index > array.length) {
+        /*if (index < 0 || index > array.length) {
             throw new IndexOutOfBoundsException();
-        }
-        System.arraycopy(array, index + 1, array, index, size - 1);
+        }*/
+        Objects.checkIndex(index, size);
+        System.arraycopy(array, index + 1, array, index - 1, size - 1);
     }
 
     public boolean hasNext() {
@@ -69,10 +73,29 @@ public class SimpleArray<T> implements Iterable<T> {
         return data;
     }
 
+    /*class IteratorSA<T> {
+        public T iterator() {
+            if (hasNext()) {
+                return array.next();
+            } else {
+                return null;
+            }
+        }
+    }*/
     @Override
     public Iterator<T> iterator() {
         if (hasNext()) {
-            return (Iterator<T>) next();
+            return new Iterator<T>() {
+                @Override
+                public boolean hasNext() {
+                    return false;
+                }
+
+                @Override
+                public T next() {
+                    return (T) array [];
+                }
+            };
         } else {
             return null;
         }
