@@ -1,4 +1,4 @@
- package ru.job4j.generics;
+package ru.job4j.generics;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -9,7 +9,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     private T[] array;
     private T model;
-    private int size = 0;
+    private int size;
 
     // по конструктору пока есть вопросы
     public SimpleArray(int length) {
@@ -22,13 +22,12 @@ public class SimpleArray<T> implements Iterable<T> {
         return size;
     }
 
-    public void add(T model, int index) {
+    public void add(T model) {
         // тут можно применить Objects.checkIndex(index, size);
-        if (index < array.length) {
+        /*if (index < array.length) {
             throw new IllegalStateException("Mistake");
-        }
-        array[index] = model;
-        index++;
+        }*/
+        array[size++] = model;
     }
 
     public T get(int index) {
@@ -36,7 +35,6 @@ public class SimpleArray<T> implements Iterable<T> {
         return array[index];
     }
 
-    @SuppressWarnings("checkstyle:AvoidNestedBlocks")
     public void set(int index, T model) {
         Objects.checkIndex(index, size);
         array[index] = model;
@@ -50,10 +48,11 @@ public class SimpleArray<T> implements Iterable<T> {
             throw new IndexOutOfBoundsException();
         }*/
         Objects.checkIndex(index, size);
-        System.arraycopy(array, index, array, index - 1, size - 1);
+        int poz1 = index + 1;
+        int poz2 = size - index;
+        System.arraycopy(array, poz1, array, poz2, size--);
     }
 
-    @SuppressWarnings("checkstyle:EmptyLineSeparator")
     public Iterator<T> iterator() {
 
         class IteratorSA implements Iterator<T> {
@@ -61,16 +60,15 @@ public class SimpleArray<T> implements Iterable<T> {
 
             @Override
             public boolean hasNext() {
-                return array.length > size;
+                return size > value;
             }
 
             @Override
             public T next() {
-                if (hasNext()) {
-                    return array[value++];
-                } else {
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
+                return array[value++];
             }
         }
 

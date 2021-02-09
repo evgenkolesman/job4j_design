@@ -15,21 +15,21 @@ public class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean replace(String id, T model) {
-        if ( id<mem.size()){
-            return id = model.getId(id);
-        }
+        //надо число вводить, придумать как сделать условие при наличии String.
+        if (Objects.checkIndex(Integer.parseInt(id), mem.size())){
+
+            return model.getId(Integer.parseInt(id)); }
         else
-        //System.arraycopy(mem, id, model, id - 1);
-        return false;
+            //System.arraycopy(mem, id, model, id - 1);
+            return false;
     }
 
     @Override
     public boolean delete(String id) {
-        if ( Objects.checkIndex(id, mem.size());){
+        if (Objects.checkIndex(Integer.parseInt(id), mem.size())) {
             return mem.remove(id);
-        }
-        else{
-            return throw new IndexOutOfBoundsException();
+        } else {
+            return (throw new IndexOutOfBoundsException());
         }
     }
 
@@ -38,4 +38,8 @@ public class MemStore<T extends Base> implements Store<T> {
         for (Iterator<T> it = mem.iterator(); it.hasNext(); ) {
             return it.next();
         }
+
+        return it.next;
+
     }
+}
