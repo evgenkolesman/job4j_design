@@ -18,7 +18,7 @@ public class SimpleArray<T> implements Iterable<T> {
         //this.array=array;
     }
 
-    public int getSize(int length) {
+    public int getSize() {
         return size;
     }
 
@@ -48,9 +48,9 @@ public class SimpleArray<T> implements Iterable<T> {
             throw new IndexOutOfBoundsException();
         }*/
         Objects.checkIndex(index, size);
-        int poz1 = index + 1;
+        int poz1 = index++;
         int poz2 = size - index;
-        System.arraycopy(array, poz1, array, poz2, size--);
+        System.arraycopy(array, poz1, array, poz2, poz2);
     }
 
     public Iterator<T> iterator() {

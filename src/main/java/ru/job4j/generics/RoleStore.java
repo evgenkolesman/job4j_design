@@ -5,7 +5,7 @@ public class RoleStore<T extends Base> {
         /*private String name;
         private int age;
         private String buy;*/
-        public User(String id) {
+        public User(String id, T model) {
             super(id);
         }
     }

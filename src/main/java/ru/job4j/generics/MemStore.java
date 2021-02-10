@@ -16,30 +16,24 @@ public class MemStore<T extends Base> implements Store<T> {
     @Override
     public boolean replace(String id, T model) {
         //надо число вводить, придумать как сделать условие при наличии String.
-        if (Objects.checkIndex(Integer.parseInt(id), mem.size())){
-
-            return model.getId(Integer.parseInt(id)); }
-        else
-            //System.arraycopy(mem, id, model, id - 1);
-            return false;
+        //Надо сделать чтобы id соответсвовало model, сложность в том что id это строка
+        // а model это часть списка, то есть их значения не int/
+        return model.equals(id);
     }
 
     @Override
     public boolean delete(String id) {
-        if (Objects.checkIndex(Integer.parseInt(id), mem.size())) {
-            return mem.remove(id);
-        } else {
-            return (throw new IndexOutOfBoundsException());
-        }
+        // id строка это проблема
+        return mem.remove(id);
     }
 
     @Override
     public T findById(String id) {
-        for (Iterator<T> it = mem.iterator(); it.hasNext(); ) {
-            return it.next();
+        T data = null;
+        for (Iterator<T> it = mem.iterator(); it.hasNext();) {
+            data = it.next();
+            //return null;
         }
-
-        return it.next;
-
+        return data;
     }
 }
