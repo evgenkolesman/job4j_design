@@ -1,8 +1,6 @@
 package ru.job4j.generics;
 
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 // Каркас.
 public class SimpleArray<T> implements Iterable<T> {
@@ -51,6 +49,10 @@ public class SimpleArray<T> implements Iterable<T> {
         int poz1 = index++;
         int poz2 = size - index;
         System.arraycopy(array, poz1, array, poz2, poz2);
+        //этим мы решаем проблемы сокращения длины
+        List<T> list = new ArrayList<>(Arrays.asList(array));
+        list.remove(array[size - 1]);
+        array = (T[]) list.toArray(new String[list.size()]);
     }
 
     public Iterator<T> iterator() {
