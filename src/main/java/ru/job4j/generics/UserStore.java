@@ -1,13 +1,13 @@
 package ru.job4j.generics;
 
-public class UserStore implements Store<RoleStore.User> {
-    private final Store<RoleStore.User> store = new MemStore<>();
+public class UserStore implements Store<User> {
+    private final Store<User> store = new MemStore<>();
 
-    public void add(RoleStore.User model) {
+    public void add(User model) {
         store.add(model);
     }
 
-    public boolean replace(String id, RoleStore.User model) {
+    public boolean replace(String id, User model) {
         return store.replace(id, model);
         //  надо разобраться как сделать перемещение
     }
@@ -16,7 +16,7 @@ public class UserStore implements Store<RoleStore.User> {
         return store.delete(id);
     }
 
-    public RoleStore.User findById(String id) {
+    public User findById(String id) {
         return store.findById(id);
     }
 

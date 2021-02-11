@@ -3,7 +3,6 @@ package ru.job4j.generics;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class MemStore<T extends Base> implements Store<T> {
     private final List<T> mem = new ArrayList<>();
