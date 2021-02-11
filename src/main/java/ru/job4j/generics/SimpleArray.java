@@ -39,20 +39,14 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void remove(int index) {
-        /*for (int i = index; i < array.length; i++) {
-            array[index] = array[index--];
-        }*/
-        /*if (index < 0 || index > array.length) {
-            throw new IndexOutOfBoundsException();
-        }*/
+        T arrayFinal = (T) new Object[array.length - 1];
         Objects.checkIndex(index, size);
+        System.arraycopy(array, 0, arrayFinal, 0, size);
         int poz1 = index++;
         int poz2 = size - index;
-        System.arraycopy(array, poz1, array, poz2, poz2);
+        System.arraycopy(array, poz1, arrayFinal, poz2, poz2);
         //этим мы решаем проблемы сокращения длины
-        List<T> list = new ArrayList<>(Arrays.asList(array));
-        list.remove(array[size - 1]);
-        array = (T[]) list.toArray(new String[list.size()]);
+        array = (T[]) arrayFinal;
     }
 
     public Iterator<T> iterator() {
