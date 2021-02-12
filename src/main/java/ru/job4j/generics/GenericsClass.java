@@ -1,7 +1,5 @@
 package ru.job4j.generics;
 
-import java.security.Key;
-
 public class GenericsClass<K, V> {
     private K key;
 
