@@ -15,7 +15,6 @@ public class MatrixIt implements Iterator<Integer> {
         //this.size = countEl(data);
     }
 
-
     public boolean hasNext() {
         while (data.length > row && column == data[row].length) {
             column = 0;
