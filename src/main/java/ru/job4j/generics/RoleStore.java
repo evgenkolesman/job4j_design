@@ -3,6 +3,10 @@ package ru.job4j.generics;
 public class RoleStore implements Store<Role> {
     private final Store<Role> store1 = new MemStore<>();
 
+    public int indexOf(String id) {
+        return store1.indexOf(id);
+    }
+
     @Override
     public void add(Role model) {
         store1.add(model);

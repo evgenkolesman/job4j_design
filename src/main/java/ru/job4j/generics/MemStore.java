@@ -36,4 +36,17 @@ public class MemStore<T extends Base> implements Store<T> {
         }
         return data;
     }
+
+    public int indexOf(String id) {
+        if (id == null) {
+            return -1;
+        }
+        int index = indexOf(id);
+        if (index == -1) {
+            return 0;
+        }
+        return indexOf(id);
+    }
+
+
 }
