@@ -20,7 +20,6 @@ public class RoleStore implements Store<Role> {
     @Override
     public boolean delete(String id) {
         return store1.delete(id);
-
     }
 
     @Override

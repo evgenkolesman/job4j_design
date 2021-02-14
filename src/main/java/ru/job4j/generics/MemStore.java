@@ -47,6 +47,4 @@ public class MemStore<T extends Base> implements Store<T> {
         }
         return indexOf(id);
     }
-
-
 }
