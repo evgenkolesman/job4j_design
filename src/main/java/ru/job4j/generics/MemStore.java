@@ -38,13 +38,29 @@ public class MemStore<T extends Base> implements Store<T> {
     }
 
     public int indexOf(String id) {
-        if (id == null) {
+        for (T model : mem) {
+            String id1 = model.getId();
+            if (id1.equals(id)) {
+                return indexOf(id);
+            } else {
+                return -1;
+            }
+        }
+        int index = indexOf(id);
+        return index;
+    }
+
+    /*public String getId() {
+        return id;
+    }*/
+}
+
+        /*if (id == null) {
             return -1;
         }
         int index = indexOf(id);
-        if (index == -1) {
+        for ( ) {
             return 0;
         }
-        return indexOf(id);
-    }
-}
+        return indexOf(id);*/
+
