@@ -50,21 +50,20 @@ public class SimpleArray<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        int expectedModCount = modCount;
+        //private int expectedModCount = modCount;
         class Iterator1 implements Iterator<T> {
             int value = 0;
-            int count = 0;
+            private final int expectedModCount = modCount;
 
             public boolean hasNext() {
                 return size > value && containerNew[value] != null;
             }
 
             public T next() {
-
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                if (getmodCount() != expectedModCount) {
+                if (modCount != this.expectedModCount) {
                     throw new ConcurrentModificationException();
                 } else {
                     //T data = containerNew[value++];
