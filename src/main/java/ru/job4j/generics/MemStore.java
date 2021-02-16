@@ -30,7 +30,7 @@ public class MemStore<T extends Base> implements Store<T> {
     public T findById(String id) {
         T data = null;
         //for (T t : mem) если hasNext() не нужен
-        for (Iterator<T> it = mem.iterator(); it.hasNext(); ) {
+        for (Iterator<T> it = mem.iterator(); it.hasNext();) {
             data = it.next();
             //return null;
         }
