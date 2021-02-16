@@ -30,7 +30,7 @@ public class MemStore<T extends Base> implements Store<T> {
     public T findById(String id) {
         T data = null;
         //for (T t : mem) если hasNext() не нужен
-        for (Iterator<T> it = mem.iterator(); it.hasNext();) {
+        for (Iterator<T> it = mem.iterator(); it.hasNext(); ) {
             data = it.next();
             //return null;
         }
@@ -38,29 +38,25 @@ public class MemStore<T extends Base> implements Store<T> {
     }
 
     public int indexOf(String id) {
-        for (T model : mem) {
-            String id1 = model.getId();
-            if (id1.equals(id)) {
-                return indexOf(id);
-            } else {
-                return -1;
+        int index = -1;
+        for (int i = 0; i < mem.size(); i++) {
+            if (mem.get(i).getId().equals(id)) {
+                index = i;
+                break;
             }
         }
-        int index = indexOf(id);
         return index;
     }
-
-    /*public String getId() {
-        return id;
-    }*/
 }
 
-        /*if (id == null) {
-            return -1;
-        }
-        int index = indexOf(id);
-        for ( ) {
-            return 0;
-        }
-        return indexOf(id);*/
+
+
+/* public int indexOf(String id) {
+   for (T model : mem) {
+    String id1 = model.getId();
+    if (id1.equals(id)) {
+    return indexOf(id);
+    } else {
+    return -1;
+    }*/
 
