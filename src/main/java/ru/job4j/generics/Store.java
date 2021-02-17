@@ -10,5 +10,5 @@ public interface Store<T extends Base> {
 
     T findById(String id);
 
-    int indexOf(String id);
+    //int indexOf(String id);
 }

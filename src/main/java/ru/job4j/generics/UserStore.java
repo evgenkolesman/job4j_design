@@ -3,9 +3,9 @@ package ru.job4j.generics;
 public class UserStore implements Store<User> {
     private final Store<User> store = new MemStore<>();
 
-   public int indexOf(String id) {
+   /*public int indexOf(String id) {
         return store.indexOf(id);
-    }
+    }*/
 
     public void add(User model) {
         store.add(model);

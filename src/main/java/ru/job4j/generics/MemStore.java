@@ -17,17 +17,31 @@ public class MemStore<T extends Base> implements Store<T> {
         //надо число вводить, придумать как сделать условие при наличии String.
         //Надо сделать чтобы id соответсвовало model, сложность в том что id это строка
         // а model это часть списка, то есть их значения не int/
-        return model.equals(id);
+        int index = indexOf(id);
+        if (index == -1) {
+            return false;
+        }
+        mem.set(indexOf(id), model);
+        return true;
     }
 
     @Override
     public boolean delete(String id) {
         // id строка это проблема
-        return mem.remove(id);
+        int index = indexOf(id);
+        if (index == -1) {
+            return false;
+        }
+        mem.remove(indexOf(id));
+        return true;
     }
 
     @Override
     public T findById(String id) {
+        /*int index = indexOf(id);
+        if (index == -1) {
+            return false;
+        }*/
         T data = null;
         //for (T t : mem) если hasNext() не нужен
         for (Iterator<T> it = mem.iterator(); it.hasNext();) {
