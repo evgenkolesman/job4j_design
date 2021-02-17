@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-@SuppressWarnings("checkstyle:EmptyLineSeparator")
 public class SimpleArray<T> implements Iterable<T> {
     private Object[] container = new Object[10];
     public T[] containerNew = (T[]) container;
@@ -14,7 +13,7 @@ public class SimpleArray<T> implements Iterable<T> {
     public int modCount;
 
     public SimpleArray() {
-        this.containerNew = containerNew;
+        //this.containerNew = containerNew;
         size = container.length;
     }
 
@@ -53,7 +52,7 @@ public class SimpleArray<T> implements Iterable<T> {
         //private int expectedModCount = modCount;
         class Iterator1 implements Iterator<T> {
             int value = 0;
-            private final int expectedModCount = modCount;
+            private final int expectedModCount = getmodCount();
 
             public boolean hasNext() {
                 return size > value && containerNew[value] != null;
@@ -63,7 +62,7 @@ public class SimpleArray<T> implements Iterable<T> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                if (modCount != this.expectedModCount) {
+                if (getmodCount() != expectedModCount) {
                     throw new ConcurrentModificationException();
                 } else {
                     //T data = containerNew[value++];
@@ -76,11 +75,4 @@ public class SimpleArray<T> implements Iterable<T> {
 
     }
 }
-    /*public boolean hasNext () {
-        int i = 0;
-        while (size>i) {
-            i++;
-        }
-        return containerNew.length>i;
-    }*/
 
