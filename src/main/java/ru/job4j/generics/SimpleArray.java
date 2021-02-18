@@ -21,10 +21,6 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        // тут можно применить Objects.checkIndex(index, size);
-        /*if (index < array.length) {
-            throw new IllegalStateException("Mistake");
-        }*/
         array[size++] = model;
     }
 
@@ -77,57 +73,3 @@ public class SimpleArray<T> implements Iterable<T> {
 
     }
 }
-    /*public static void main(String[] args) {// на до понять что я печатаю
-        SimpleArray sim = new SimpleArray();
-        //sim.printObject();
-        sim.add();
-        System.out.println();
-    }*/
-
-     /* public T iterator() {
-                if (hasNext()) {
-                    return array[value++];
-                } else {
-                    return throw new NoSuchElementException();
-                }
-            }*/
-        /*public boolean hasNext() {
-        return array.length > size;
-    }*/
-
-    /*public T next() {
-        int index = 0;
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
-        T data = array[index++];
-        return data;*/
-
-    /*class IteratorSA<T> {
-        public T iterator() {
-            if (hasNext()) {
-                return (T) next();
-            } else {
-                return null;
-            }
-        }
-    }*/
-
-    /*public Iterator<T> iterator() {
-        if (hasNext()) {
-            return new Iterator<T>() {
-                @Override
-                public boolean hasNext() {
-                    return SimpleArray.this.hasNext();
-                }
-
-                @Override
-                public T next() {
-                    return (T) array [];
-                }
-            };
-        } else {
-            return null;
-        }
-    }*/
-
