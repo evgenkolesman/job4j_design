@@ -1,23 +1,19 @@
 package ru.job4j.collection;
 
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 public class SimpleArray<T> implements Iterable<T> {
-    private Object[] container = new Object[10];
-    public T[] containerNew = (T[]) container;
-    private int size;
+    private T[] container = (T[]) new Object[10];
+    //public T[] containerNew = (T[]) container;
+    private int size = 10;
     public int index;
     public int modCount;
 
-    public SimpleArray() {
-        //this.containerNew = containerNew;
-        size = container.length;
-    }
+    /*public SimpleArray() {
+        size = 10;
+    }*/
 
-    public int getmodCount() {
+    /*public int getmodCount() {
         // изменилось или длина, или значение одного из элемента массива
         for (int i = 0; i < containerNew.length; i++) {
             if (size != containerNew.length) {
@@ -27,22 +23,26 @@ public class SimpleArray<T> implements Iterable<T> {
             }
         }
         return modCount;
-    }
+    }*/
 
     public T get(int index) {
-        if (containerNew[index] == null) {
+        if (container[index] == null) {
             throw new IndexOutOfBoundsException();
         }
         Objects.checkIndex(index, size);
-        return (T) containerNew[index];
+        return container[index--];
     }
 
     public void add(T model) {
-        if (index < containerNew.length) {
-            containerNew[index] = model;
-        } else {
-            size++;
-            containerNew[size--] = model;
+        if (index < container.length) {
+            container[index] = model;
+            modCount++;
+        } else if (index == container.length) {
+            Arrays.copyOf(container, container.length + 1);
+            //size++;
+            container[index++] = model;
+            modCount++;
+            //container[size--] = model;
         }
 
     }
@@ -52,21 +52,21 @@ public class SimpleArray<T> implements Iterable<T> {
         //private int expectedModCount = modCount;
         class Iterator1 implements Iterator<T> {
             int value = 0;
-            private final int expectedModCount = getmodCount();
+            private final int expectedModCount = modCount;
 
             public boolean hasNext() {
-                return size > value && containerNew[value] != null;
+                return size > value && container[value] != null;
             }
 
             public T next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                if (getmodCount() != expectedModCount) {
+                if (modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
                 } else {
                     //T data = containerNew[value++];
-                    return containerNew[value++];
+                    return container[value++];
                 }
             }
         }
