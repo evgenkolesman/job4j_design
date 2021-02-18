@@ -9,22 +9,6 @@ public class SimpleArray<T> implements Iterable<T> {
     public int index;
     public int modCount;
 
-    /*public SimpleArray() {
-        size = 10;
-    }*/
-
-    /*public int getmodCount() {
-        // изменилось или длина, или значение одного из элемента массива
-        for (int i = 0; i < containerNew.length; i++) {
-            if (size != containerNew.length) {
-                modCount++;
-            } else if (!(containerNew[i] == container[i])) {
-                modCount++;
-            }
-        }
-        return modCount;
-    }*/
-
     public T get(int index) {
         if (container[index] == null) {
             throw new IndexOutOfBoundsException();
@@ -42,14 +26,12 @@ public class SimpleArray<T> implements Iterable<T> {
             //size++;
             container[index++] = model;
             modCount++;
-            //container[size--] = model;
         }
 
     }
 
     @Override
     public Iterator<T> iterator() {
-        //private int expectedModCount = modCount;
         class Iterator1 implements Iterator<T> {
             int value = 0;
             private final int expectedModCount = modCount;
@@ -76,3 +58,19 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 }
 
+// не нужен конструктор и счетчик
+ /*public SimpleArray() {
+        size = 10;
+    }*/
+
+    /*public int getmodCount() {
+        // изменилось или длина, или значение одного из элемента массива
+        for (int i = 0; i < containerNew.length; i++) {
+            if (size != containerNew.length) {
+                modCount++;
+            } else if (!(containerNew[i] == container[i])) {
+                modCount++;
+            }
+        }
+        return modCount;
+    }*/
