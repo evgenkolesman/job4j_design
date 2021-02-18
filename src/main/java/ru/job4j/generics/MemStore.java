@@ -3,6 +3,7 @@ package ru.job4j.generics;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class MemStore<T extends Base> implements Store<T> {
     private final List<T> mem = new ArrayList<>();
@@ -38,10 +39,10 @@ public class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        /*int index = indexOf(id);
+        int index = indexOf(id);
         if (index == -1) {
-            return false;
-        }*/
+            throw new NoSuchElementException();
+        }
         T data = null;
         //for (T t : mem) если hasNext() не нужен
         for (Iterator<T> it = mem.iterator(); it.hasNext();) {
