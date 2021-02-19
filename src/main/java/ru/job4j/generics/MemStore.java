@@ -1,6 +1,5 @@
 package ru.job4j.generics;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
@@ -22,7 +21,7 @@ public class MemStore<T extends Base> implements Store<T> {
         if (index == -1) {
             return false;
         }
-        mem.set(indexOf(id), model);
+        mem.set(index, model);
         return true;
     }
 
@@ -33,7 +32,7 @@ public class MemStore<T extends Base> implements Store<T> {
         if (index == -1) {
             return false;
         }
-        mem.remove(indexOf(id));
+        mem.remove(index);
         return true;
     }
 
@@ -43,13 +42,7 @@ public class MemStore<T extends Base> implements Store<T> {
         if (index == -1) {
             throw new NoSuchElementException();
         }
-        T data = null;
-        //for (T t : mem) если hasNext() не нужен
-        for (Iterator<T> it = mem.iterator(); it.hasNext();) {
-            data = it.next();
-            //return null;
-        }
-        return data;
+        return mem.get(index);
     }
 
     public int indexOf(String id) {
@@ -74,4 +67,10 @@ public class MemStore<T extends Base> implements Store<T> {
     } else {
     return -1;
     }*/
-
+//итератор
+ /*T data = null;
+        //for (T t : mem) если hasNext() не нужен
+        for (Iterator<T> it = mem.iterator(); it.hasNext();) {
+            data = it.next();
+            //return null;
+        }*/
