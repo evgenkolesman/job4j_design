@@ -4,17 +4,16 @@ import java.util.*;
 
 public class SimpleArray<T> implements Iterable<T> {
     private T[] container = (T[]) new Object[10];
-    //public T[] containerNew = (T[]) container;
-    private int size = 10;
+    //private int size = 10;
     public int index;
     public int modCount;
 
     public T get(int index) {
-        if (container[index] == null) {
-            throw new IndexOutOfBoundsException();
+        if (index == 0 && container[index] != null) {
+            return container[0];
         }
-        Objects.checkIndex(index, size);
-        return container[index--];
+        Objects.checkIndex(index, this.index);
+        return container[index];
     }
 
     public void add(T model) {
@@ -22,12 +21,11 @@ public class SimpleArray<T> implements Iterable<T> {
             container[index] = model;
             modCount++;
         } else if (index == container.length) {
-            Arrays.copyOf(container, container.length + 1);
+            Arrays.copyOf(container, container.length * 2);
             //size++;
             container[index++] = model;
             modCount++;
         }
-
     }
 
     @Override
@@ -37,7 +35,10 @@ public class SimpleArray<T> implements Iterable<T> {
             private final int expectedModCount = modCount;
 
             public boolean hasNext() {
-                return size > value && container[value] != null;
+                if (index == value && container[index] != null) {
+                    return true;
+                }
+                return index > value;
             }
 
             public T next() {
