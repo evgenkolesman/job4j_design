@@ -1,6 +1,6 @@
 package ru.job4j.generics;
 
-public class Node<T> {
+public class Node<T>  {
     private T data;
     private Node<T> next;
 
