@@ -1,6 +1,6 @@
 package ru.job4j.collection;
 
-public class SimpleArrayList<E, value> {
+public class SimpleArrayList<E> {
     private Node<E> node;
     private int size; /*его возможно надо найти*/
     Node head = null; /* начальный элемент в листе */
@@ -28,22 +28,21 @@ public class SimpleArrayList<E, value> {
     }*/
 
     public E get(int index) {
-    return node.item;
+        return node.item;
     }
 
     public void add(E value) {
         node = new Node(head, value, tail);
-    }
-}
-        /*if (curr != null) {
-            Node newNode = new Node(item, curr.next);
+        if (curr != null) {
+            Node newNode = new Node(curr.prev, value, curr.next);
             curr.next = newNode;
             curr = newNode;
         } else {
-            head = tail = new Node(item, null);
+            head = tail = new Node(null, value, null);
             curr = head;
         }
-    }*/
+    }
+}
     /*public int getSize(E value) {
         if (head=null) {
             while () {
