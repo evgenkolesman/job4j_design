@@ -9,15 +9,6 @@ public class SimpleArray<T> implements Iterable<T> {
     public int modCount;
 
     public T get(int index) {
-        //size = 10;
-        /*if (index == 0 && container[index] != null) {
-            return container[index];
-        }*/
-        /*for (int i = 0; i < size; i++) {
-            if (container[i] == null) {
-                return container[index];
-            }
-        }*/
         Objects.checkIndex(index, this.index);
         return container[index];
     }
@@ -42,9 +33,7 @@ public class SimpleArray<T> implements Iterable<T> {
             private final int expectedModCount = modCount;
 
             public boolean hasNext() {
-                /*if (index == value && container[index] != null) {
-                    return true;
-                }*/
+
                 return index > value;
             }
 
@@ -65,6 +54,19 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 }
 
+
+
+/*это часть итератора, проверки на отличие от null*/
+// это часть метода get() разные проверки на пустоту
+//size = 10;
+        /*if (index == 0 && container[index] != null) {
+            return container[index];
+        }*/
+        /*for (int i = 0; i < size; i++) {
+            if (container[i] == null) {
+                return container[index];
+            }
+        }*/
 // не нужен конструктор и счетчик
  /*public SimpleArray() {
         size = 10;
