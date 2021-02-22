@@ -14,7 +14,7 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        //size = container.length;
+
         /*if (index < container.length) {
             container[index] = model;
 
@@ -32,8 +32,6 @@ public class SimpleArray<T> implements Iterable<T> {
         if (index == container.length) {
             container = Arrays.copyOf(container,
                     (container.length + 1) * 2);
-            //size++;
-
         }
     }
 
