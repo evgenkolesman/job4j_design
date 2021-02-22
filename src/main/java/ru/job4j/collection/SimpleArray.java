@@ -3,8 +3,8 @@ package ru.job4j.collection;
 import java.util.*;
 
 public class SimpleArray<T> implements Iterable<T> {
-    private int size;
-    private T[] container = (T[]) new Object[size];
+    //private int size;
+    private T[] container = (T[]) new Object[10];
     public int index;
     public int modCount;
 
@@ -14,15 +14,26 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        size = 10;
-        if (index < container.length) {
+        //size = container.length;
+        /*if (index < container.length) {
             container[index] = model;
-            modCount++;
-        } else if (index == container.length) {
-            container = Arrays.copyOf(container, size * 2);
+
+        } else {
+            //container = Arrays.copyOf(container, container.length * 2);
             //size++;
-            container[index++] = model;
-            modCount++;
+            resize(model);
+        }*/
+        resize(model);
+        container[index++] = model;
+        modCount++;
+    }
+
+    private void resize(T model) {
+        if (index == container.length) {
+            container = Arrays.copyOf(container,
+                    (container.length + 1) * 2);
+            //size++;
+
         }
     }
 
@@ -33,16 +44,15 @@ public class SimpleArray<T> implements Iterable<T> {
             private final int expectedModCount = modCount;
 
             public boolean hasNext() {
-
                 return index > value;
             }
 
             public T next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
                 if (modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
+                }
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
                 } else {
                     return container[value++];
                 }

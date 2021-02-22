@@ -1,11 +1,11 @@
-package ru.job4j.collection;
+/*package ru.job4j.collection;
 
 public class SimpleArrayList<E> {
     private Node<E> node;
-    private int size; /*его возможно надо найти*/
-    Node head = null; /* начальный элемент в листе */
-    Node tail = null; /* конечный элемент в листе */
-    Node curr; /* текущий элемент */
+    private int size; //его возможно надо найти
+    Node head; // начальный элемент в листе
+    Node tail; // конечный элемент в листе
+    Node curr; // текущий элемент
 
     private class Node<E> {
         E item;
@@ -19,13 +19,13 @@ public class SimpleArrayList<E> {
         }
     }
 
-    /*public int getIndex() {
+    public int getIndex() {
         int index = 0;
         for (node.item.equals()) {
             index++;
             return index;
         }
-    }*/
+    }
 
     public E get(int index) {
         return node.item;
@@ -42,7 +42,7 @@ public class SimpleArrayList<E> {
             curr = head;
         }
     }
-}
+}*/
     /*public int getSize(E value) {
         if (head=null) {
             while () {
