@@ -14,7 +14,6 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-
         /*if (index < container.length) {
             container[index] = model;
 
