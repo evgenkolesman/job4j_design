@@ -1,4 +1,4 @@
-/*package ru.job4j.collection;
+package ru.job4j.collection;
 
 public class SimpleArrayList<E> {
     private Node<E> node;

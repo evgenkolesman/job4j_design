@@ -23,12 +23,12 @@ public class SimpleArray<T> implements Iterable<T> {
             //size++;
             resize(model);
         }*/
-        resize(model);
+        resize();
         container[index++] = model;
         modCount++;
     }
 
-    private void resize(T model) {
+    private void resize() {
         if (index == container.length) {
             container = Arrays.copyOf(container,
                     (container.length + 1) * 2);
