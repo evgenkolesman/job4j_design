@@ -3,27 +3,27 @@ package ru.job4j.collection;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SimpleArrayList<E> {
     private Node<E> node; // тот самый лист со списком
     private int size = 0; //длина в LinkedList вроде как начинается тоже с нуля
-    Node head = null; // начальный элемент в листе
-    Node tail = null; // конечный элемент в листе пока не знаю нужен ли он? но по логике нужен,
+    private Node head = null; // начальный элемент в листе
+    private Node tail = null; // конечный элемент в листе пока не знаю нужен ли он? но по логике нужен,
     // так как значение должно быть "head, e , e , e, tail", у элементов позиции будут curr,
     // разные значения для каждого
-    Node curr; // текущий элемент
-    int modCount;
+    private Node curr; // текущий элемент
+    private int modCount;
 
     private class Node<E> {
         E item;
         Node<E> next;
-        Node<E> prev;
+        //Node<E> prev;
 
-        Node(Node<E> prev, E element, Node<E> next) {
+        Node(E element, Node<E> next) {
             this.item = element;
             this.next = next;
-            this.prev = prev;
-
+            //this.prev = prev;
             // фактически готовое добавление в конец списка
             /*transient int size = 0;
             transient Node<E> first;
@@ -43,27 +43,35 @@ public class SimpleArrayList<E> {
         }
     }
 
+    // мы перебираем, различные элементы списка и сравниваем их,
     public int getIndex(E model) {
         int index = 0;
-        while (node.item == model) {
-            index++;
+        for (int i = 0; i < size; i++) {
+            //сравнение node.item (элемент списка node) с заявленным элементом model
+            if (node.item.equals(model)) {
+                return i;
+            }
         }
         return index;
     }
 
     public E get(int index) {
-        E model = node.item;
-        while (index == getIndex(model)) {
-            model = (E) node.next;
+        // можно сделать this.index вместо size этим ограничиться,
+        // но тогда index должен быть приватным полем.
+        Objects.checkIndex(index, size);
+        //сравниваю index входящий и индексы элементов списка, осуществляю перебор путем обращения
+        // к node.next - следующий элемент списка.
+        while (index == getIndex(node.item)) {
+            node.item = (E) node.next;
         }
-        return model;
+        return node.item;
     }
 
     public void add(E value) {
-        // надо ли делать проверку value = null?
+        // надо ли делать проверку value != null?
         // Её убрал так как пишет что эта проверка верна в любом случае
-        curr = new Node(head, value, tail);
-        Node newNode = new Node(curr.prev, value, curr.next);
+        curr = new Node(value, tail);
+        Node newNode = new Node(value, curr.next);
         curr.next = newNode;
         curr = newNode;
         size++;
