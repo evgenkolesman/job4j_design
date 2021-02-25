@@ -7,22 +7,19 @@ import java.util.Objects;
 
 public class SimpleArrayList<E> {
     private Node<E> node; // тот самый лист со списком
-    private int size = 0; //длина в LinkedList вроде как начинается тоже с нуля
-    private Node head = null; // начальный элемент в листе
-    private Node tail = null; // конечный элемент в листе пока не знаю нужен ли он? но по логике нужен,
-    // так как значение должно быть "head, e , e , e, tail", у элементов позиции будут curr,
-    // разные значения для каждого
-    private Node curr; // текущий элемент
-    private int modCount;
+    private int count = 0; // количество элементов списка
+    private Node head = null; // ссылка на голову
+    private int modCount = 0; // число изменений
 
     private class Node<E> {
         E item;
         Node<E> next;
-        //Node<E> prev;
 
         Node(E element, Node<E> next) {
             this.item = element;
             this.next = next;
+        }
+    }
             //this.prev = prev;
             // фактически готовое добавление в конец списка
             /*transient int size = 0;
@@ -40,12 +37,10 @@ public class SimpleArrayList<E> {
                 size++;
                 modCount++;
             }*/
-        }
-    }
 
     // мы перебираем, различные элементы списка и сравниваем их,
     public int getIndex(E model) {
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < count; i++) {
             //сравнение node.item (элемент списка node) с заявленным элементом model
             if (node.item.equals(model)) {
                 return i;
@@ -60,7 +55,7 @@ public class SimpleArrayList<E> {
     public E get(int index) {
         // можно сделать this.index вместо size этим ограничиться,
         // но тогда index должен быть приватным полем.
-        Objects.checkIndex(index, size);
+        Objects.checkIndex(index, count);
         //сравниваю index входящий и индексы элементов списка, осуществляю перебор путем обращения
         // к node.next - следующий элемент списка.
         while (index == getIndex(node.item)) {
@@ -70,13 +65,18 @@ public class SimpleArrayList<E> {
     }
 
     public void add(E value) {
-        // надо ли делать проверку value != null?
-        // Её убрал так как пишет что эта проверка верна в любом случае
-        curr = new Node(value, tail);
-        Node newNode = new Node(value, curr.next);
-        curr.next = newNode;
-        curr = newNode;
-        size++;
+        count++;
+        Node<E> node = new Node<>(value, null);
+        if (head == null) {
+            head = node;
+            return;
+        }
+
+        Node<E> tail = head;
+        while (tail.next != null) {
+            tail = head.next;
+        }
+        tail.next = node;
         modCount++;
     }
 
@@ -87,7 +87,7 @@ public class SimpleArrayList<E> {
             private final int expectedModCount = modCount;
 
             public boolean hasNext() {
-                return value < size;
+                return value < count;
             }
 
             public E next() {
