@@ -49,6 +49,8 @@ public class SimpleArrayList<E> {
             //сравнение node.item (элемент списка node) с заявленным элементом model
             if (node.item.equals(model)) {
                 return i;
+            } else {
+                node.item = (E) node.next;
             }
         }
         //если нет совпадений кидаем что нет такого элемента
