@@ -45,14 +45,14 @@ public class SimpleArrayList<E> {
 
     // мы перебираем, различные элементы списка и сравниваем их,
     public int getIndex(E model) {
-        int index = 0;
         for (int i = 0; i < size; i++) {
             //сравнение node.item (элемент списка node) с заявленным элементом model
             if (node.item.equals(model)) {
                 return i;
             }
         }
-        return index;
+        //если нет совпадений кидаем что нет такого элемента
+        throw new NoSuchElementException();
     }
 
     public E get(int index) {
