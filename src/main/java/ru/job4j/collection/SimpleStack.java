@@ -8,6 +8,6 @@ public class SimpleStack<T> {
     }
 
     public void push(T value) {
-        linked.add(value);
+        linked.addFirst(value);
     }
 }
