@@ -42,8 +42,9 @@ public class ForwardLinked<T> implements Iterable<T> {
             size--;
             return value1;
         }
-
     }
+
+    //public T deleteLast() {}
 
     @Override
     public Iterator<T> iterator() {
