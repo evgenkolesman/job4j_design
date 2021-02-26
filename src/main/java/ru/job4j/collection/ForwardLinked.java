@@ -44,7 +44,8 @@ public class ForwardLinked<T> implements Iterable<T> {
         }
     }
 
-    //public T deleteLast() {}
+    //public T deleteLast() {
+    // Node<T> prev = }
 
     @Override
     public Iterator<T> iterator() {
