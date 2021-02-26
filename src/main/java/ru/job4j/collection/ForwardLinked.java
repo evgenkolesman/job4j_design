@@ -44,8 +44,8 @@ public class ForwardLinked<T> implements Iterable<T> {
         throw new NoSuchElementException();
     }
 
-    // надо проверить
-    public T deleteLast() {
+    // надо проверить !!!просьба не проверять, как выясняеться он вообще не нужен
+    /*public T deleteLast() {
         Node<T> node1 = head.next;
         if (node1.next != null) {
             throw new NoSuchElementException();
@@ -55,7 +55,7 @@ public class ForwardLinked<T> implements Iterable<T> {
             size--;
             return value1;
         }
-    }
+    }*/
 
     @Override
     public Iterator<T> iterator() {
