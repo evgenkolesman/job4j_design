@@ -101,7 +101,9 @@ public class SimpleArrayList<E> {
                 }
             }
         }
+
         return new Iterator1();
+
     }
 }
 
