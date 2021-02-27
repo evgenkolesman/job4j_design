@@ -39,14 +39,14 @@ public class ForwardLinked<T> implements Iterable<T> {
 
     public T deleteFirst() {
         Node<T> prev = head;
-        if (prev != null) {
-            //final T value1 = prev.value;
-            head = head.next;
-            size--;
-            return prev.value;
-            //return value1;
+        if (prev == null) {
+            throw new NoSuchElementException();
         }
-        throw new NoSuchElementException();
+        final T value1 = prev.value;
+        head = head.next;
+        size--;
+        return value1;
+        //return value1;
     }
 
     // надо проверить !!!просьба не проверять, как выясняеться он вообще не нужен
