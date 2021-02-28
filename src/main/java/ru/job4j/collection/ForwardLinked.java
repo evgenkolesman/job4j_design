@@ -37,6 +37,7 @@ public class ForwardLinked<T> implements Iterable<T> {
         size++;
     }
 
+    // пока ерунда ,надо скорее всего переписать
     /*public T revert () {
         Node <T> node = head;
         final T value2 = (T) node.value;
