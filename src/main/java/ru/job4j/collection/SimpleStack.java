@@ -11,7 +11,7 @@ public class SimpleStack<T> {
         linked.addFirst(value);
     }
 
-    public void pushEnd (T value) {
+    public void pushEnd(T value) {
         linked.add(value);
     }
 }
