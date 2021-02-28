@@ -51,6 +51,7 @@ public class SimpleQueueTest {
         assertThat(queue.poll(), is(2));
     }
 
+    //добавленный тест в коментариях
     @Test
     public void PushPushPollPushPoll() {
         SimpleQueue<Integer> queue = new SimpleQueue<>();
