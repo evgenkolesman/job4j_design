@@ -1,8 +1,5 @@
 package ru.job4j.collection;
 
-//import java.util.NoSuchElementException;
-//import java.util.Objects;
-
 import java.util.NoSuchElementException;
 
 public class SimpleQueue<T> {
