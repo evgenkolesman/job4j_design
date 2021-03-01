@@ -23,9 +23,4 @@ public class SimpleQueue<T> {
         index++;
         //out.push(value);
     }
-
-    /*public boolean isEmpty() {
-        SimpleStack <T> a = new SimpleStack<>();
-        return a==null;
-    }*/
 }
