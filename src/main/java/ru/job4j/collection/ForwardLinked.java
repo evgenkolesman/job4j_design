@@ -38,11 +38,14 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     // пока ерунда ,надо скорее всего переписать
-    /*public T revert () {
-        Node <T> node = head;
-        final T value2 = (T) node.value;
-        head = head.next;
-        return value2;
+    /*public revert () {
+        T value = head.next;
+        if (value == null) {
+            value = (T) head;
+        }
+        Node<T> rev = new Node<T>(value, head);
+        head = rev;
+        return rev;
     }*/
 
     public T deleteFirst() {
