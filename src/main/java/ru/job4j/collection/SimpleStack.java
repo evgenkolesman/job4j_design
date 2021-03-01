@@ -11,7 +11,8 @@ public class SimpleStack<T> {
         linked.addFirst(value);
     }
 
-    public void pushEnd(T value) {
+    // не верно, наличие у Стэка такой функции
+    /*public void pushEnd(T value) {
         linked.add(value);
-    }
+    }*/
 }
