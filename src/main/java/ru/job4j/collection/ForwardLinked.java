@@ -37,17 +37,22 @@ public class ForwardLinked<T> implements Iterable<T> {
         size++;
     }
 
-    // пока почему то cast error
-   /* public T revert () {
-        T value = (T) head.next;
-
-        if (value == null) {
-            value = (T) head;
+    // вроде так
+    public void revert() {
+        //проверка не знаю нужна, нет у нас вроде по условию есть лист, но пусть будет.
+        if (size == 0) {
+            throw new NoSuchElementException();
         }
-        Node<T> rev = new Node<T>(value, head.next);
-        //head = rev;
-        return (T) rev;
-    }*/
+        Node rev = null;
+        Node curr = head;
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = rev;
+            rev = curr;
+            curr = next;
+        }
+        head = rev;
+    }
 
     public T deleteFirst() {
         Node<T> prev = head;

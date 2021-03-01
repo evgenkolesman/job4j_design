@@ -22,11 +22,9 @@ public class ForwardLinkedTest {
     @Test
     public void whenAddAndRevertThenIter() {
         ForwardLinked<Integer> linked = new ForwardLinked<>();
-        //linked.add(1);
-        //linked.add(2);
-        linked.addFirst(1);
-        linked.addFirst(2);
-        //linked.revert();
+        linked.add(1);
+        linked.add(2);
+        linked.revert();
         Iterator<Integer> it = linked.iterator();
         assertThat(it.next(), is(2));
         assertThat(it.next(), is(1));
