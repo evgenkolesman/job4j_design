@@ -66,6 +66,13 @@ public class ForwardLinked<T> implements Iterable<T> {
         //return value1;
     }
 
+    public boolean isEmpty() {
+        if (size == 0) {
+            return true;
+        }
+        return false;
+    }
+
     // надо проверить !!!просьба не проверять, как выясняеться он вообще не нужен
     /*public T deleteLast() {
         Node<T> node1 = head.next;
