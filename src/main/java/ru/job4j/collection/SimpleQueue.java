@@ -11,7 +11,6 @@ public class SimpleQueue<T> {
     private int index = 0;
     private int index1 = 0;
 
-
     public T poll() {
         if (index == 0) {
             throw new NoSuchElementException();
