@@ -53,7 +53,7 @@ public class SimpleQueueTest {
 
     //добавленный тест в коментариях
     @Test
-    public void PushPushPollPushPoll() {
+    public void whenPushPushPollPushPoll() {
         SimpleQueue<Integer> queue = new SimpleQueue<>();
         queue.push(1);
         queue.push(2);
