@@ -9,11 +9,6 @@ public class SimpleQueue<T> {
     private int index = 0;
 
     public T poll() {
-        /*if (index == 0) {
-            throw new NoSuchElementException();
-        }
-        int index1 = 0;
-        if (index1 == 0)*/
             while (index != 0) {
                 out.push(in.pop());
                 index--;
@@ -21,19 +16,6 @@ public class SimpleQueue<T> {
             }
 
         return out.pop();
-        /*else {
-            for (int i = 0; i < index; i++) {
-                out.push(in.pop());
-            }
-        }*/
-        /*T temp = null;
-        if (index1 != 0) {
-            temp = out.pop();
-            index1--;
-        }
-
-        return temp;*/
-
     }
 
     public void push(T value) {
