@@ -37,15 +37,16 @@ public class ForwardLinked<T> implements Iterable<T> {
         size++;
     }
 
-    // пока ерунда ,надо скорее всего переписать
-    /*public revert () {
-        T value = head.next;
+    // пока почему то cast error
+   /* public T revert () {
+        T value = (T) head.next;
+
         if (value == null) {
             value = (T) head;
         }
-        Node<T> rev = new Node<T>(value, head);
-        head = rev;
-        return rev;
+        Node<T> rev = new Node<T>(value, head.next);
+        //head = rev;
+        return (T) rev;
     }*/
 
     public T deleteFirst() {
