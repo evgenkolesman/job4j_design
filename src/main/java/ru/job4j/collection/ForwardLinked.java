@@ -41,7 +41,7 @@ public class ForwardLinked<T> implements Iterable<T> {
     public void revert() {
         //проверка не знаю нужна, нет у нас вроде по условию есть лист, но пусть будет.
         if (size == 0) {
-            throw new NoSuchElementException();
+            return;
         }
         Node rev = null;
         Node curr = head;
