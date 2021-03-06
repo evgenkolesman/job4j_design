@@ -1,9 +1,6 @@
 package ru.job4j.iterator;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class ListUtils {
@@ -68,37 +65,28 @@ public class ListUtils {
 
     }
 
+            // реализовал метод удаления если массив надо удалять и сравнивать при услвии,
+            // что в массиве числа рсположены по порядкупо порядку, просто писать этот метод под разнобой,
+            // я бы применил метод sort() и потом прогнал через свой метод
+
     public static <T> void removeAll(List<T> list, List<T> elements) {
+        int index = 0;
+        T a1 = elements.get(index);
         ListIterator<T> a = elements.listIterator();
         ListIterator<T> i = list.listIterator();
-        //int index = 0;
-        while (i.hasNext() && a.hasNext()) {
-            //ListIterator<T> a1 = elements.listIterator();
-            //a = a1;
-                if (i.next().equals(a.next())) {
-                    list.remove(a.next());
-                    elements.remove(a.next());
-                    //index--;
-                    //break;
-                    //i.next();
-                }
-            a.next();
-                //i.next();
-                //index++; // Индекс нужен был для get()
+        while (a.hasNext()) {
+            T list1 = list.get(index++);
+            //T list1 = i.next();
+            if (list1.equals(a.next())) {
+                list.remove(list1);
+                //a.next();
+                index = 0;
+            }
         }
+        //list.removeAll(elements);
     }
 }
-         /*int index = 0;
-        while (list.size() >= elements.size()) {
-            for (int i = 0; i < list.size(); i++) {
-                for (int a = 0; a < list.size(); a++) {
-                    while (list.get(i).equals(elements.get(a))) {
-                        list.remove(i);
-                        elements.remove(a);
-                    }
-                }
-            }
-        }*/
+
 //list.remove(index);
 
 

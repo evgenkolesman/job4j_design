@@ -61,4 +61,12 @@ public class ListUtilsTest {
         ListUtils.removeAll(input, input1);
         assertThat(Arrays.asList(4), Is.is(input));
     }
+
+    /*@Test
+    public void whenRemoveAllDifferent() {
+        List<Integer> input = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        List<Integer> input1 = new ArrayList<>(Arrays.asList(2, 1, 4));
+        ListUtils.removeAll(input, input1);
+        assertThat(Arrays.asList(3), Is.is(input));
+    }*/
 }
