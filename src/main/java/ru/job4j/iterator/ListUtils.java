@@ -72,7 +72,7 @@ public class ListUtils {
     public static <T> void removeAll(List<T> list, List<T> elements) {
         int index = 0;
         //T a1 = elements.get(index);
-        //TreeSet<T> a1 = (TreeSet<T>) elements;
+        //TreeSet<T> a1 = (TreeSet<T>) elements; пока не работает
         ListIterator<T> a = elements.listIterator();
         ListIterator<T> i = list.listIterator();
         while (a.hasNext()) {
