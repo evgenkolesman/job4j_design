@@ -31,22 +31,15 @@ public class ListUtils {
     }
 
     public static <T> void removeIf(List<T> list, Predicate<T> filter) {
-
         //ListIterator<T> i = list.listIterator();
         //T value = (T) list;
-        //int index = 0;
         Iterator<T> each = list.iterator();
         while (each.hasNext()) {
-            if (filter.test(each.next())) {
-                //index++;
-                each.next();
-                //return list;
-            } else {
-                list.remove(each.next());
-                break;
+            T next = each.next();
+            if (filter.test(next)) {
+                each.remove();
             }
         }
-        //return list;
     }
 
     public static <T> void replaceIf(List<T> list, Predicate<T> filter, T value) {
@@ -55,13 +48,12 @@ public class ListUtils {
         while (each.hasNext()) {
             if (filter.test(each.next())) {
                 each.next();
-                index++;
-            } else {
                 list.set(index, value);
                 break;
             }
+            else
+            index++;
         }
-        //return list;
     }
 
     // реализовал метод удаления если массив надо удалять и сравнивать при услвии,
@@ -74,16 +66,12 @@ public class ListUtils {
         //ListIterator<T> i = list.listIterator();
         //while (index < elements.size()) {
         while (a.hasNext()) {
-            T list1 = list.get(index);
-            //T list1 = i.next();
-            if (list1.equals(a.next())) {
-                list.remove(list1);
-                //a.next();
-                index = 0;
+            //T list1 = list.get(index);
+            T element = a.next();
+            removeIf(list, e -> e.equals(element));
             }
         }
     }
-}
        /*else {
                 index++;
                 T list1 = list.get(index);
@@ -97,7 +85,7 @@ public class ListUtils {
 //list.removeAll(elements);
 
 
-//list.remove(index);
+
 
 
 
