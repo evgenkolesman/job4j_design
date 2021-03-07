@@ -50,9 +50,9 @@ public class ListUtils {
                 each.next();
                 list.set(index, value);
                 break;
+            } else {
+                index++;
             }
-            else
-            index++;
         }
     }
 
@@ -69,9 +69,9 @@ public class ListUtils {
             //T list1 = list.get(index);
             T element = a.next();
             removeIf(list, e -> e.equals(element));
-            }
         }
     }
+}
        /*else {
                 index++;
                 T list1 = list.get(index);
