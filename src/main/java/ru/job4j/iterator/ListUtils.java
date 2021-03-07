@@ -34,11 +34,11 @@ public class ListUtils {
 
         //ListIterator<T> i = list.listIterator();
         //T value = (T) list;
-        int index = 0;
+        //int index = 0;
         Iterator<T> each = list.iterator();
         while (each.hasNext()) {
             if (filter.test(each.next())) {
-                index++;
+                //index++;
                 each.next();
                 //return list;
             } else {
@@ -62,21 +62,19 @@ public class ListUtils {
             }
         }
         //return list;
-
     }
 
-            // реализовал метод удаления если массив надо удалять и сравнивать при услвии,
-            // что в массиве числа рсположены по порядкупо порядку, просто писать этот метод под разнобой,
-            // я бы применил метод sort() и потом прогнал через свой метод
+    // реализовал метод удаления если массив надо удалять и сравнивать при услвии,
+    // что в массиве числа рсположены по порядкупо порядку, просто писать этот метод под разнобой,
+    // я бы применил метод sort() и потом прогнал через свой метод
 
     public static <T> void removeAll(List<T> list, List<T> elements) {
         int index = 0;
-        //T a1 = elements.get(index);
-        //TreeSet<T> a1 = (TreeSet<T>) elements; пока не работает
         ListIterator<T> a = elements.listIterator();
-        ListIterator<T> i = list.listIterator();
+        //ListIterator<T> i = list.listIterator();
+        //while (index < elements.size()) {
         while (a.hasNext()) {
-            T list1 = list.get(index++);
+            T list1 = list.get(index);
             //T list1 = i.next();
             if (list1.equals(a.next())) {
                 list.remove(list1);
@@ -84,9 +82,20 @@ public class ListUtils {
                 index = 0;
             }
         }
-        //list.removeAll(elements);
     }
 }
+       /*else {
+                index++;
+                T list1 = list.get(index);
+                //T list1 = i.next();
+                if (list1.equals(a.next())) {
+                    list.remove(list1);
+                    //a.next();
+                    //index = 0;
+                }
+            }*/
+//list.removeAll(elements);
+
 
 //list.remove(index);
 
