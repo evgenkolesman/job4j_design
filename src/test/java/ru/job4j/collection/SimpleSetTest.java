@@ -12,9 +12,10 @@ public class SimpleSetTest {
 
     @Test
     public void testAdd() {
-        String [] con = {"a", "b", "c"};
-        con.add("a");
-        con.add("z");
-        assertThat(Arrays.asList("a", "b", "c", "z"), Is.is(con));
+        Integer[] con = new Integer[]{1, 2, 3};
+        //con = new String[]{"a", "b", "c"};
+        con.add(1);
+        con.add(4);
+        assertThat(Arrays.asList(1, 2, 3, 4), Is.is(con));
     }
 }

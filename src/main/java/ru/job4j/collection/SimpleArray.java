@@ -60,7 +60,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     }
 
-    public Object[] delEquals(T[] container) {
+    public T[] delEquals(T[] container) {
         for (int i = 0; i < container.length; i++) {
             if (container[i].equals(container[i + 1])) {
                 System.arraycopy(container, i, container, i + 1, container.length - i - 1);
