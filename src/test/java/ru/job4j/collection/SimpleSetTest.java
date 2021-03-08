@@ -15,6 +15,9 @@ public class SimpleSetTest {
         SimpleSet<Integer> con = new SimpleSet<>();
         //con = new String[]{"a", "b", "c"};
         con.add(1);
+        con.add(2);
+        con.add(3);
+        con.add(4);
         con.add(4);
         assertThat(Arrays.asList(1, 2, 3, 4), Is.is(con));
     }

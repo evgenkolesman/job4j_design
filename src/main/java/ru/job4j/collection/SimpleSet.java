@@ -12,7 +12,7 @@ public class SimpleSet<T> implements Iterable<T> {
 
     public boolean add(T model) {
         for (int i = 0; i < index; i++) {
-            if (model.equals(container)) {
+            if (model.equals(container.get(i))) {
                 return false;
             }
         }
