@@ -2,6 +2,8 @@ package ru.job4j.collection;
 
 import java.util.*;
 
+import static java.lang.String.valueOf;
+
 public class SimpleArray<T> implements Iterable<T> {
     //private int size;
     T[] container = (T[]) new Object[10];
@@ -16,7 +18,6 @@ public class SimpleArray<T> implements Iterable<T> {
     public SimpleArray[] add(T model) {
         /*if (index < container.length) {
             container[index] = model;
-
         } else {
             //container = Arrays.copyOf(container, container.length * 2);
             //size++;
@@ -61,6 +62,13 @@ public class SimpleArray<T> implements Iterable<T> {
 
     }
 
+    public void sort() {
+        Arrays.sort(container, new Comparator<T>() {
+            public int compare(T o1, T o2) {
+                return valueOf(o1).compareTo(valueOf(o2));
+            }
+        });
+    }
 }
 
 

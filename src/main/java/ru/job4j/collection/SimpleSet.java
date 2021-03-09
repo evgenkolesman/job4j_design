@@ -1,6 +1,7 @@
 package ru.job4j.collection;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class SimpleSet<T> implements Iterable<T> {
@@ -16,9 +17,13 @@ public class SimpleSet<T> implements Iterable<T> {
                 return false;
             }
         }
+        /*if (container.get(index) == null) {
+            container.add(model);
+            index++;
+        }*/
         container.add(model);
-
         index++;
+        container.sort();
         //delEquals(container1);
         return true;
     }
