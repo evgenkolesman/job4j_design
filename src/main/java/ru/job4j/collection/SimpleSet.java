@@ -1,12 +1,10 @@
 package ru.job4j.collection;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
 
 public class SimpleSet<T> implements Iterable<T> {
     int index = 0;
-    private SimpleArray<T> container = new SimpleArray<>();
+    private final SimpleArray<T> container = new SimpleArray<>();
     /*public SimpleSet(SimpleArray<T>[] container1) {
         this.container1 = container1;
     }*/
