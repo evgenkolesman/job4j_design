@@ -16,13 +16,6 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public SimpleArray[] add(T model) {
-        /*if (index < container.length) {
-            container[index] = model;
-        } else {
-            //container = Arrays.copyOf(container, container.length * 2);
-            //size++;
-            resize(model);
-        }*/
         resize();
         container[index++] = model;
         modCount++;
@@ -101,3 +94,11 @@ public class SimpleArray<T> implements Iterable<T> {
         }
         return modCount;
     }*/
+
+ /*if (index < container.length) {
+            container[index] = model;
+        } else {
+            //container = Arrays.copyOf(container, container.length * 2);
+            //size++;
+            resize(model);
+        }*/
