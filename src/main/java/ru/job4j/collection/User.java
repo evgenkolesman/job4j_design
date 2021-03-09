@@ -21,13 +21,10 @@ public class User {
         User first = new User("Joe", 2, calendar);
         User second = new User("Joe", 2, calendar);
         Map<User, Object> map = new HashMap<>();
-        Object element1 = null;
-        Object element2 = null;
+        Object element1 = 1;
+        //Object element2 = 1;
         map.put(first, element1);
-        map.put(second, element2);
-        System.out.println(map);
-
+        map.put(second, element1);
+        System.out.println("MAP = " + map);
     }
-
-
 }
