@@ -1,10 +1,7 @@
 package ru.job4j.collection;
 
-
-import org.hamcrest.core.Is;
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
