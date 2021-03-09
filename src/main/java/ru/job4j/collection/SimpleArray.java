@@ -56,13 +56,27 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void sort() {
+        Arrays.sort(container, Comparator.comparing(String::valueOf));
+    }
+}
+
+
+
+        /*Начальный вариант
+
         Arrays.sort(container, new Comparator<T>() {
             public int compare(T o1, T o2) {
                 return valueOf(o1).compareTo(valueOf(o2));
             }
         });
-    }
-}
+        Вариант Лямбда
+        Arrays.sort(container, (o1, o2) -> valueOf(o1).compareTo(valueOf(o2)));
+        Вариант Comparator comparing
+        Arrays.sort(container, Comparator.comparing(String::valueOf));
+        */
+
+
+
 
 
 
