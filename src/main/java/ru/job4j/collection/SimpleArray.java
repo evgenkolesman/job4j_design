@@ -54,6 +54,15 @@ public class SimpleArray<T> implements Iterable<T> {
         return new Iterator1();
 
     }
+
+    public boolean contains(T model) {
+        for (int i = 0; i < index; i++) {
+            if (model.equals(container[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
     /*public void sort() {
         Arrays.sort(container, Comparator.comparing(String::valueOf));

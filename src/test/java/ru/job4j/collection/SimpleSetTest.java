@@ -26,7 +26,17 @@ public class SimpleSetTest {
         assertThat(rsl.next(), is(4));
     }
 
-    /*@Test
+    @Test(expected = NoSuchElementException.class)
+    public void testAddNextNull() {
+        SimpleSet<Integer> con = new SimpleSet<>();
+        Iterator<Integer> rsl = con.iterator();
+        rsl.next();
+    }
+}
+
+
+//тест на порядок своего рода TreeSet ранжирование
+/*@Test
     public void testAddWrongOrder() {
         SimpleSet<Integer> con = new SimpleSet<>();
         //con = new String[]{"a", "b", "c"};
@@ -42,11 +52,3 @@ public class SimpleSetTest {
         assertThat(rsl.next(), is(3));
         assertThat(rsl.next(), is(4));
     }*/
-
-    @Test(expected = NoSuchElementException.class)
-    public void testAddNextNull() {
-        SimpleSet<Integer> con = new SimpleSet<>();
-        Iterator<Integer> rsl = con.iterator();
-        rsl.next();
-    }
-}
