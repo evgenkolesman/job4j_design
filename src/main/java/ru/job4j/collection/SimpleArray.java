@@ -54,11 +54,11 @@ public class SimpleArray<T> implements Iterable<T> {
         return new Iterator1();
 
     }
-
-    public void sort() {
+}
+    /*public void sort() {
         Arrays.sort(container, Comparator.comparing(String::valueOf));
     }
-}
+}*/
 
 
 

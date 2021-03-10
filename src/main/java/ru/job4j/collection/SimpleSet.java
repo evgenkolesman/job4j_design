@@ -5,9 +5,6 @@ import java.util.Iterator;
 public class SimpleSet<T> implements Iterable<T> {
     int index = 0;
     private final SimpleArray<T> container = new SimpleArray<>();
-    /*public SimpleSet(SimpleArray<T>[] container1) {
-        this.container1 = container1;
-    }*/
 
     public boolean add(T model) {
         for (int i = 0; i < index; i++) {
@@ -15,14 +12,9 @@ public class SimpleSet<T> implements Iterable<T> {
                 return false;
             }
         }
-        /*if (container.get(index) == null) {
-            container.add(model);
-            index++;
-        }*/
         container.add(model);
         index++;
-        container.sort();
-        //delEquals(container1);
+        //container.sort();
         return true;
     }
 
@@ -30,14 +22,4 @@ public class SimpleSet<T> implements Iterable<T> {
         return container.iterator();
     }
 }
-  /*  public SimpleArray[] delEquals(SimpleArray[] container) {
-        for (int i = 0; i < container.length; i++) {
-            Arrays.sort(container);
-            if (container[i].equals(container[i + 1])) {
-                System.arraycopy(container, i, container, i + 1, container.length - i - 1);
-                container[container.length - 1] = null;
-            }
-        }
-        return container;
-    }*/
 
