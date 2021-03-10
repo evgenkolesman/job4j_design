@@ -43,8 +43,8 @@ public class SimpleSetTest {
         assertThat(rsl.next(), is(4));
     }
 
-    @Test (expected = NoSuchElementException.class)
-    public void testAddNextNull () {
+    @Test(expected = NoSuchElementException.class)
+    public void testAddNextNull() {
         SimpleSet<Integer> con = new SimpleSet<>();
         Iterator<Integer> rsl = con.iterator();
         rsl.next();
