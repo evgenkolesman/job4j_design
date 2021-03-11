@@ -7,12 +7,14 @@ public class SimpleSet<T> implements Iterable<T> {
     private final SimpleArray<T> container = new SimpleArray<>();
 
     public boolean add(T model) {
-        container.contains(model);
-        container.add(model);
-        index++;
+        if (container.contains(model)) {
+            container.add(model);
+            index++;
+        }
         //этот код был написан для сортировки по возрастанию объектов, применять при необходимости
         //container.sort();
-        return true;
+
+        return false;
     }
 
     public Iterator<T> iterator() {

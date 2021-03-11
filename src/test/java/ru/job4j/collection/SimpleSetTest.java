@@ -32,6 +32,23 @@ public class SimpleSetTest {
         Iterator<Integer> rsl = con.iterator();
         rsl.next();
     }
+
+    @Test
+    public void testAddRightOrderOneTwice() {
+        SimpleSet<Integer> con = new SimpleSet<>();
+        //con = new String[]{"a", "b", "c"};
+        con.add(1);
+        con.add(2);
+        con.add(3);
+        con.add(4);
+        con.add(1);
+        Iterator<Integer> rsl = con.iterator();
+        //assertThat(rsl, is("first"));
+        assertThat(rsl.next(), is(1));
+        assertThat(rsl.next(), is(2));
+        assertThat(rsl.next(), is(3));
+        assertThat(rsl.next(), is(4));
+    }
 }
 
 

@@ -6,9 +6,9 @@ import static java.lang.String.valueOf;
 
 public class SimpleArray<T> implements Iterable<T> {
     //private int size;
-    T[] container = (T[]) new Object[10];
-    public int index;
-    public int modCount;
+    private T[] container = (T[]) new Object[10];
+    private int index;
+    private int modCount;
 
     public T get(int index) {
         Objects.checkIndex(index, this.index);
@@ -64,7 +64,16 @@ public class SimpleArray<T> implements Iterable<T> {
         return true;
     }
 }
-    /*public void sort() {
+
+
+
+
+
+
+
+
+
+/*public void sort() {
         Arrays.sort(container, Comparator.comparing(String::valueOf));
     }
 }*/
