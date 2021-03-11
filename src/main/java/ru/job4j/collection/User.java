@@ -22,10 +22,10 @@ public class User {
         User second = new User("Joe", 2, calendar);
         Map<User, Object> map = new HashMap<>();
         Object element1 = 1111;
-        //Object element2 = 1;
+        Object element2 = 1;
         map.put(first, element1);
         map.put(second, element1);
         System.out.println("MAP = " + map);
-        System.out.println("User 1 = " + first + " User 2 = " + second);
+        //System.out.println("User 1 = " + first + " User 2 = " + second);
     }
 }
