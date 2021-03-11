@@ -21,11 +21,11 @@ public class User {
         User first = new User("Joe", 2, calendar);
         User second = new User("Joe", 2, calendar);
         Map<User, Object> map = new HashMap<>();
-        Object element1 = 1111;
-        Object element2 = 1;
+        Object element1 = 1;
+        Object element2 = 2;
         map.put(first, element1);
-        map.put(second, element1);
-        System.out.println("MAP = " + map);
+        map.put(second, element2);
+        //System.out.println("MAP = " + map);
         //System.out.println("User 1 = " + first + " User 2 = " + second);
         Calendar calendar1 = new GregorianCalendar(2018, Calendar.NOVEMBER, 3);
         Calendar calendar2 = new GregorianCalendar(2017, Calendar.OCTOBER, 10);
@@ -33,8 +33,8 @@ public class User {
         User forth = new User("Lary ", 3, calendar1);
         Object element3 = 3;
         Object element4 = 4;
-        map.put(first, element3);
-        map.put(second, element4);
+        map.put(third, element3);
+        map.put(forth, element4);
         System.out.println("MAP = " + map);
     }
 }
