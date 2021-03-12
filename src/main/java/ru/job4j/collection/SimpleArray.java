@@ -2,7 +2,7 @@ package ru.job4j.collection;
 
 import java.util.*;
 
-import static java.lang.String.valueOf;
+//import static java.lang.String.valueOf;
 
 public class SimpleArray<T> implements Iterable<T> {
     //private int size;
@@ -54,25 +54,21 @@ public class SimpleArray<T> implements Iterable<T> {
         return new Iterator1();
 
     }
+}
 
-    public boolean contains(T model) {
+
+//метод заменен на Objects.equals()
+/*public boolean contains(T model) {
         for (int i = 0; i < index; i++) {
             if (model.equals(container[i])) {
                 return false;
             }
         }
         return true;
-    }
-}
+    }*/
 
 
-
-
-
-
-
-
-
+//Метод сортировка
 /*public void sort() {
         Arrays.sort(container, Comparator.comparing(String::valueOf));
     }
