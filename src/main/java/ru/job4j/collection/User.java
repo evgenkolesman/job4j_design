@@ -24,9 +24,9 @@ public class User {
         map.put(second, element2);
         System.out.println("MAP = " + map);
     }
-}
+
     //это для 3 и 4 заданий
-    /*@Override
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -41,5 +41,6 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(name, children, birthday);
-    }*/
+    }
+}
 
