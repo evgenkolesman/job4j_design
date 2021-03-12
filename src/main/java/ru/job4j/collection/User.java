@@ -22,7 +22,11 @@ public class User {
         Object element2 = 2;
         map.put(first, element1);
         map.put(second, element2);
+        //System.out.println("MAP = " + map);
+        map.put(first, new Object());
+        map.put(second, new Object());
         System.out.println("MAP = " + map);
+
     }
 
     //это для 3 и 4 заданий
