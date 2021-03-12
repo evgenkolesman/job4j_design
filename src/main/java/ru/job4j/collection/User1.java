@@ -32,6 +32,10 @@ public class User1 {
     //3 задание
     @Override
     public int hashCode() {
+        return User1.hash(name1, children1, birthday1);
+    }
+
+    private static int hash(String name1, int children1, Calendar birthday1) {
         return Objects.hash(name1, children1, birthday1);
     }
 }
