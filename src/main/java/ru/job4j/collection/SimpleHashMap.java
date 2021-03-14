@@ -49,8 +49,8 @@ public class SimpleHashMap<K, V> {
             }
         }
         resize();
-        table[size] = new mapEntry<>(key, value);
-        size++;
+        table[size++] = new mapEntry<K,V>(key, value);
+        //size++;
         return true;
     }
 
@@ -99,7 +99,8 @@ public class SimpleHashMap<K, V> {
 
             @Override
             public boolean hasNext() {
-                return index < itArray.length && modCount == modCountExp;
+                return index < itArray.length
+                        && modCount == modCountExp;
             }
 
             @Override
