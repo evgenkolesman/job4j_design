@@ -49,8 +49,8 @@ public class SimpleHashMap<K, V> {
             }
         }
         resize();
-        size++;
         table[size] = new mapEntry<>(key, value);
+        size++;
         return true;
     }
 
