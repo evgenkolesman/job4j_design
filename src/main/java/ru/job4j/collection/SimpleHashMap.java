@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 public class SimpleHashMap<K, V> {
     // надо посмотреть что именно надо убрать что оставить
     private int size = 0;
-    private final int capasity = 2;
+    private int capasity = 2;
     //capasity должно быть 16, но поставил 2 что бы тестировать метод resize
     private int modCount = 0;
     private MapEntry<K, V>[] table = new MapEntry[capasity];
@@ -144,7 +144,6 @@ public class SimpleHashMap<K, V> {
                     }
                 }
                 return table[index++].getKey();
-                //return iterator().next();
             }
         };
     }
