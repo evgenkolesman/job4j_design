@@ -13,10 +13,6 @@ public class SimpleHashMap<K, V> {
     private MapEntry<K, V>[] table = new MapEntry[capasity];
 
 
-    //private int index = 0;
-
-    //private int [] myHash = new int[capasity];
-
     public class MapEntry<K, V> {
         private K key;
         private V value;
@@ -40,7 +36,6 @@ public class SimpleHashMap<K, V> {
         public void setValue(V value) {
             this.value = value;
         }
-
     }
 
     @Override
@@ -148,7 +143,8 @@ public class SimpleHashMap<K, V> {
                         return table[index].getKey();
                     }
                 }
-                return iterator().next();
+                return table[index++].getKey();
+                //return iterator().next();
             }
         };
     }

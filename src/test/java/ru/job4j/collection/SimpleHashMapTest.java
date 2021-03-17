@@ -43,5 +43,7 @@ public class SimpleHashMapTest {
         SimpleHashMap<Integer, Integer> a = new SimpleHashMap<>();
         a.insert(1, 1);
         assertThat(a.iterator().next(), is(1));
+        a.insert(2, 2);
+        assertThat(a.iterator().next(), is(2));
     }
 }
