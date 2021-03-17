@@ -3,31 +3,29 @@ package ru.job4j.collection;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-
-import static java.util.Objects.hash;
 
 public class SimpleHashMap<K, V> {
     // надо посмотреть что именно надо убрать что оставить
     private int size = 0;
-    private final int capasity = 16;
+    private final int capasity = 2;
+    //capasity должно быть 16, но поставил 2 что бы тестировать метод resize
     private int modCount = 0;
-    private mapEntry<K, V>[] table = new mapEntry[capasity];
+    private MapEntry<K, V>[] table = new MapEntry[capasity];
 
 
     //private int index = 0;
 
     //private int [] myHash = new int[capasity];
 
-    public class mapEntry<K, V> {
+    public class MapEntry<K, V> {
         private K key;
         private V value;
         private int hash;
 
-        public mapEntry(int hash, K key, V value) {
-            key = this.key;
-            value = this.value;
-            hash = this.hash;
+        public MapEntry(int hash, K key, V value) {
+            this.key = key;
+            this.value = value;
+            this.hash = hash;
         }
 
 
@@ -43,10 +41,6 @@ public class SimpleHashMap<K, V> {
             this.value = value;
         }
 
-        int hash(int h) {
-            h ^= (h >>> 20) ^ (h >>> 12);
-            return h ^ (h >>> 7) ^ (h >>> 4);
-        }
     }
 
     @Override
@@ -60,7 +54,7 @@ public class SimpleHashMap<K, V> {
     @Override
     public int hashCode() {
         int index = 0;
-        int result = hash(table[index]);
+        int result = hash(table[index].getKey().hashCode());
         result = 31 * result + Arrays.hashCode(table);
         //result = 31 * result + Arrays.hashCode(table.hash(index));
         //myHash[index] = result;
@@ -68,49 +62,58 @@ public class SimpleHashMap<K, V> {
         return result;
     }
 
-    private void resize() {
-        if (size == table.length) {
-            table = Arrays.copyOf(table,
-                    (table.length + 1) * 2);
+    public int hash(int h) {
+        h ^= (h >>> 20) ^ (h >>> 12);
+        return h ^ (h >>> 7) ^ (h >>> 4);
+    }
+
+    public int indexFor(int h, int length) {
+        return h & (length - 1);
+    }
+
+    public void resize(int size) {
+        if (table.length <= size * 0.75) {
+            MapEntry<K, V>[] newTable = new MapEntry[table.length * 2];
+            transfer(newTable);
+            table = newTable;
         }
     }
 
-    public boolean insert(K key, V value) {
-        int index = indexFor(key.hashCode(), table.length);
-        Objects.checkIndex(index, table.length);
-        mapEntry<K, V> newValue = new mapEntry<K, V>(hash(key.hashCode()), key, value);
-        int a = newValue.hashCode();
-        if (newValue.hashCode() == hash(key.hashCode())) {
-            table[index].setValue(value);
-            return false;
+    public void transfer(MapEntry<K, V>[] newTable) {
+        newTable = new MapEntry[table.length * 2];
+        for (int i = 0; i < table.length; i++) {
+            int hash = table[i].getKey() == null ? 0 : hash(table[i].getKey().hashCode());
+            newTable[indexFor(hash, table.length)] = table[i];
         }
+    }
 
-        resize();
-        //mapEntry <K,V> newValue = new mapEntry<K,V>(key, value);
-        table[size++] = newValue;
-        //size++;
-        modCount++;
-        index++;
-        return true;
+
+    public boolean insert(K key, V value) {
+        int hash = key == null ? 0 : hash(key.hashCode());
+        int index = indexFor(hash, table.length);
+        if (table[index] == null) {
+            table[index] = new MapEntry<>(hash, key, value);
+            modCount++;
+            size++;
+            resize(size);
+            return true;
+        }
+        return false;
     }
 
     public V get(K key) {
-        for (int i = 0; i < size; i++) {
-            if (table[i] != null) {
-                if (table[i].getKey().equals(key)) {
-                    table[i].getValue();
-                }
-            }
+        int hash = key == null ? 0 : hash(key.hashCode());
+        int index = indexFor(hash, table.length);
+        if (table[index] != null && table[index].getKey().equals(key)) {
+            return table[index].getValue();
         }
         return null;
     }
 
-    //допилить delete и get
     public boolean delete(K key) {
         K key1 = table[indexFor(key.hashCode(), table.length)].getKey();
         if (key.equals(key1)) {
             table[indexFor(key.hashCode(), table.length)] = null;
-            lessArr(indexFor(key.hashCode(), table.length));
             modCount++;
             return true;
         } else {
@@ -119,28 +122,7 @@ public class SimpleHashMap<K, V> {
 
     }
 
-
-    public int indexFor(int h, int length) {
-        return h & (length - 1);
-    }
-
-
-    public void lessArr(int a) {
-        //тут можно применить Arrays.copy но так надежнее
-        System.arraycopy(table, a, table, a + 1, table.length - a - 1);
-        table[table.length - 1] = null;
-        size--;
-        //или по старому доброму циклу
-        //for (int i = a; i < size; i++) {
-        //   table[i] = table[i + 1];
-    }
-
-
     public Iterator<K> iterator() {
-        K[] itArray = (K[]) new Object[size - 1];
-        for (int i = 0; i < size; i++) {
-            itArray[i] = table[i].getKey();
-        }
 
         return new Iterator<>() {
             int index = 0;
@@ -148,8 +130,11 @@ public class SimpleHashMap<K, V> {
 
             @Override
             public boolean hasNext() {
-                return index < size
-                        && modCount == modCountExp;
+                return index < size && modCount == modCountExp;
+
+                /*index < table.length && table[index].getKey() == null ? false : true
+                        && table[index] == null ? false : true;*/
+                //&& modCount == modCountExp;
             }
 
             @Override
@@ -157,7 +142,13 @@ public class SimpleHashMap<K, V> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return itArray[index++];
+                while (table[index] == null) {
+                    index++;
+                    if (table[index] != null) {
+                        return table[index].getKey();
+                    }
+                }
+                return iterator().next();
             }
         };
     }
