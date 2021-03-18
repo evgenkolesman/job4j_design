@@ -126,10 +126,6 @@ public class SimpleHashMap<K, V> {
             @Override
             public boolean hasNext() {
                 return index < size;
-
-                /*index < table.length && table[index].getKey() == null ? false : true
-                        && table[index] == null ? false : true;*/
-                //&& modCount == modCountExp;
             }
 
             @Override
