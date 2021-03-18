@@ -44,5 +44,8 @@ public class SimpleHashMapTest {
         assertThat(a.iterator().next(), is(1));
         a.insert(2, 2);
         assertThat(a.iterator().next(), is(2));
+        a.insert(3, 3);
+        assertThat(a.iterator().next(), is(3));
+
     }
 }

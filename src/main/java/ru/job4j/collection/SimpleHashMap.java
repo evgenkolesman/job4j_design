@@ -8,7 +8,7 @@ public class SimpleHashMap<K, V> {
     private int capasity = 16;
     //capasity должно быть 16, но поставил 2 что бы тестировать метод resize
     private int modCount = 0;
-    private final double LOAD_FACTOR =  0.75;
+    private final double LOAD_FACTOR = 0.75;
     private MapEntry<K, V>[] table = new MapEntry[capasity];
 
 
@@ -76,9 +76,10 @@ public class SimpleHashMap<K, V> {
     public void transfer(MapEntry<K, V>[] newTable) {
         newTable = new MapEntry[table.length * 2];
         for (int i = 0; i < table.length; i++) {
-            if(!Objects.equals(table[i].getKey(),null)) {
-            int hash = table[i].getKey() == null ? 0 : hash(table[i].getKey().hashCode());
-            newTable[indexFor(hash, table.length)] = table[i]; }
+            if (!Objects.equals(table[i].getKey(), null)) {
+                int hash = table[i].getKey() == null ? 0 : hash(table[i].getKey().hashCode());
+                newTable[indexFor(hash, table.length)] = table[i];
+            }
         }
     }
 
@@ -107,7 +108,7 @@ public class SimpleHashMap<K, V> {
 
     public boolean delete(K key) {
         K key1 = table[indexFor(key.hashCode(), table.length)].getKey();
-        if (Objects.equals(key,key1)) {
+        if (Objects.equals(key, key1)) {
             table[indexFor(key.hashCode(), table.length)] = null;
             modCount++;
             return true;
@@ -136,11 +137,21 @@ public class SimpleHashMap<K, V> {
                 if (modCount != modCountExp) {
                     throw new ConcurrentModificationException();
                 }
-                while (table[index] == null) {
-                    index++;
+                K a = null;
+                for (int i = 0; i < table.length; i++) {
+                    if (table[i] == null) {
+                        index++;
+                    } else
+                        a = table[index++].getKey();
                 }
-                return table[index++].getKey();
+                return a;
             }
+                /*if (table[index] == null) {
+                    index++;
+                    return table[index].getKey();
+                }*/
+
+
         };
     }
 }
