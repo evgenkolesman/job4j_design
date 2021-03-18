@@ -19,7 +19,6 @@ public class SimpleHashMapTest {
         assertThat(a.get(1), is(1));
         assertThat(a.get(2), is(2));
         assertThat(a.insert(2, 2), is(false));
-        assertThat(a.get(3), is(3));
     }
 
     @Test

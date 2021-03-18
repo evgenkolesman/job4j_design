@@ -1,8 +1,6 @@
 package ru.job4j.collection;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class SimpleHashMap<K, V> {
     // надо посмотреть что именно надо убрать что оставить
@@ -10,6 +8,7 @@ public class SimpleHashMap<K, V> {
     private int capasity = 2;
     //capasity должно быть 16, но поставил 2 что бы тестировать метод resize
     private int modCount = 0;
+    private final double LOAD_FACTOR =  0.5;
     private MapEntry<K, V>[] table = new MapEntry[capasity];
 
 
@@ -67,7 +66,7 @@ public class SimpleHashMap<K, V> {
     }
 
     public void resize(int size) {
-        if (table.length <= size * 0.75) {
+        if (table.length <= size * LOAD_FACTOR) {
             MapEntry<K, V>[] newTable = new MapEntry[table.length * 2];
             transfer(newTable);
             table = newTable;
@@ -77,8 +76,9 @@ public class SimpleHashMap<K, V> {
     public void transfer(MapEntry<K, V>[] newTable) {
         newTable = new MapEntry[table.length * 2];
         for (int i = 0; i < table.length; i++) {
+            if(!Objects.equals(table[i].getKey(),null)) {
             int hash = table[i].getKey() == null ? 0 : hash(table[i].getKey().hashCode());
-            newTable[indexFor(hash, table.length)] = new MapEntry<>(hash(table[i].getKey().hashCode()), table[i].getKey(), table[i].getValue());
+            newTable[indexFor(hash, table.length)] = table[i]; }
         }
     }
 
@@ -107,7 +107,7 @@ public class SimpleHashMap<K, V> {
 
     public boolean delete(K key) {
         K key1 = table[indexFor(key.hashCode(), table.length)].getKey();
-        if (key.equals(key1)) {
+        if (Objects.equals(key,key1)) {
             table[indexFor(key.hashCode(), table.length)] = null;
             modCount++;
             return true;
@@ -125,7 +125,7 @@ public class SimpleHashMap<K, V> {
 
             @Override
             public boolean hasNext() {
-                return index < size && modCount == modCountExp;
+                return index < size;
 
                 /*index < table.length && table[index].getKey() == null ? false : true
                         && table[index] == null ? false : true;*/
@@ -136,6 +136,9 @@ public class SimpleHashMap<K, V> {
             public K next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
+                }
+                if (modCount != modCountExp) {
+                    throw new ConcurrentModificationException();
                 }
                 while (table[index] == null) {
                     index++;
