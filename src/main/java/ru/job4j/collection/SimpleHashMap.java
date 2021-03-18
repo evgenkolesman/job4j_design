@@ -5,7 +5,7 @@ import java.util.*;
 public class SimpleHashMap<K, V> {
     // надо посмотреть что именно надо убрать что оставить
     private int size = 0;
-    private int capasity = 2;
+    private int capasity = 16;
     //capasity должно быть 16, но поставил 2 что бы тестировать метод resize
     private int modCount = 0;
     private final double LOAD_FACTOR =  0.75;
@@ -142,9 +142,6 @@ public class SimpleHashMap<K, V> {
                 }
                 while (table[index] == null) {
                     index++;
-                    if (table[index] != null) {
-                        return table[index].getKey();
-                    }
                 }
                 return table[index++].getKey();
             }
