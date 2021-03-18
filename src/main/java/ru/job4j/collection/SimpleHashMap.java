@@ -78,7 +78,7 @@ public class SimpleHashMap<K, V> {
         newTable = new MapEntry[table.length * 2];
         for (int i = 0; i < table.length; i++) {
             int hash = table[i].getKey() == null ? 0 : hash(table[i].getKey().hashCode());
-            newTable[indexFor(hash, table.length)] = table[i];
+            newTable[indexFor(hash, table.length)] = new MapEntry<>(hash(table[i].getKey().hashCode()), table[i].getKey(), table[i].getValue());
         }
     }
 
