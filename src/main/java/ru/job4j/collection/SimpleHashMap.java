@@ -8,7 +8,7 @@ public class SimpleHashMap<K, V> {
     private int capasity = 2;
     //capasity должно быть 16, но поставил 2 что бы тестировать метод resize
     private int modCount = 0;
-    private final double LOAD_FACTOR =  0.5;
+    private final double LOAD_FACTOR =  0.75;
     private MapEntry<K, V>[] table = new MapEntry[capasity];
 
 
@@ -154,77 +154,6 @@ public class SimpleHashMap<K, V> {
 
 
 
-
-
-    /*public boolean insert(K key, V value) {
-        //1 проверка на null ключа опустим пока
-        if (key == null || value == null) {
-            return false;
-        }
-        //2 генерация хэш для ключа
-       // int index = 0;
-
-        int hashKey = hash(key.hashCode());
-
-        //3  С помощью метода indexFor(hash, tableLength),
-        // определяется позиция в массиве, куда будет помещен элемент.
-        int index = indexFor(hashKey, table.length);
-        mapEntry<K, V> e = new mapEntry<>(hashKey, key, value);
-        //4 Теперь, зная индекс в массиве, мы получаем список (цепочку) элементов, привязанных к этой ячейке.
-        // Хэш и ключ нового элемента поочередно сравниваются с хэшами и ключами элементов из списка и,
-        // при совпадении этих параметров, значение элемента перезаписывается.
-
-        if (hashKey== e.key.hashCode() && (e.key == key || key.equals(e.key)))  {
-            return false;
-        }
-        //Если же предыдущий шаг не выявил совпадений,
-        // будет вызван метод addEntry(hash, key, value, index) для добавления нового элемента.
-        resize();
-
-        addEntry(hashKey, e.key, e.value, index);
-        //index++;
-        modCount++;
-        return true;
-    }
-
-    public void addEntry(int hash, K key, V value, int index) {
-        table[index] = new mapEntry<K, V>(hash, key, value);
-        size++;
-    }
-
-    public static int indexFor(int h, int length) {
-        return h & (length - 1);
-    }
-
-    private void resize() {
-        if (size == table.length) {
-            table = Arrays.copyOf(table,
-                    (table.length + 1) * 2);
-        }
-    }
-
-    public boolean delete(K key) {
-        int index = indexFor(hash(key), table.length);
-        V val1 = table[index].getValue();
-        if (table[index].getKey().equals(key)) {
-            //table[index] = null;
-            lessArr(index);
-            size--;
-            modCount++;
-            return true;
-        }
-
-        return false;
-    }
-
-    public void lessArr(int a) {
-        //тут можно применить Arrays.copy но так надежнее
-        System.arraycopy(table, a, table, a + 1, table.length - a - 1);
-        //table[table.length - 1] = null;
-        size--;
-
-    }
-}*/
 
 
 
