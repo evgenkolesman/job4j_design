@@ -49,7 +49,7 @@ public class SimpleHashMapTest {
         Set<Integer> keys = Set.of(1, 2, 3);
         Set<Integer> values = Set.of(1, 2, 3);
         Iterator<Integer> iterator = a.iterator();
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             Integer key = iterator.next();
             Assert.assertTrue(keys.contains(key));
             Assert.assertTrue(values.contains(a.get(key)));
