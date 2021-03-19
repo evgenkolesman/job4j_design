@@ -8,7 +8,7 @@ public class SimpleHashMap<K, V> {
     private int capasity = 16;
     //capasity должно быть 16, но поставил 2 что бы тестировать метод resize
     private int modCount = 0;
-    private final double load_factor = 0.75;
+    private final double loadfactor = 0.75;
     private MapEntry<K, V>[] table = new MapEntry[capasity];
 
     public class MapEntry<K, V> {
@@ -68,7 +68,7 @@ public class SimpleHashMap<K, V> {
     }
 
     public void resize(int size) {
-        if (size >= table.length * load_factor) {
+        if (size >= table.length * loadfactor) {
             MapEntry<K, V>[] newTable = new MapEntry[table.length * 2];
             transfer(newTable);
             table = newTable;
