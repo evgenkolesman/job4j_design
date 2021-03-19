@@ -8,9 +8,8 @@ public class SimpleHashMap<K, V> {
     private int capasity = 16;
     //capasity должно быть 16, но поставил 2 что бы тестировать метод resize
     private int modCount = 0;
-    private final double LOAD_FACTOR = 0.75;
+    private final double load_factor = 0.75;
     private MapEntry<K, V>[] table = new MapEntry[capasity];
-
 
     public class MapEntry<K, V> {
         private K key;
@@ -22,7 +21,6 @@ public class SimpleHashMap<K, V> {
             this.value = value;
             this.hash = hash;
         }
-
 
         public K getKey() {
             return key;
@@ -39,8 +37,12 @@ public class SimpleHashMap<K, V> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         SimpleHashMap<?, ?> that = (SimpleHashMap<?, ?>) o;
         return Arrays.equals(table, that.table);
     }
@@ -66,7 +68,7 @@ public class SimpleHashMap<K, V> {
     }
 
     public void resize(int size) {
-        if (size >= table.length * LOAD_FACTOR) {
+        if (size >= table.length * load_factor) {
             MapEntry<K, V>[] newTable = new MapEntry[table.length * 2];
             transfer(newTable);
             table = newTable;
@@ -83,7 +85,6 @@ public class SimpleHashMap<K, V> {
         }
     }
 
-
     public boolean insert(K key, V value) {
         int hash = key == null ? 0 : hash(key.hashCode());
         int index = indexFor(hash, table.length);
@@ -94,6 +95,7 @@ public class SimpleHashMap<K, V> {
             resize(size);
             return true;
         }
+
         return false;
     }
 
