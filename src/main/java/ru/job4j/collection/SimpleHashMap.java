@@ -66,7 +66,7 @@ public class SimpleHashMap<K, V> {
     }
 
     public void resize(int size) {
-        if (table.length <= size * LOAD_FACTOR) {
+        if (size >= table.length * LOAD_FACTOR) {
             MapEntry<K, V>[] newTable = new MapEntry[table.length * 2];
             transfer(newTable);
             table = newTable;
@@ -74,11 +74,11 @@ public class SimpleHashMap<K, V> {
     }
 
     public void transfer(MapEntry<K, V>[] newTable) {
-        newTable = new MapEntry[table.length * 2];
+        //newTable = new MapEntry[table.length * 2];
         for (int i = 0; i < table.length; i++) {
-            if (!Objects.equals(table[i].getKey(), null)) {
+            if (table[i] != null && !Objects.equals(table[i].getKey(), null)) {
                 int hash = table[i].getKey() == null ? 0 : hash(table[i].getKey().hashCode());
-                newTable[indexFor(hash, table.length)] = table[i];
+                newTable[indexFor(hash, newTable.length)] = table[i];
             }
         }
     }
@@ -107,8 +107,9 @@ public class SimpleHashMap<K, V> {
     }
 
     public boolean delete(K key) {
-        K key1 = table[indexFor(key.hashCode(), table.length)].getKey();
-        if (Objects.equals(key, key1)) {
+        //K key1 = table[indexFor(key.hashCode(), table.length)].getKey();
+        int index = indexFor(hash(key.hashCode()), table.length);
+        if (table[index] != null && Objects.equals(key, table[index].getKey())) {
             table[indexFor(key.hashCode(), table.length)] = null;
             modCount++;
             return true;
@@ -126,7 +127,10 @@ public class SimpleHashMap<K, V> {
 
             @Override
             public boolean hasNext() {
-                return index < size;
+                while (index < table.length && table[index] == null) {
+                    index++;
+                }
+                return index < table.length;
             }
 
             @Override
@@ -137,21 +141,9 @@ public class SimpleHashMap<K, V> {
                 if (modCount != modCountExp) {
                     throw new ConcurrentModificationException();
                 }
-                K a = null;
-                for (int i = 0; i < table.length; i++) {
-                    if (table[i] == null) {
-                        index++;
-                    } else
-                        a = table[index++].getKey();
-                }
+                K a = table[index++].key;
                 return a;
             }
-                /*if (table[index] == null) {
-                    index++;
-                    return table[index].getKey();
-                }*/
-
-
         };
     }
 }

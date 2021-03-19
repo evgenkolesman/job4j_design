@@ -1,9 +1,12 @@
 package ru.job4j.collection;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -41,11 +44,16 @@ public class SimpleHashMapTest {
     public void testIterInsert() {
         SimpleHashMap<Integer, Integer> a = new SimpleHashMap<>();
         a.insert(1, 1);
-        assertThat(a.iterator().next(), is(1));
         a.insert(2, 2);
-        assertThat(a.iterator().next(), is(2));
         a.insert(3, 3);
-        assertThat(a.iterator().next(), is(3));
-
+        Set<Integer> keys = Set.of(1, 2, 3);
+        Set<Integer> values = Set.of(1, 2, 3);
+        Iterator<Integer> iterator = a.iterator();
+        for (int i = 0; i < 3; i++){
+            Integer key = iterator.next();
+            Assert.assertTrue(keys.contains(key));
+            Assert.assertTrue(values.contains(a.get(key)));
+        }
+        Assert.assertFalse(iterator.hasNext());
     }
 }
