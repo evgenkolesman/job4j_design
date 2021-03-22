@@ -37,4 +37,34 @@ class Tree<E> implements SimpleTree<E> {
         }
         return rsl;
     }
+
+    public boolean isBinary() {
+        Optional<Node<E>> rsl = Optional.empty();
+        Queue<Node<E>> data = new LinkedList<>();
+        data.offer(this.root);
+        while(!rsl.isEmpty()) {
+            root.children.iterator(); // на до подумать или через итереатор
+            // или сделать  условие в findByPredicate и проверить по нему,
+            // можно кстати проверять итератором на условие conditions...
+
+        }
+
+        return false;
+    }
+
+   /* public Iterator<Node<E>> iterator() {
+        return new Iterator<Node<E>>() {
+            Node<E> a = new Node<>();
+            @Override
+            public boolean hasNext() {
+                if(Node<E>)
+                return false;
+            }
+
+            @Override
+            public Node<E> next() {
+                return null;
+            }
+        };
+    }*/
 }
