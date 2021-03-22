@@ -46,7 +46,6 @@ class Tree<E> implements SimpleTree<E> {
             root.children.iterator(); // на до подумать или через итереатор
             // или сделать  условие в findByPredicate и проверить по нему,
             // можно кстати проверять итератором на условие conditions...
-
         }
 
         return false;
