@@ -4,6 +4,7 @@ import java.util.*;
 
 class Tree<E> implements SimpleTree<E> {
     private final Node<E> root;
+
     public Tree(final E root) {
         this.root = new Node<>(root);
     }
@@ -12,10 +13,10 @@ class Tree<E> implements SimpleTree<E> {
     public boolean add(E parent, E child) {
         boolean rsl = false;
         findBy(parent);
-        if (Objects.equals(parent, child)||Objects.equals(root, child)) {
-        return rsl; }
-        else {
-            Node<E>  child1 = new Node<>(child);
+        if (Objects.equals(parent, child) || Objects.equals(root, child)) {
+            return rsl;
+        } else {
+            Node<E> child1 = new Node<>(child);
             root.children.add(child1);
             rsl = true;
         }
@@ -42,7 +43,7 @@ class Tree<E> implements SimpleTree<E> {
         Optional<Node<E>> rsl = Optional.empty();
         Queue<Node<E>> data = new LinkedList<>();
         data.offer(this.root);
-        while(!rsl.isEmpty()) {
+        while (!rsl.isEmpty()) {
             root.children.iterator(); // на до подумать или через итереатор
             // или сделать  условие в findByPredicate и проверить по нему,
             // можно кстати проверять итератором на условие conditions...
