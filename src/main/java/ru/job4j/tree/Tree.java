@@ -1,6 +1,7 @@
 package ru.job4j.tree;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 class Tree<E> implements SimpleTree<E> {
     private final Node<E> root;
@@ -40,16 +41,20 @@ class Tree<E> implements SimpleTree<E> {
     }
 
     public boolean isBinary() {
-        Optional<Node<E>> rsl = Optional.empty();
-        Queue<Node<E>> data = new LinkedList<>();
-        data.offer(this.root);
-        while (!rsl.isEmpty()) {
-            root.children.iterator(); // на до подумать или через итереатор
-            // или сделать  условие в findByPredicate и проверить по нему,
-            // можно кстати проверять итератором на условие conditions...
+        boolean rsl = false;
+        E value;
+        if (findByPredicate()) {
+            rsl = true;
         }
+        return rsl;
+    }
 
-        return false;
+    private Optional<Node> findByPredicate(Predicate<Node<E>> condition) {
+        E value = new Node<>();
+
+        findBy()
+       if()
+    return
     }
 
    /* public Iterator<Node<E>> iterator() {

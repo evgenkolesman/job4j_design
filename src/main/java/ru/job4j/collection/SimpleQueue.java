@@ -1,12 +1,9 @@
 package ru.job4j.collection;
 
-//import java.util.NoSuchElementException;
 
 public class SimpleQueue<T> {
     private final SimpleStack<T> in = new SimpleStack<>();
     private final SimpleStack<T> out = new SimpleStack<>();
-    //private int index = 0;
-    //private int index1 = 0;
 
     public T poll() {
         if (out.isEmpty()) {
