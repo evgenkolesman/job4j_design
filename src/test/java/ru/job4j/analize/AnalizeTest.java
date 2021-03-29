@@ -44,9 +44,7 @@ public class AnalizeTest {
         List<Analize.User> second = new ArrayList<>();
         second.add(Ann);
         second.add(Joe);
-        Analize.User Vicktor = new Analize.User(3, "Vicktor");
         Analize stat = new Analize();
-        //stat.diff(first,second);
         assertion(first, second, stat, 1, 0, 0);
     }
 
@@ -60,7 +58,6 @@ public class AnalizeTest {
         first.add(Joe);
         first.add(Vick);
         List<Analize.User> second = new ArrayList<>();
-        //second = first;
         Analize.User Vicktor = new Analize.User(2, "Vicktor");
         Analize.User Alex = new Analize.User(4, "Alex");
         second.add(Ann);
