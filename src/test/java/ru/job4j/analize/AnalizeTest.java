@@ -58,9 +58,7 @@ public class AnalizeTest {
         List<Analize.User> second = new ArrayList<>(first);
         Analize.User Vicktor = new Analize.User(2, "Vicktor");
         Analize.User Alex = new Analize.User(4, "Alex");
-        //second.add(Ann);
         second.set(1, Vicktor);
-        //second.add(Vick);
         second.add( Alex);
         Analize stat = new Analize();
         assertion(first, second, stat, 0, 1, 1);
