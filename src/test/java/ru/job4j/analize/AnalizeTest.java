@@ -19,8 +19,7 @@ public class AnalizeTest {
         first.add(Ann);
         first.add(Joe);
         first.add(Vick);
-        List<Analize.User> second;
-        second = first;
+        List<Analize.User> second = new ArrayList<>(first);
         Analize stat = new Analize();
         stat.diff(first, second);
         assertion(first, second, stat, 0, 0, 0);
@@ -41,9 +40,8 @@ public class AnalizeTest {
         first.add(Ann);
         first.add(Joe);
         first.add(Vick);
-        List<Analize.User> second = new ArrayList<>();
-        second.add(Ann);
-        second.add(Joe);
+        List<Analize.User> second = new ArrayList<>(first);
+        second.remove(Vick);
         Analize stat = new Analize();
         assertion(first, second, stat, 1, 0, 0);
     }
@@ -57,13 +55,13 @@ public class AnalizeTest {
         first.add(Ann);
         first.add(Joe);
         first.add(Vick);
-        List<Analize.User> second = new ArrayList<>();
+        List<Analize.User> second = new ArrayList<>(first);
         Analize.User Vicktor = new Analize.User(2, "Vicktor");
         Analize.User Alex = new Analize.User(4, "Alex");
-        second.add(Ann);
-        second.add(Vicktor);
-        second.add(Vick);
-        second.add(Alex);
+        //second.add(Ann);
+        second.set(1, Vicktor);
+        //second.add(Vick);
+        second.add( Alex);
         Analize stat = new Analize();
         assertion(first, second, stat, 0, 1, 1);
     }
@@ -83,6 +81,4 @@ public class AnalizeTest {
         Analize stat = new Analize();
         assertion(first, second, stat, 3, 1, 0);
     }
-
-
 }
