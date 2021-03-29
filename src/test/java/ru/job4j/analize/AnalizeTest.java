@@ -73,8 +73,9 @@ public class AnalizeTest {
         first.add(Ann);
         first.add(Joe);
         first.add(Vick);
-        List<Analize.User> second = new ArrayList<>();
+        List<Analize.User> second = new ArrayList<>(first);
         Analize.User Vicktor = new Analize.User(4, "Vicktor");
+        second.removeAll(first);
         second.add(Vicktor);
         Analize stat = new Analize();
         assertion(first, second, stat, 3, 1, 0);
