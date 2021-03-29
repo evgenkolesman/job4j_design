@@ -23,9 +23,13 @@ public class AnalizeTest {
         second = first;
         Analize stat = new Analize();
         stat.diff(first, second);
-        assertThat(stat.diff(first, second).deleted, is(0));
-        assertThat(stat.diff(first, second).added, is(0));
-        assertThat(stat.diff(first, second).changed, is(0));
+        assertion(first, second, stat, 0, 0, 0);
+    }
+
+    private void assertion(List<Analize.User> first, List<Analize.User> second, Analize stat, int i, int i2, int i3) {
+        assertThat(stat.diff(first, second).deleted, is(i));
+        assertThat(stat.diff(first, second).added, is(i2));
+        assertThat(stat.diff(first, second).changed, is(i3));
     }
 
     @Test
@@ -43,9 +47,7 @@ public class AnalizeTest {
         Analize.User Vicktor = new Analize.User(3, "Vicktor");
         Analize stat = new Analize();
         //stat.diff(first,second);
-        assertThat(stat.diff(first, second).deleted, is(1));
-        assertThat(stat.diff(first, second).added, is(0));
-        assertThat(stat.diff(first, second).changed, is(0));
+        assertion(first, second, stat, 1, 0, 0);
     }
 
     @Test
@@ -66,9 +68,7 @@ public class AnalizeTest {
         second.add(Vick);
         second.add(Alex);
         Analize stat = new Analize();
-        assertThat(stat.diff(first, second).deleted, is(0));
-        assertThat(stat.diff(first, second).added, is(1));
-        assertThat(stat.diff(first, second).changed, is(1));
+        assertion(first, second, stat, 0, 1, 1);
     }
 
     @Test
@@ -84,9 +84,7 @@ public class AnalizeTest {
         Analize.User Vicktor = new Analize.User(4, "Vicktor");
         second.add(Vicktor);
         Analize stat = new Analize();
-        assertThat(stat.diff(first, second).deleted, is(3));
-        assertThat(stat.diff(first, second).added, is(1));
-        assertThat(stat.diff(first, second).changed, is(0));
+        assertion(first, second, stat, 3, 1, 0);
     }
 
 
