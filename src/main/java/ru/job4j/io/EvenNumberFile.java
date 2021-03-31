@@ -13,14 +13,14 @@ public class EvenNumberFile {
             String[] lines = text.toString().split(System.lineSeparator());
             for (String line : lines) {
                 int a = Integer.parseInt(line);
-            if (a % 2 == 0 ) {
-                    System.out.println(line); }
+                if (a % 2 == 0) {
+                    System.out.println(line);
+                }
             }
-        }
-        catch(Exception e){
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+}
 
 
