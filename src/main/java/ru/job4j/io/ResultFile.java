@@ -10,9 +10,5 @@ public class ResultFile {
         catch (Exception e) {
             e.printStackTrace();
         }
-        String tableMath = "2*2 =4" +
-                "3*3=9" +
-                "4*4=16" +
-                "5*5=25";
     }
 }
