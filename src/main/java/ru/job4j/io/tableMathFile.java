@@ -15,8 +15,7 @@ public class tableMathFile {
         for (int a = 0; a < arr.length; a++) {
             List<String> line =  new ArrayList<>();
             for(int b = 0; b < arr[a].length; b++) {
-                arr[a][b] = " " + String.valueOf(a+1) + "*" + String.valueOf(b+1) +
-                        "=" + String.valueOf((a+1)*(b+1)) + " ";
+                arr[a][b] = " " + (a + 1) + "*" + (b + 1) + "=" + (a + 1) * (b + 1) + " ";
                 line.add(arr[a][b]);
                 }
             tableMath.append(line);
