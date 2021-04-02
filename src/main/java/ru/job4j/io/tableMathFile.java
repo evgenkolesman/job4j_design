@@ -16,12 +16,11 @@ public class tableMathFile {
         for (int a = 0; a < arr.length; a++) {
             List<String> line = new ArrayList<>();
             for (int b = 0; b < arr[a].length; b++) {
-                arr[a][b] = String.format("%d * %d = %d ", a, b, a * b);
+                arr[a][b] = String.format("%d * %d = %d ", a + 1, b + 1, (a + 1) * (b + 1));
                 line.add(arr[a][b]);
             }
             tableMath.append(line);
         }
-
         try (FileOutputStream out = new FileOutputStream("tableMath.txt")) {
             out.write(tableMath.toString().getBytes());
         } catch (Exception e) {

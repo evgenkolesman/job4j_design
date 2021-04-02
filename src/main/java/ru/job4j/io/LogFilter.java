@@ -1,4 +1,4 @@
-package ru.job4j.io;
+/*package ru.job4j.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import static jdk.internal.org.jline.utils.InfoCmp.Capability.lines;
+
 public class LogFilter {
     public static List<String> filter(String file) {
         List<Stream<String>> file1 = new ArrayList<>();
@@ -15,7 +17,12 @@ public class LogFilter {
             file1.add(in.lines());
             //in.lines().forEach(System.out::println);
             Stream stream = file1.stream();
-            //stream.filter(Objects.equals(file1.get(file1.size()-1), "404")).forEach(System.out::println);
+            //int a = file1.size() - 1;
+            for (int index = 0; index < file1.size(); index++) {
+            if(Object.equals(file1.get(index), "404")){
+
+            }
+            }
         } catch (Exception e) {
             e.printStackTrace(); }
         return null;
@@ -25,4 +32,4 @@ public class LogFilter {
         List<String> log = filter("log.txt");
         System.out.println(log);
     }
-}
+}*/
