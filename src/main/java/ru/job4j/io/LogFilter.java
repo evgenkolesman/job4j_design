@@ -8,17 +8,20 @@ import java.util.stream.Stream;
 
 public class LogFilter {
     public static List<String> filter(String file) {
-        //List<Stream<String>> file1 = new ArrayList<>();
+        List<Stream<String>> file1 = new ArrayList<>();
         List<String> file2 = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             String line = in.readLine();// до сюда процесс чтения
             String a = "404";
-            if (line != null && line.contains(a)) {
+            //file1.add(in.lines().filter(s -> s.contains(a)));
+            file2.add(String.valueOf(in.lines().filter(s -> s.contains(a))));
+            /*if (line != null && line.contains(a)) {
                 // цикл который должен фильтровать
                 //file1.stream().filter().add(in.lines());// для стрима, но пока упростил ибо сбился в понимании
                 line = in.readLine();
                 file2.add(line);
-            }
+            }*/
+            //for(int index =0; index < file1.size(); index++) { System.out.println(file1.get(index).toString()); }
         } catch (Exception e) {
             e.printStackTrace();
         }
