@@ -18,8 +18,8 @@ public class Config {
     public void load() {
         try (BufferedReader loader = new BufferedReader(new FileReader(this.path))) {
             loader.lines().filter(s -> !(s.isEmpty() || s.startsWith("#"))).filter(s -> s.contains("="))
-                    .forEach(s -> values.put(s.substring(0, s.indexOf("=")), s.substring(s.indexOf("=") + 1)));
-
+                    .forEach(s -> { int index = s.indexOf("=");
+                        values.put(s.substring(0, index), s.substring(index + 1)); });
         } catch (IOException e) {
             e.printStackTrace();
         }
