@@ -18,8 +18,9 @@ public class Analizy {
 
             // пишем все в общий список
 
-            //for (lines.contains("200") || lines.contains("300") || lines.contains("400")|| lines.contains("500")) {
-            while (lines != null) {
+            while (lines.contains("200") || lines.contains("300") ||
+                    lines.contains("400")|| lines.contains("500")) {
+            //while (!lines.isEmpty()) {
                 common.add(lines);
             }
 
