@@ -13,7 +13,7 @@ public class LogFilter {
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             //String line = in.readLine();// до сюда процесс чтения
             String a = "404";
-            listFile = in.lines().filter(((String s) -> s.contains(a) /*&& s.indexOf(a) == s.length()-4)*/)).collect(Collectors.toList());
+            listFile = in.lines().filter(((String s) -> s.contains(a))).collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
         }
