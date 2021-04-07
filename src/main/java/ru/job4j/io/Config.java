@@ -28,8 +28,6 @@ public class Config {
     public String value(String key) {
         if (values.containsKey(key)) {
             return values.get(key);
-        } else {
-            throw new UnsupportedOperationException("Don't impl this method yet!");
         }
     }
 

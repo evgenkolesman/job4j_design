@@ -8,7 +8,7 @@ public class ConfigTest {
 
     @Test
     public void whenPairWithoutComment() {
-        String path = "Configure.txt";
+        String path = "Configure.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("name "),is(" Evgen Koles"));
@@ -16,7 +16,7 @@ public class ConfigTest {
 
     @Test(expected = UnsupportedOperationException.class)
     public void whenPairComment() {
-        String path = "Configure.txt";
+        String path = "Configure.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("first comment "),is(" Evgen Koles"));
