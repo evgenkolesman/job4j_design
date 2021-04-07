@@ -26,9 +26,7 @@ public class Config {
     }
 
     public String value(String key) {
-        if (values.containsKey(key)) {
             return values.get(key);
-        }
     }
 
     @Override
