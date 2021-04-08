@@ -1,47 +1,42 @@
 package ru.job4j.io;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Analizy {
-    //private final String path;
-    /*public Analizy(String path) {
-        this.path = path;
-    }*/
+
     public void unavailable(String source, String target) {
         try (BufferedReader inner = new BufferedReader(new FileReader(source));
              PrintWriter outer = new PrintWriter(new FileOutputStream(target))
         ) {
+            // список всех данных чтения
             List<String> common = new ArrayList<>();
-            String lines = inner.readLine();
+            // списки совпадений интервалов
+            List<String> downServ = new ArrayList<>();
 
-            // пишем все в общий список
-
-            while (lines.contains("200") || lines.contains("300") ||
-                    lines.contains("400")|| lines.contains("500")) {
-            //while (!lines.isEmpty()) {
-                common.add(lines);
-            }
-
-            // делим по спискам downList - когда упал, upplist - когда работал
-
-            for (String line : common) {
-                String down = null;
-                String up = null;
-                if (lines.contains("400") || lines.contains("500")) {
-                    List<String> downList = new ArrayList<>();
-                    downList.add(line);
-                    down = downList.get(downList.indexOf(line));
-                } else if (lines.contains("200") || lines.contains("300")) {
-                    List<String> upList = new ArrayList<>();
-                    upList.add(line);
-                    up = upList.get(upList.indexOf(line));
+            for (String lines = inner.readLine(); lines != null; lines = inner.readLine()) {
+                if (lines.contains("200") || lines.contains("300") ||
+                        isDown(lines)) {
+                    common.add(lines);
                 }
 
-                // пишем в файл интервалы
+                for (int i = 0; i < common.size(); i++) {
 
-                outer.write(down + ":" + up);
+                    if (!isActive(common.get(i))) {
+                        downServ.add(common.get(i));
+                        if ((i + 1) < common.size()) {
+                            if ((isActive(common.get(i + 1)))) {
+                                downServ.add(common.get(i + 1));
+                            }
+                        }
+                    }
+                }
+            }
+
+            //избавимся от дублей
+            LinkedHashSet down = new LinkedHashSet(downServ);
+            for (Object line : down) {
+                outer.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,4 +47,13 @@ public class Analizy {
         Analizy un = new Analizy();
         un.unavailable("Sourcefile.txt", "Targetfile.txt");
     }
+
+    private boolean isDown(String lines) {
+        return lines.contains("400") || lines.contains("500");
+    }
+
+    private boolean isActive(String arr) {
+        return !arr.contains("400") && !arr.contains("500");
+    }
 }
+
