@@ -7,8 +7,7 @@ public class Analizy {
 
     public void unavailable(String source, String target) {
         try (BufferedReader inner = new BufferedReader(new FileReader(source));
-             PrintWriter outer = new PrintWriter(new FileOutputStream(target))
-        ) {
+             PrintWriter outer = new PrintWriter(new FileOutputStream(target))) {
             // список всех данных чтения
             List<String> common = new ArrayList<>();
             // списки совпадений интервалов
@@ -34,9 +33,12 @@ public class Analizy {
             }
 
             //избавимся от дублей
-            LinkedHashSet down = new LinkedHashSet(downServ);
-            for (Object line : down) {
-                outer.println(line);
+            Set<String> down = new LinkedHashSet(downServ);
+            for (String line : down) {
+                outer.printf("%s%n", line);
+                if (isActive(line)) {
+                    outer.println(System.lineSeparator());
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,7 +55,10 @@ public class Analizy {
     }
 
     private boolean isActive(String arr) {
-        return !arr.contains("400") && !arr.contains("500");
+        if (arr.contains("400") || arr.contains("500")) {
+            return false;
+        }
+        return true;
     }
 }
 
