@@ -15,12 +15,12 @@ public class Analizy {
                 if (!isActive(lines)) {
                     downServ.add(lines);
 
-                } else if ((!downServ.isEmpty()) && (isDown(downServ.get((downServ.size()) - 1)))) {
+                } else if ((!downServ.isEmpty())
+                        && (isDown(downServ.get((downServ.size()) - 1)))) {
                     downServ.add(lines);
 
                 }
             }
-
             outer.println(String.format("%s ", "Начало сбоя:"));
             for (String line : downServ) {
                 outer.printf("%s%n", line.substring(4));

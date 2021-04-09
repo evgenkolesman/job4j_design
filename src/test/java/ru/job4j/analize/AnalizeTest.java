@@ -13,12 +13,12 @@ public class AnalizeTest {
     @Test
     public void allIsOk() {
         List<Analize.User> first = new ArrayList<>();
-        Analize.User Ann = new Analize.User(1, "Ann");
-        Analize.User Joe = new Analize.User(2, "Joe");
-        Analize.User Vick = new Analize.User(3, "Vick");
-        first.add(Ann);
-        first.add(Joe);
-        first.add(Vick);
+        Analize.User ann = new Analize.User(1, "Ann");
+        Analize.User joe = new Analize.User(2, "Joe");
+        Analize.User vick = new Analize.User(3, "Vick");
+        first.add(ann);
+        first.add(joe);
+        first.add(vick);
         List<Analize.User> second = new ArrayList<>(first);
         Analize stat = new Analize();
         stat.diff(first, second);
@@ -34,14 +34,14 @@ public class AnalizeTest {
     @Test
     public void oneDel() {
         List<Analize.User> first = new ArrayList<>();
-        Analize.User Ann = new Analize.User(1, "Ann");
-        Analize.User Joe = new Analize.User(2, "Joe");
-        Analize.User Vick = new Analize.User(3, "Vick");
-        first.add(Ann);
-        first.add(Joe);
-        first.add(Vick);
+        Analize.User ann = new Analize.User(1, "Ann");
+        Analize.User joe = new Analize.User(2, "Joe");
+        Analize.User vick = new Analize.User(3, "Vick");
+        first.add(ann);
+        first.add(joe);
+        first.add(vick);
         List<Analize.User> second = new ArrayList<>(first);
-        second.remove(Vick);
+        second.remove(vick);
         Analize stat = new Analize();
         assertion(first, second, stat, 1, 0, 0);
     }
@@ -49,17 +49,17 @@ public class AnalizeTest {
     @Test
     public void oneChangeLongSize() {
         List<Analize.User> first = new ArrayList<>();
-        Analize.User Ann = new Analize.User(1, "Ann");
-        Analize.User Joe = new Analize.User(2, "Joe");
-        Analize.User Vick = new Analize.User(3, "Vick");
-        first.add(Ann);
-        first.add(Joe);
-        first.add(Vick);
+        Analize.User ann = new Analize.User(1, "Ann");
+        Analize.User joe = new Analize.User(2, "Joe");
+        Analize.User vick = new Analize.User(3, "Vick");
+        first.add(ann);
+        first.add(joe);
+        first.add(vick);
         List<Analize.User> second = new ArrayList<>(first);
-        Analize.User Vicktor = new Analize.User(2, "Vicktor");
-        Analize.User Alex = new Analize.User(4, "Alex");
-        second.set(1, Vicktor);
-        second.add( Alex);
+        Analize.User vicktor = new Analize.User(2, "Vicktor");
+        Analize.User alex = new Analize.User(4, "Alex");
+        second.set(1, vicktor);
+        second.add(alex);
         Analize stat = new Analize();
         assertion(first, second, stat, 0, 1, 1);
     }
@@ -67,16 +67,16 @@ public class AnalizeTest {
     @Test
     public void oneAdd() {
         List<Analize.User> first = new ArrayList<>();
-        Analize.User Ann = new Analize.User(1, "Ann");
-        Analize.User Joe = new Analize.User(2, "Joe");
-        Analize.User Vick = new Analize.User(3, "Vick");
-        first.add(Ann);
-        first.add(Joe);
-        first.add(Vick);
+        Analize.User ann = new Analize.User(1, "Ann");
+        Analize.User joe = new Analize.User(2, "Joe");
+        Analize.User vick = new Analize.User(3, "Vick");
+        first.add(ann);
+        first.add(joe);
+        first.add(vick);
         List<Analize.User> second = new ArrayList<>(first);
-        Analize.User Vicktor = new Analize.User(4, "Vicktor");
+        Analize.User vicktor = new Analize.User(4, "Vicktor");
         second.removeAll(first);
-        second.add(Vicktor);
+        second.add(vicktor);
         Analize stat = new Analize();
         assertion(first, second, stat, 3, 1, 0);
     }

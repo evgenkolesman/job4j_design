@@ -4,13 +4,13 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class tableMathFile {
+public class TableMathFile {
 
     public static void main(String[] args) {
         int i = 9;
         int z = 9;
         StringBuilder tableMath = new StringBuilder();
-        StringBuilder a1 =new StringBuilder(System.lineSeparator());
+        StringBuilder a1 = new StringBuilder(System.lineSeparator());
         String[][] arr = new String[i][z];
 
         for (int a = 0; a < arr.length; a++) {

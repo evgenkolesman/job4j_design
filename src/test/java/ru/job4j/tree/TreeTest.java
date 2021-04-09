@@ -36,7 +36,7 @@ public class TreeTest {
         Tree<Integer> tree = new Tree<>(1);
         tree.add(1, 2);
         tree.add(1, 5);
-        tree.add(2,6);
+        tree.add(2, 6);
         assertThat(
                 tree.isBinary(),
                 is(true));
@@ -48,7 +48,7 @@ public class TreeTest {
         tree.add(1, 2);
         tree.add(1, 4);
         tree.add(1, 3);
-        tree.add(2,5);
+        tree.add(2, 5);
         assertThat(
                 tree.isBinary(),
                 is(false));

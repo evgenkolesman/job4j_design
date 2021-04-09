@@ -11,7 +11,7 @@ public class ConfigTest {
         String path = "Configure.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("name "),is(" Evgen Koles"));
+        assertThat(config.value("name "), is(" Evgen Koles"));
     }
 
     @Test(expected = UnsupportedOperationException.class)
@@ -19,7 +19,7 @@ public class ConfigTest {
         String path = "Configure.properties";
         Config config = new Config(path);
         config.load();
-        assertThat(config.value("first comment "),is(" Evgen Koles"));
+        assertThat(config.value("first comment "), is(" Evgen Koles"));
     }
 
     @Test

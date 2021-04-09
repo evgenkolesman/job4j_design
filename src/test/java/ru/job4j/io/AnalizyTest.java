@@ -5,9 +5,9 @@ import org.junit.Test;
 public class AnalizyTest {
 
     @Test
-    public void unavailableTest () {
+    public void unavailableTest() {
         Analizy un = new Analizy();
-        un.unavailable("Sourcefile.txt","Targetfile.txt");
+        un.unavailable("Sourcefile.txt", "Targetfile.txt");
     }
 
 

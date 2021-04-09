@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 public class ResultFile {
     public static void main(String[] args) {
-        try (PrintWriter out = new PrintWriter( new BufferedOutputStream (
+        try (PrintWriter out = new PrintWriter(new BufferedOutputStream(
                 new FileOutputStream("result.txt")))) {
             out.write("Hello, world");
         } catch (FileNotFoundException e) {
