@@ -14,30 +14,35 @@ public class Analizy {
             List<String> downServ = new ArrayList<>();
 
             for (String lines = inner.readLine(); lines != null; lines = inner.readLine()) {
-                if (lines.contains("200") || lines.contains("300") ||
+                /*if (lines.contains("200") || lines.contains("300") ||
                         isDown(lines)) {
                     common.add(lines);
-                }
+                }*/
 
-                for (int i = 0; i < common.size(); i++) {
+                //for (int i = 0; i < common.size(); i++) {
 
-                    if (!isActive(common.get(i))) {
-                        downServ.add(common.get(i));
-                        if ((i + 1) < common.size()) {
-                            if ((isActive(common.get(i + 1)))) {
-                                downServ.add(common.get(i + 1));
-                            }
-                        }
-                    }
+
+                if (!isActive(lines)) {
+                    downServ.add(lines);
+
+                } else if ((!downServ.isEmpty()) && (isDown(downServ.get((downServ.size()) - 1)))) {
+                    downServ.add(lines);
+
                 }
             }
 
+
             //избавимся от дублей
-            Set<String> down = new LinkedHashSet(downServ);
-            for (String line : down) {
-                outer.printf("%s%n", line);
+            //Set<String> down = new LinkedHashSet(downServ);
+            outer.println(String.format("%s ", "Начало сбоя:" ));
+            for (String line : downServ) {
+
+                outer.printf("%s%n", line.substring(4));
                 if (isActive(line)) {
-                    outer.println(System.lineSeparator());
+                    outer.printf(String.format("%s%n", "Начало следующего сбоя: "));
+                }
+                if (downServ.indexOf(line) == downServ.size()-1) {
+                    outer.printf(String.format("%s%n", "Работа окончена"));
                 }
             }
         } catch (IOException e) {
