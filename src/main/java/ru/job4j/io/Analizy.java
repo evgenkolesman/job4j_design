@@ -41,12 +41,12 @@ public class Analizy {
         un.unavailable("Sourcefile.txt", "Targetfile.txt");
     }
 
-    private boolean isDown(String lines) {
-        return lines.contains("400") || lines.contains("500");
+    private boolean isDown(String arr) {
+        return arr.contains("400") || arr.contains("500");
     }
 
     private boolean isActive(String arr) {
-        return !(arr.contains("400") || "500".contains(arr));
+        return (arr.contains("200") || "300".contains(arr));
     }
 }
 
