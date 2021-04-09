@@ -8,20 +8,10 @@ public class Analizy {
     public void unavailable(String source, String target) {
         try (BufferedReader inner = new BufferedReader(new FileReader(source));
              PrintWriter outer = new PrintWriter(new FileOutputStream(target))) {
-            // список всех данных чтения
-            List<String> common = new ArrayList<>();
-            // списки совпадений интервалов
+            // списки интервалов
             List<String> downServ = new ArrayList<>();
 
             for (String lines = inner.readLine(); lines != null; lines = inner.readLine()) {
-                /*if (lines.contains("200") || lines.contains("300") ||
-                        isDown(lines)) {
-                    common.add(lines);
-                }*/
-
-                //for (int i = 0; i < common.size(); i++) {
-
-
                 if (!isActive(lines)) {
                     downServ.add(lines);
 
@@ -31,17 +21,13 @@ public class Analizy {
                 }
             }
 
-
-            //избавимся от дублей
-            //Set<String> down = new LinkedHashSet(downServ);
-            outer.println(String.format("%s ", "Начало сбоя:" ));
+            outer.println(String.format("%s ", "Начало сбоя:"));
             for (String line : downServ) {
-
                 outer.printf("%s%n", line.substring(4));
                 if (isActive(line)) {
                     outer.printf(String.format("%s%n", "Начало следующего сбоя: "));
                 }
-                if (downServ.indexOf(line) == downServ.size()-1) {
+                if (downServ.indexOf(line) == downServ.size() - 1) {
                     outer.printf(String.format("%s%n", "Работа окончена"));
                 }
             }
@@ -60,10 +46,7 @@ public class Analizy {
     }
 
     private boolean isActive(String arr) {
-        if (arr.contains("400") || arr.contains("500")) {
-            return false;
-        }
-        return true;
+        return !(arr.contains("400") || "500".contains(arr));
     }
 }
 
