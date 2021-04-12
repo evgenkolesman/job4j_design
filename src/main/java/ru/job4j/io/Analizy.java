@@ -12,13 +12,15 @@ public class Analizy {
             List<String> downServ = new ArrayList<>();
 
             for (String lines = inner.readLine(); lines != null; lines = inner.readLine()) {
-                if (!isActive(lines)) {
+              if(isActive(lines)) {
+                  if ((!downServ.isEmpty())
+                          && (!isActive(downServ.get((downServ.size()) - 1)))) {
+                      downServ.add(lines);
+                  }
+                }
+                if (!isActive(lines) && downServ.isEmpty() || (!isActive(lines)
+                        && (isActive(downServ.get(downServ.size()-1))))) {
                     downServ.add(lines);
-
-                } else if ((!downServ.isEmpty())
-                        && (isDown(downServ.get((downServ.size()) - 1)))) {
-                    downServ.add(lines);
-
                 }
             }
             outer.println(String.format("%s ", "Начало сбоя:"));
@@ -50,3 +52,14 @@ public class Analizy {
     }
 }
 
+
+
+
+//вариант чтобы записать все ошибки
+
+   /*if (!isActive(lines)) {
+                    downServ.add(lines);
+                } else if ((!downServ.isEmpty())
+                        && (isDown(downServ.get((downServ.size()) - 1)))) {
+                    downServ.add(lines);
+                }*/
