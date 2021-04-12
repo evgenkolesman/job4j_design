@@ -43,10 +43,6 @@ public class Analizy {
         un.unavailable("Sourcefile.txt", "Targetfile.txt");
     }
 
-    private boolean isDown(String arr) {
-        return arr.contains("400") || arr.contains("500");
-    }
-
     private boolean isActive(String arr) {
         return (arr.contains("200") || "300".contains(arr));
     }
@@ -61,5 +57,8 @@ public class Analizy {
                     downServ.add(lines);
                 } else if ((!downServ.isEmpty())
                         && (isDown(downServ.get((downServ.size()) - 1)))) {
-                    downServ.add(lines);
-                }*/
+                    downServ.add(lines);}
+
+      private boolean isDown(String arr) {
+        return arr.contains("400") || arr.contains("500");
+    } */
