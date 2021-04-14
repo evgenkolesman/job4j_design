@@ -10,17 +10,17 @@ public class Analizy {
              PrintWriter outer = new PrintWriter(new FileOutputStream(target))) {
             // списки интервалов
             List<String> downServ = new ArrayList<>();
+            boolean flag = false;
 
             for (String lines = inner.readLine(); lines != null; lines = inner.readLine()) {
-                if (isActive(lines)) {
-                    if ((!downServ.isEmpty())
-                            && (!isActive(downServ.get((downServ.size()) - 1)))) {
-                        downServ.add(lines);
-                    }
-                }
-                if (!isActive(lines) && downServ.isEmpty() || (!isActive(lines)
-                        && (isActive(downServ.get(downServ.size() - 1))))) {
+                boolean active = isActive(lines);
+                if (!flag && !active) {
                     downServ.add(lines);
+                    flag = true;
+                }
+                else if (flag && active) {
+                downServ.add(lines);
+                flag = false;
                 }
             }
             outer.println(String.format("%s ", "Начало сбоя:"));
@@ -44,7 +44,7 @@ public class Analizy {
     }
 
     private boolean isActive(String arr) {
-        return (arr.contains("200") || "300".contains(arr));
+        return (arr.contains("200") || arr.contains("300"));
     }
 }
 
