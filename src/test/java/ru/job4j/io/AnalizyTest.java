@@ -33,10 +33,10 @@ public class AnalizyTest {
         List<String> target1 = new ArrayList<>();
         List<String> target2 = new ArrayList<>();
 
-        reader(source1,target1);
-        reader(source2,target2);
+        reader(source1, target1);
+        reader(source2, target2);
         // сравниваем полученные данные, которые должны быть идентичны
-        assertThat(target2.equals(target1),is(true));
+        assertThat(target2.equals(target1), is(true));
     }
 
     public void reader(File source, List<String> target) {

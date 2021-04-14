@@ -16,10 +16,9 @@ public class Analizy {
                 if (!flag && !active) {
                     downServ.add(lines);
                     flag = true;
-                }
-                else if (flag && active) {
-                downServ.add(lines);
-                flag = false;
+                } else if (flag && active) {
+                    downServ.add(lines);
+                    flag = false;
                 }
             }
             outer.println(String.format("%s ", "Начало сбоя:"));
