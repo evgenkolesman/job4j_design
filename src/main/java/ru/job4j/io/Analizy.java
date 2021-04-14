@@ -11,7 +11,6 @@ public class Analizy {
             // списки интервалов
             List<String> downServ = new ArrayList<>();
             boolean flag = false;
-
             for (String lines = inner.readLine(); lines != null; lines = inner.readLine()) {
                 boolean active = isActive(lines);
                 if (!flag && !active) {

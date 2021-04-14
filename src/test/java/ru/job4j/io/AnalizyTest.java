@@ -22,20 +22,28 @@ public class AnalizyTest {
         Analizy un = new Analizy();
         File source1 = folder.newFile("Targetfile1.txt");
         File source2 = folder.newFile("Targetfile2.txt");
+
+
+        //записываем во временный файл данные для проверки
+
+        un.unavailable("Sourcefile.txt", "Targetfile2.txt");
         un.unavailable("Sourcefile.txt", "Targetfile1.txt");
-        //un.unavailable("Sourcefile.txt", "Targetfile2.txt");
-        source2 = source1;
+
+        // переписываем все влисты для сравнения
         List<String> target1 = new ArrayList<>();
         List<String> target2 = new ArrayList<>();
-        assertThat(reader(source1, target1), is(reader(source2, target2)));
+
+        reader(source1,target1);
+        reader(source2,target2);
+        // сравниваем полученные данные, которые должны быть идентичны
+        assertThat(target2.equals(target1),is(true));
     }
 
-    public List<String> reader(File source, List<String> target) {
+    public void reader(File source, List<String> target) {
         try (BufferedReader in1 = new BufferedReader(new FileReader(source))) {
             target.addAll(in1.lines().collect(Collectors.toList()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return target;
     }
 }
