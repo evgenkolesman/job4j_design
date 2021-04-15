@@ -3,11 +3,9 @@ package ru.job4j.io;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -22,9 +20,7 @@ public class AnalizyTest {
         File source = folder.newFile("Sourcefile1.txt");
         File target = folder.newFile("Targetfile1.txt");
 
-
         //записываем во временный файл данные для проверки
-
         Files.write(source.toPath(), List.of(
                 "200 10:56:01",
                 "500 10:57:01",
@@ -34,9 +30,7 @@ public class AnalizyTest {
                 "400 11:02:02",
                 "200 11:03:01"
         ));
-
         un.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
-
 
         // переписываем все в листы для сравнения
         List<String> target1 = List.of(
