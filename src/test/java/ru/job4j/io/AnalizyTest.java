@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,23 +21,39 @@ public class AnalizyTest {
     @Test
     public void unavailableTest() throws IOException {
         Analizy un = new Analizy();
-        File source1 = folder.newFile("Targetfile1.txt");
-        File source2 = folder.newFile("Targetfile2.txt");
+        File source = folder.newFile("Sourcefile1.txt");
+        File target = folder.newFile("Targetfile1.txt");
 
 
         //записываем во временный файл данные для проверки
 
-        un.unavailable("Sourcefile.txt", "Targetfile2.txt");
-        un.unavailable("Sourcefile.txt", "Targetfile1.txt");
+        Files.write(source.toPath(), List.of(
+                "200 10:56:01",
+                "500 10:57:01",
+                "400 10:58:01",
+                "200 10:59:01",
+                "500 11:01:02",
+                "200 11:02:02"
+        ));
 
-        // переписываем все влисты для сравнения
-        List<String> target1 = new ArrayList<>();
-        List<String> target2 = new ArrayList<>();
+        un.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
 
-        reader(source1, target1);
-        reader(source2, target2);
+
+        // переписываем все в листы для сравнения
+        List<String> target1 = List.of(
+                "Начало сбоя: ",
+                "10:57:01",
+                "10:59:01",
+                "Начало следующего сбоя: ",
+                "11:01:02",
+                "11:02:02",
+                "Начало следующего сбоя: ",
+                "Работа окончена"
+        );
+        List<String> target2 = Files.readAllLines(target.toPath());
+
         // сравниваем полученные данные, которые должны быть идентичны
-        assertThat(target2.equals(target1), is(true));
+        assertThat(target2, is(target1));
     }
 
     public void reader(File source, List<String> target) {
