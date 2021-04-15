@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +12,12 @@ import java.util.function.Predicate;
 import static java.nio.file.FileVisitResult.CONTINUE;
 
 public class SearchFiles implements FileVisitor<Path> {
-    List<Path> collector = new ArrayList<>();
+    private final Predicate<Path> condition;
+    private final List<Path> collector;
 
     public SearchFiles(Predicate<Path> condition) {
-        Path t = Paths.get(".");
-        if (condition.test(t)) {
-            collector.add(t);
-        }
+       this.condition = condition;
+       collector = new ArrayList<>();
     }
 
     public List<Path> getPaths() {
@@ -33,7 +31,9 @@ public class SearchFiles implements FileVisitor<Path> {
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-        System.out.println(file.toAbsolutePath());
+        if (condition.test(file)) {
+            collector.add(file);
+        }
         return CONTINUE;
     }
 
