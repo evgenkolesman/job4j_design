@@ -6,9 +6,7 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -31,9 +29,10 @@ public class AnalizyTest {
                 "200 10:56:01",
                 "500 10:57:01",
                 "400 10:58:01",
-                "200 10:59:01",
-                "500 11:01:02",
-                "200 11:02:02"
+                "500 10:59:01",
+                "200 11:01:02",
+                "400 11:02:02",
+                "200 11:03:01"
         ));
 
         un.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
@@ -43,10 +42,10 @@ public class AnalizyTest {
         List<String> target1 = List.of(
                 "Начало сбоя: ",
                 "10:57:01",
-                "10:59:01",
-                "Начало следующего сбоя: ",
                 "11:01:02",
+                "Начало следующего сбоя: ",
                 "11:02:02",
+                "11:03:01",
                 "Начало следующего сбоя: ",
                 "Работа окончена"
         );
@@ -54,13 +53,5 @@ public class AnalizyTest {
 
         // сравниваем полученные данные, которые должны быть идентичны
         assertThat(target2, is(target1));
-    }
-
-    public void reader(File source, List<String> target) {
-        try (BufferedReader in1 = new BufferedReader(new FileReader(source))) {
-            target.addAll(in1.lines().collect(Collectors.toList()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
