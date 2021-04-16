@@ -16,7 +16,7 @@ public class AnalizyTest {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
-    @Test
+   @Test
     public void unavailableTest() throws IOException {
         Analizy un = new Analizy();
         File source = folder.newFile("Sourcefile1.txt");
