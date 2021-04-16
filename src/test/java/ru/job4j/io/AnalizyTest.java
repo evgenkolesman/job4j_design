@@ -1,4 +1,4 @@
-/*package ru.job4j.io;
+package ru.job4j.io;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -50,4 +50,4 @@ public class AnalizyTest {
         // сравниваем полученные данные, которые должны быть идентичны
         assertThat(target2, is(target1));
     }
-}*/
+}
