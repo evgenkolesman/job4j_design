@@ -54,6 +54,6 @@ public class AnalizyTest {
         //List<String> target2 = Files.readAllLines(target.toPath());
 
         // сравниваем полученные данные, которые должны быть идентичны
-        assertThat(target2,is(target1));
+        assertThat(target2, is(target1));
     }
 }
