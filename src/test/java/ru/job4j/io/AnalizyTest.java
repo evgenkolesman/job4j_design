@@ -6,6 +6,7 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,7 +17,7 @@ public class AnalizyTest {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
-   @Test
+    @Test
     public void unavailableTest() throws IOException {
         Analizy un = new Analizy();
         File source = folder.newFile("Sourcefile1.txt");
@@ -45,9 +46,14 @@ public class AnalizyTest {
                 "Начало следующего сбоя: ",
                 "Работа окончена"
         );
-        List<String> target2 = Files.readAllLines(target.toPath());
+        List<String> target2 = new ArrayList<>();
+        BufferedReader inner = new BufferedReader(new FileReader(target));
+        for (String lines = inner.readLine(); lines != null; lines = inner.readLine()) {
+            target2.add(lines);
+        }
+        //List<String> target2 = Files.readAllLines(target.toPath());
 
         // сравниваем полученные данные, которые должны быть идентичны
-        assertThat(target2, is(target1));
+        assertThat(target2,is(target1));
     }
 }
