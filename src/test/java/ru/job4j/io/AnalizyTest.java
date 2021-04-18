@@ -47,9 +47,11 @@ public class AnalizyTest {
                 "Работа окончена"
         );
         List<String> target2 = new ArrayList<>();
-        BufferedReader inner = new BufferedReader(new FileReader(target));
-        for (String lines = inner.readLine(); lines != null; lines = inner.readLine()) {
-            target2.add(lines);
+        try (BufferedReader inner = new BufferedReader(new FileReader(target))) {
+            /*for (String lines = inner.readLine(); lines != null; lines = inner.readLine()) {
+                target2.add(lines);
+            }*/
+            inner.lines().forEach(target2::add);
         }
         //List<String> target2 = Files.readAllLines(target.toPath());
 
