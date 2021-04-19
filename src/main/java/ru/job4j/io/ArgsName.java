@@ -1,10 +1,8 @@
 package ru.job4j.io;
 
-import java.lang.instrument.Instrumentation;
 import java.util.*;
 
 public class ArgsName {
-    private static Instrumentation instrumentation;
 
     final Map<String, String> values = new HashMap<>();
 
@@ -15,19 +13,15 @@ public class ArgsName {
         return values.get(key);
     }
 
+    // пробовал через List почему то не получилось, пока...
     public void parse(String[] args) {
-        for (String arg : args) {
-            String[] arg1 = arg.replaceFirst("-", "").split("=");
-            //arg1.add(arg.replaceFirst("-", "").split("="));
+        Arrays.stream(args).map(arg -> arg.replaceFirst("-", "").
+                split("=")).forEach(arg1 -> {
             if (arg1.length != 2) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Не верно записаны параметры, пример: значение1=значение2");
             }
             values.put(arg1[0], arg1[1]);
-        }
-    }
-
-    public static long getObjectSize(Object o) {
-        return instrumentation.getObjectSize(o);
+        });
     }
 
     public static ArgsName of(String[] args) {
