@@ -15,8 +15,8 @@ public class ArgsName {
 
     // пробовал через List почему то не получилось, пока...
     public void parse(String[] args) {
-        Arrays.stream(args).map(arg -> arg.replaceFirst("-", "").
-                split("=")).forEach(arg1 -> {
+        Arrays.stream(args).map(arg ->
+                arg.replaceFirst("-", "").split("=")).forEach(arg1 -> {
             if (arg1.length != 2) {
                 throw new IllegalArgumentException("Не верно записаны параметры, пример: значение1=значение2");
             }
