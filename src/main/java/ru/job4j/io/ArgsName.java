@@ -2,6 +2,13 @@ package ru.job4j.io;
 
 import java.util.*;
 
+/* Именованные аргументы
+ * Проверка аргумента по кодировке UTF-8 и занимаемой памяти 512
+ *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
+
+
 public class ArgsName {
 
     final Map<String, String> values = new HashMap<>();
@@ -18,7 +25,8 @@ public class ArgsName {
         Arrays.stream(args).map(arg ->
                 arg.replaceFirst("-", "").split("=")).forEach(arg1 -> {
             if (arg1.length != 2) {
-                throw new IllegalArgumentException("Не верно записаны параметры, пример: значение1=значение2");
+                throw new IllegalArgumentException("Не верно записаны параметры, " +
+                        "пример: значение1=значение2");
             }
             values.put(arg1[0], arg1[1]);
         });
