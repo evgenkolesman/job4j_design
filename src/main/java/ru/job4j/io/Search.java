@@ -18,7 +18,7 @@ public class Search {
 
     public static void main(String[] args) {
         if (args.length != 2) {
-            throw new IllegalArgumentException("Не верно задан аргумент : Root папка равна null. Надо так:  java -jar Search.jar ROOT_FOLDER");
+            throw new IllegalArgumentException("Root folder is null. Usage java -jar Search.jar ROOT_FOLDER.");
         }
         Path start = Paths.get(args[0]);
         try {
