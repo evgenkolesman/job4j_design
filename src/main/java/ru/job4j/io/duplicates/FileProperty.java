@@ -2,6 +2,12 @@ package ru.job4j.io.duplicates;
 
 import java.util.Objects;
 
+/* Поиск  дубликатов
+ * Поиск дубликатов в файловой системе по заданным параметрам
+ *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
+
 public class FileProperty {
     private long size;
     private String name;
