@@ -48,7 +48,6 @@ public class Zip {
     // метод поиска дубликатов
     public static List<File> searchFiles(Path path, String ex) {
         List<Path> newList = new ArrayList<>();
-        //newList.add(path);
         try {
             newList = Search.search(path, a -> a.toFile().getName().endsWith(ex));
         } catch (IOException e) {
@@ -62,7 +61,8 @@ public class Zip {
         ArgsName argsName = ArgsName.of(args);
         if (args.length != 3) {
             throw new IllegalArgumentException("Не верно записаны параметры, " +
-                    "пример: -d=папка назначения -e= исключение, тип файлов -o=во что  преобразовываесм .zip");
+                    "пример: -d=папка назначения -e= исключение, тип файлов " +
+                    "-o=во что  преобразовываем .zip");
         }
         new Zip().packFiles(
                 searchFiles(Paths.get(argsName.get("d")), argsName.get("e")),
