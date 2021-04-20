@@ -54,8 +54,7 @@ public class Zip {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<File> newListFile = newList.stream().map(Path::toFile).collect(Collectors.toList());
-        return newListFile;
+        return newList.stream().map(Path::toFile).collect(Collectors.toList());
     }
 
     //упаковка файла
