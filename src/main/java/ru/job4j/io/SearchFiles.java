@@ -11,6 +11,11 @@ import java.util.function.Predicate;
 
 import static java.nio.file.FileVisitResult.CONTINUE;
 
+/* Класс необходим для обхода файлого дерева,
+ * осуществляет поиск необходимых файлов
+ *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
 public class SearchFiles implements FileVisitor<Path> {
     private final Predicate<Path> condition;
     private final List<Path> collector;
