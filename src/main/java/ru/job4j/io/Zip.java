@@ -49,7 +49,7 @@ public class Zip {
     public static List<File> searchFiles(Path path, String ex) {
         List<Path> newList = new ArrayList<>();
         try {
-            newList = Search.search(path, a -> a.toFile().getName().endsWith(ex));
+            newList = Search.search(path, a -> !a.toFile().getName().endsWith(ex));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,9 +60,9 @@ public class Zip {
     public static void main(String[] args) {
         ArgsName argsName = ArgsName.of(args);
         if (args.length != 3) {
-            throw new IllegalArgumentException("Не верно записаны параметры, " +
-                    "пример: -d=папка назначения -e= исключение, тип файлов " +
-                    "-o=во что  преобразовываем .zip");
+            throw new IllegalArgumentException("Не верно записаны параметры, "
+                    + "пример: -d=папка назначения -e= исключение, тип файлов "
+                    + "-o=во что  преобразовываем .zip");
         }
         new Zip().packFiles(
                 searchFiles(Paths.get(argsName.get("d")), argsName.get("e")),

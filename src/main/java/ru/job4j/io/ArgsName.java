@@ -8,13 +8,12 @@ import java.util.*;
  * @version 1.0
  */
 
-
 public class ArgsName {
 
     final Map<String, String> values = new HashMap<>();
 
     public String get(String key) {
-        if(!values.containsKey(key)) {
+        if (!values.containsKey(key)) {
             throw new IllegalArgumentException();
         }
         return values.get(key);
@@ -22,14 +21,13 @@ public class ArgsName {
 
     // пробовал через List почему то не получилось, пока...
     public void parse(String[] args) {
-        Arrays.stream(args).map(arg ->
-                arg.replaceFirst("-", "").split("=")).forEach(arg1 -> {
+        for (String arg : args) {
+            String[] arg1 = arg.replaceFirst("-", "").split("=");
             if (arg1.length != 2) {
-                throw new IllegalArgumentException("Не верно записаны параметры, " +
-                        "пример: значение1=значение2");
+                throw new IllegalArgumentException("Не верно записаны параметры, пример: значение1=значение2");
             }
             values.put(arg1[0], arg1[1]);
-        });
+        }
     }
 
     public static ArgsName of(String[] args) {
