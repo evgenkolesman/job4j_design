@@ -4,6 +4,11 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.List;
 
+/* Задание пример кодировки
+        * Запись в файл в кодировке "WINDOWS-1251" и чтение из файла в консоль
+        *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+        * @version 1.0
+        */
 public class UsageEncoding {
 
     public String readFile(String path) {
