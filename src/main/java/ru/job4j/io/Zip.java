@@ -32,19 +32,6 @@ public class Zip {
         }
     }
 
-    /* считывание и записывание файлов в zip пример на одном файле
-    public void packSingleFile(File source, File target) {
-        try (ZipOutputStream zip = new ZipOutputStream(
-                new BufferedOutputStream(new FileOutputStream(target)))) {
-            zip.putNextEntry(new ZipEntry(source.getPath()));
-            try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
-                zip.write(out.readAllBytes());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
-
     // метод поиска дубликатов
     public static List<File> searchFiles(Path path, String ex) {
         List<Path> newList = new ArrayList<>();
