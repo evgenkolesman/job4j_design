@@ -31,26 +31,25 @@ public class ConsoleChat {
     }
 
     public void run() throws IOException {
-        Scanner console = new Scanner(System.in);
-        String data = console.nextLine();
-        //try (BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in))) {
-        try (BufferedWriter writter = new BufferedWriter(new FileWriter(target))) {
-            //String data = reader1.readLine();
-            boolean botActive = true;
-
-            try (BufferedReader out = new BufferedReader(new FileReader(source))) {
-                while (out.readLine() != null) {
-                    sourceList.add(out.readLine());
+        //Scanner console = new Scanner(System.in);
+        //String data = console.nextLine();
+        try (BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in))) {
+            try (BufferedWriter writter = new BufferedWriter(new FileWriter(target))) {
+                String data = reader1.readLine();
+                try (BufferedReader out = new BufferedReader(new FileReader(source))) {
+                    while (out.readLine() != null) {
+                        sourceList.add(out.readLine());
+                    }
                 }
-            }
-            while (data != null && botActive == true) {
-                if (!(data.equals(OUT))) {
-                    if (data.equals(STOP)) {
-                        botActive = false;// остановка, пока не работает
-                    }
-                    if (data.equals(CONTINUE)) {
-                        botActive = true;
-                    }
+                boolean botActive = true;
+                while (reader1.readLine() != null) {
+                    if (!(reader1.readLine().equals(OUT) && botActive == true)) {
+                        if (reader1.readLine().equals(STOP)) {
+                            botActive = false;// остановка, пока не работает
+                        }
+                        if (reader1.readLine().equals(CONTINUE)) {
+                            botActive = true;
+                        }
                     /*int i =0;
                     if (i < sourceList.size()) {
                         botAnswers = sourceList.get(i);
@@ -61,12 +60,15 @@ public class ConsoleChat {
                         i = 0;
                     }*/
 
+                    }
+                    botAnswers = sourceList.get(1);
+                    if (!reader1.readLine().equals(OUT) || !reader1.readLine().equals(CONTINUE)) {
+                        System.out.println(botAnswers);
+                    } else if(reader1.readLine().equals(OUT)) {
+                        break;
+                    }
                 }
-                else {
-                    break;
-                }
-                botAnswers = sourceList.get(1);
-                System.out.println(botAnswers); // ответ пока циклит
+                // ответ пока циклит}
                 writter.write(data);
                 writter.write(System.lineSeparator());
                 writter.write(botAnswers);
