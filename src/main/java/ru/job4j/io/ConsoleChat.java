@@ -1,8 +1,9 @@
-/*package ru.job4j.io;
+package ru.job4j.io;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
  *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
-/*public class ConsoleChat {
+public class ConsoleChat {
     private final String path;
     private String botAnswers;
     private static final String OUT = "закончить";
@@ -30,57 +31,48 @@ import java.util.stream.Collectors;
         this.botAnswers = botAnswers;
     }
 
-    public void run() throws IOException {
-        //Scanner console = new Scanner(System.in);
-        //String data = console.nextLine();
-        try (BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in))) {
-            try (BufferedWriter writter = new BufferedWriter(new FileWriter(target))) {
-                String data = reader1.readLine();
-                try (BufferedReader out = new BufferedReader(new FileReader(source))) {
-                    while (out.readLine() != null) {
-                        sourceList.add(out.readLine());
-                    }
+    public void run() {
+        Scanner console = new Scanner(System.in);
+        String data = console.nextLine();
+        //try (BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in))) {
+        try (BufferedWriter writter = new BufferedWriter(new FileWriter(target))) {
+            //String data1 = reader1.readLine();
+            try (BufferedReader out = new BufferedReader(new FileReader(source))) {
+                String line = out.readLine();
+                while (line != null) {
+                    sourceList.add(line);
                 }
-                boolean botActive = true;
-                while (reader1.readLine() != null) {
-                    if (!(reader1.readLine().equals(OUT) && botActive == true)) {
-                        if (reader1.readLine().equals(STOP)) {
-                            botActive = false;// остановка, пока не работает
-                        }
-                        if (reader1.readLine().equals(CONTINUE)) {
-                            botActive = true;
-                        }
-                    /*int i =0;
-                    if (i < sourceList.size()) {
-                        botAnswers = sourceList.get(i);
-                        System.out.println(botAnswers);
-                        i++;
-                    }
-                    if (i == sourceList.size() - 1) {
-                        i = 0;
-                    }*/
-
-                    /*}
-                    botAnswers = sourceList.get(1);
-                    if (!reader1.readLine().equals(OUT) || !reader1.readLine().equals(CONTINUE)) {
-                        System.out.println(botAnswers);
-                    } else if(reader1.readLine().equals(OUT)) {
-                        break;
-                    }
-                }
-                // ответ пока циклит}
-                writter.write(data);
-                writter.write(System.lineSeparator());
-                writter.write(botAnswers);
             }
+            String botAnswer = null;
+            boolean botActive = true;
+            //вариант цикла, который позволяет избежать зацикливания
+            do {
+                if (!(data.equals(OUT) && botActive)) {
+                    if (data.equals(STOP)) {
+                        botActive = false;
+                    }
+                    if (data.equals(CONTINUE)) {
+                        botActive = true;
+                    } else if (botActive) {
+                        int i = new Random().nextInt(sourceList.size());
+                        botAnswer = sourceList.get(i);
+                        System.out.println(botAnswer);
+                    }
+                }
+
+
+            } while (data != OUT);
+            writter.write(data);
+            writter.write(System.lineSeparator());
+            writter.write(botAnswer);
+            // ответ пока циклит
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ConsoleChat cc = new ConsoleChat(target, source);
         cc.run();
     }
 }
-*/
