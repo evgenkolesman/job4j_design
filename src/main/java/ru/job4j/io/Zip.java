@@ -11,11 +11,10 @@ import java.util.zip.ZipOutputStream;
 
 /* Архивирование проекта
  * Утилита для архивации папки
- *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
 public class Zip {
-
     //метод должен запаковать файлы
     public void packFiles(List<File> source, File target) {
         try (ZipOutputStream zip = new ZipOutputStream(
