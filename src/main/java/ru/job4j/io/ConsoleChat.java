@@ -1,4 +1,4 @@
-package ru.job4j.io;
+/*package ru.job4j.io;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
-public class ConsoleChat {
+/*public class ConsoleChat {
     private final String path;
     private String botAnswers;
     private static final String OUT = "закончить";
@@ -60,7 +60,7 @@ public class ConsoleChat {
                         i = 0;
                     }*/
 
-                    }
+                    /*}
                     botAnswers = sourceList.get(1);
                     if (!reader1.readLine().equals(OUT) || !reader1.readLine().equals(CONTINUE)) {
                         System.out.println(botAnswers);
@@ -83,3 +83,4 @@ public class ConsoleChat {
         cc.run();
     }
 }
+*/
