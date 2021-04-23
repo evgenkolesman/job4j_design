@@ -1,8 +1,10 @@
 package ru.job4j.io;
 
 import java.io.*;
-import java.nio.CharBuffer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /* Создание консольного чата
  * Утилита для создания консольного чата, который
@@ -14,50 +16,70 @@ import java.util.Scanner;
  */
 public class ConsoleChat {
     private final String path;
-    private final String botAnswers;
+    private String botAnswers;
     private static final String OUT = "закончить";
     private static final String STOP = "стоп";
     private static final String CONTINUE = "продолжить";
     public static String target = "targetText.txt";
     public static String source = "sourceText.txt";
+    List<String> sourceList = new ArrayList<>();
+    List<String> targetList = new ArrayList<>();
 
     public ConsoleChat(String path, String botAnswers) {
         this.path = path;
         this.botAnswers = botAnswers;
     }
 
-    public void run() {
+    public void run() throws IOException {
         Scanner console = new Scanner(System.in);
         String data = console.nextLine();
-        while (!data.isEmpty()) {
-            try (BufferedWriter wr = new BufferedWriter(new FileWriter(target))) {
-                wr.append(data);
-                if (data.equals(OUT)) {
-                    System.exit(0);
-                }
-
+        //try (BufferedReader reader1 = new BufferedReader(new InputStreamReader(System.in))) {
+            try (BufferedWriter writter = new BufferedWriter(new FileWriter(target))) {
+                //String data = reader1.readLine();
+                boolean botActive = true;
                 if (data.equals(STOP)) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                    }// не правильно надо придумать стоп
+                    botActive = false;// остановка, пока не работает
                 }
                 if (data.equals(CONTINUE)) {
-                    notify();
+                    botActive = true;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                while (data != null && botActive == true) {
+                    if (!(data.equals(OUT))) {
+                        try (BufferedReader out = new BufferedReader(new FileReader(source))) {
+                            while (out.readLine() != null) {
+                                sourceList = out.lines().collect(Collectors.toList());
+                            }
+                        }
+                        int i = 0;
+                        if (i < sourceList.size()) {
+                            botAnswers = sourceList.get(i);
+                            System.out.println(botAnswers);
+                            i++;
+                        }
+                        if (i == sourceList.size() - 1) {
+                            i = 0;
+                        }
 
-            try (BufferedReader out = new BufferedReader(new FileReader(source))) {
-                System.out.println(out.readLine());
+                    }
+
+                        writter.write(data);
+                        writter.write(System.lineSeparator());
+                        writter.write(botAnswers);
+
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
+
+    public List<String> reader() throws IOException {
+
+        return sourceList;
     }
 
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
         ConsoleChat cc = new ConsoleChat(target, source);
         cc.run();
     }
