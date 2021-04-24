@@ -19,8 +19,8 @@ public class ConsoleChat {
     private static final String OUT = "закончить";
     private static final String STOP = "стоп";
     private static final String CONTINUE = "продолжить";
-    public static String target = "./targetText.txt";
-    public static String source = "./sourceText.txt";
+    public static String target = "targetText.txt";
+    public static String source = "sourceText.txt";
     List<String> sourceList = new ArrayList<>();
     List<String> targetList = new ArrayList<>();
 
