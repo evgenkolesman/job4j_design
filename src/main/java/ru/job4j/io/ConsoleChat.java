@@ -61,7 +61,7 @@ public class ConsoleChat {
 
     // читаем все фразы из файла
     public void readerData() {
-        try (BufferedReader out = new BufferedReader(new FileReader(source))) {
+        try (BufferedReader out = new BufferedReader(new FileReader(path))) {
             String line = out.readLine();
             while (line != null) {
                 sourceList.add(line);
@@ -73,7 +73,7 @@ public class ConsoleChat {
 
     // пишем все данные в файл из списка
     public void writeData() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(target))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(botAnswers))) {
             for (String string : targetList) {
                 writer.write(string);
             }
