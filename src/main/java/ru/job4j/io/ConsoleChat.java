@@ -44,7 +44,7 @@ public class ConsoleChat {
                     if (botAnswer.equals(STOP)) {
                         botActive = false;
                     }
-                    if (botAnswer.equals(CONTINUE)||botAnswer.equals(OUT)) {
+                    if (botAnswer.equals(CONTINUE) || botAnswer.equals(OUT)) {
                         botActive = true;
                     } else if (botActive) {
                         int i = new Random().nextInt(sourceList.size());
