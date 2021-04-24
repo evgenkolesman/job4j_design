@@ -41,17 +41,17 @@ public class ConsoleChat {
             do {
                 botAnswer = dialogReader.readLine();
                 targetList.add(botAnswer);
-                    if (botAnswer.equals(STOP)) {
-                        botActive = false;
-                    }
-                    if (botAnswer.equals(CONTINUE) || botAnswer.equals(OUT)) {
-                        botActive = true;
-                    } else if (botActive) {
-                        int i = new Random().nextInt(sourceList.size());
-                        botAnswer = sourceList.get(i);
-                        targetList.add(botAnswer);
-                        System.out.println(botAnswer);
-                    }
+                if (botAnswer.equals(STOP)) {
+                    botActive = false;
+                }
+                if (botAnswer.equals(CONTINUE) || botAnswer.equals(OUT)) {
+                    botActive = true;
+                } else if (botActive) {
+                    int i = new Random().nextInt(sourceList.size());
+                    botAnswer = sourceList.get(i);
+                    targetList.add(botAnswer);
+                    System.out.println(botAnswer);
+                }
             } while (!botAnswer.equals(OUT));
             writeData();
         } catch (IOException e) {
@@ -84,7 +84,7 @@ public class ConsoleChat {
 
     // запускаем наш чат
     public static void main(String[] args) {
-        ConsoleChat cc = new ConsoleChat("./targetText.txt", "./sourceText.txt");
+        ConsoleChat cc = new ConsoleChat(target, source);
         cc.run();
     }
 }
