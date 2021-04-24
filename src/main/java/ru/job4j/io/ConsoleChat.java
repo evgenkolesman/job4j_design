@@ -52,7 +52,7 @@ public class ConsoleChat {
                         targetList.add(botAnswer);
                         System.out.println(botAnswer);
                     }
-            } while (botAnswer != OUT);
+            } while (!botAnswer.equals(OUT));
             writeData();
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,8 +62,8 @@ public class ConsoleChat {
     // читаем все фразы из файла
     public void readerData() {
         try (BufferedReader out = new BufferedReader(new FileReader(path))) {
-            String line = out.readLine();
-            while (line != null) {
+            String line;
+            while ((line = out.readLine()) != null) {
                 sourceList.add(line);
             }
         } catch (IOException e) {
