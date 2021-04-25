@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,15 +15,13 @@ import java.util.Random;
  * @version 1.0
  */
 public class ConsoleChat {
-    private static String path;
-    private static String botAnswers;
+    private final String path;
+    private final String botAnswers;
     private static final String OUT = "закончить";
     private static final String STOP = "стоп";
     private static final String CONTINUE = "продолжить";
-    public static String target = "targetText.txt";
-    public static String source = "sourceText.txt";
-    List<String> sourceList = new ArrayList<>();
-    List<String> targetList = new ArrayList<>();
+    private List<String> sourceList = new ArrayList<>();
+    private List<String> targetList = new ArrayList<>();
 
     //конструктор
     public ConsoleChat(String path, String botAnswers) {
@@ -34,7 +33,7 @@ public class ConsoleChat {
     // распознаем ответ, приминяем логику, все записываем.
     public void run() {
         try (BufferedReader dialogReader = new BufferedReader(new InputStreamReader(System.in))) {
-            String botAnswer = null;
+            String botAnswer;
             readerData();
             boolean botActive = true;
             //вариант цикла, который позволяет избежать зацикливания
@@ -46,7 +45,8 @@ public class ConsoleChat {
                 }
                 if (botAnswer.equals(CONTINUE) || botAnswer.equals(OUT)) {
                     botActive = true;
-                } else if (botActive) {
+                }
+                else if (botActive) {
                     int i = new Random().nextInt(sourceList.size());
                     botAnswer = sourceList.get(i);
                     targetList.add(botAnswer);
@@ -61,7 +61,7 @@ public class ConsoleChat {
 
     // читаем все фразы из файла
     public void readerData() {
-        try (BufferedReader out = new BufferedReader(new FileReader(path))) {
+        try (BufferedReader out = new BufferedReader(new FileReader(botAnswers, Charset.forName("UTF-8")))) {
             String line;
             while ((line = out.readLine()) != null) {
                 sourceList.add(line);
@@ -73,9 +73,10 @@ public class ConsoleChat {
 
     // пишем все данные в файл из списка
     public void writeData() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(botAnswers))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, Charset.forName("UTF-8")))) {
             for (String string : targetList) {
                 writer.write(string);
+                writer.write(System.lineSeparator());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,7 +85,10 @@ public class ConsoleChat {
 
     // запускаем наш чат
     public static void main(String[] args) {
-        ConsoleChat cc = new ConsoleChat(target, source);
+        System.out.println("Здравствуйте! Вы находитесь в косольном чате. ");
+        System.out.println("Правила: 1. Пишем любую фразу или слово получаем ответ");
+        System.out.println("2. Команды: стоп - остановить, продолжить - продолжить, закончить - завершить работу");
+        ConsoleChat cc = new ConsoleChat("./targetText.txt", "./sourceText.txt");
         cc.run();
     }
 }
