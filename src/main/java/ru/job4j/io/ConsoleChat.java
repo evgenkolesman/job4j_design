@@ -31,7 +31,7 @@ public class ConsoleChat {
 
     //основная логика считываем с консоля данные(с помощью стримов, сканнер не зашел), производим считывание ответ
     // распознаем ответ, приминяем логику, все записываем.
-    public void run() throws IOException {
+    public void run() {
         try (BufferedReader dialogReader = new BufferedReader(new InputStreamReader(System.in))) {
             String botAnswer;
             // читаем все фразы из файла
@@ -40,6 +40,8 @@ public class ConsoleChat {
                 while ((line = out.readLine()) != null) {
                     sourceList.add(line);
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
             boolean botActive = true;
             //вариант цикла, который позволяет избежать зацикливания
@@ -64,15 +66,20 @@ public class ConsoleChat {
                     writer.write(string);
                     writer.write(System.lineSeparator());
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     // запускаем наш чат
-    public static void main(String[] args) throws IOException {
-        System.out.println("Здравствуйте! Вы находитесь в косольном чате. ");
-        System.out.println("Правила: 1. Пишем любую фразу или слово получаем ответ");
-        System.out.println("2. Команды: стоп - остановить, продолжить - продолжить, закончить - завершить работу");
+    public static void main(String[] args) {
+        System.out.printf(String.format("%s%n%s%n%s%n%s%n", "Здравствуйте! Вы находитесь в косольном чате. ",
+                "Правила:",
+                "1. Пишем любую фразу или слово получаем ответ",
+                "2. Команды: стоп - остановить работу, продолжить - продолжить работу, закончить - завершить работу"));
         ConsoleChat cc = new ConsoleChat("./targetText.txt", "./sourceText.txt");
         cc.run();
     }
