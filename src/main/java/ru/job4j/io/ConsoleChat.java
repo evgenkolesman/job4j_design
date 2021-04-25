@@ -31,10 +31,16 @@ public class ConsoleChat {
 
     //основная логика считываем с консоля данные(с помощью стримов, сканнер не зашел), производим считывание ответ
     // распознаем ответ, приминяем логику, все записываем.
-    public void run() {
+    public void run() throws IOException {
         try (BufferedReader dialogReader = new BufferedReader(new InputStreamReader(System.in))) {
             String botAnswer;
-            readerData();
+            // читаем все фразы из файла
+            try (BufferedReader out = new BufferedReader(new FileReader(botAnswers, Charset.forName("UTF-8")))) {
+                String line;
+                while ((line = out.readLine()) != null) {
+                    sourceList.add(line);
+                }
+            }
             boolean botActive = true;
             //вариант цикла, который позволяет избежать зацикливания
             do {
@@ -52,12 +58,32 @@ public class ConsoleChat {
                     System.out.println(botAnswer);
                 }
             } while (!botAnswer.equals(OUT));
-            writeData();
-        } catch (IOException e) {
-            e.printStackTrace();
+            // пишем все данные в файл из списка
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, Charset.forName("UTF-8")))) {
+                for (String string : targetList) {
+                    writer.write(string);
+                    writer.write(System.lineSeparator());
+                }
+            }
         }
     }
 
+    // запускаем наш чат
+    public static void main(String[] args) throws IOException {
+        System.out.println("Здравствуйте! Вы находитесь в косольном чате. ");
+        System.out.println("Правила: 1. Пишем любую фразу или слово получаем ответ");
+        System.out.println("2. Команды: стоп - остановить, продолжить - продолжить, закончить - завершить работу");
+        ConsoleChat cc = new ConsoleChat("./targetText.txt", "./sourceText.txt");
+        cc.run();
+    }
+}
+
+
+
+
+
+
+/* МЕТОДЫ ОТДЕЛЬНО ВЫНЕСЕННЫЕ
     // читаем все фразы из файла
     public void readerData() {
         try (BufferedReader out = new BufferedReader(new FileReader(botAnswers, Charset.forName("UTF-8")))) {
@@ -80,14 +106,4 @@ public class ConsoleChat {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    // запускаем наш чат
-    public static void main(String[] args) {
-        System.out.println("Здравствуйте! Вы находитесь в косольном чате. ");
-        System.out.println("Правила: 1. Пишем любую фразу или слово получаем ответ");
-        System.out.println("2. Команды: стоп - остановить, продолжить - продолжить, закончить - завершить работу");
-        ConsoleChat cc = new ConsoleChat("./targetText.txt", "./sourceText.txt");
-        cc.run();
-    }
-}
+    }*/
