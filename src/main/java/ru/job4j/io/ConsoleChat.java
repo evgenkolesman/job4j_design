@@ -35,14 +35,7 @@ public class ConsoleChat {
         try (BufferedReader dialogReader = new BufferedReader(new InputStreamReader(System.in))) {
             String botAnswer;
             // читаем все фразы из файла
-            try (BufferedReader out = new BufferedReader(new FileReader(botAnswers, Charset.forName("UTF-8")))) {
-                String line;
-                while ((line = out.readLine()) != null) {
-                    sourceList.add(line);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            readAns();
             boolean botActive = true;
             //вариант цикла, который позволяет избежать зацикливания
             do {
@@ -61,13 +54,30 @@ public class ConsoleChat {
                 }
             } while (!botAnswer.equals(OUT));
             // пишем все данные в файл из списка
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, Charset.forName("UTF-8")))) {
-                for (String string : targetList) {
-                    writer.write(string);
-                    writer.write(System.lineSeparator());
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            writeD();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Метод для записи истории диалога
+    public void writeD() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, Charset.forName("UTF-8")))) {
+            for (String string : targetList) {
+                writer.write(string);
+                writer.write(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //метод для чтения ответов из файла
+    public void readAns() {
+        try (BufferedReader out = new BufferedReader(new FileReader(botAnswers, Charset.forName("UTF-8")))) {
+            String line;
+            while ((line = out.readLine()) != null) {
+                sourceList.add(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,6 +94,408 @@ public class ConsoleChat {
         cc.run();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
