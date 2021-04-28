@@ -17,10 +17,10 @@ public class EchoServer {
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    String str;
-                    while (!(str = in.readLine()).isEmpty()) {
+                    String str= in.readLine();
+                    while (!str.isEmpty()) {
                         System.out.println(str);
-                        /*if (str.contains("Hello")) {
+                        if (str.contains("Hello")) {
                             out.write("Hello".getBytes());
                         }
                         if (str.contains("Exit")) {
@@ -28,8 +28,8 @@ public class EchoServer {
                         }
                         if (str.contains("What")) {
                             out.write("What".getBytes());
-                        }*/
-                        //str = in.readLine();
+                        }
+                        str = in.readLine();
                     }
                     out.write("HTTP/1.1 200 OK\r\n".getBytes());
                     out.write("Hello, dear friend.".getBytes());
