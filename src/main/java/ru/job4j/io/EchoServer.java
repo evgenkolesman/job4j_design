@@ -18,7 +18,6 @@ public class EchoServer {
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    //String answerText;
                     String str = in.readLine();
                     System.out.println(str);
                     System.out.println(System.lineSeparator());
