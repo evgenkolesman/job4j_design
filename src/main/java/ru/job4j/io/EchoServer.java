@@ -28,14 +28,14 @@ public class EchoServer {
                     } else if (str.contains("What")) {
                         answerText = "What?\r\n";
                     } else if (str.contains("Exit")) {
-                        out.write("Bye\r\n".getBytes());
-                        System.out.println("Bye");
-                        server.close(); // переделал на выход
-                        break;
+                        answerText = "Bye!\r\n";
                     }
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     out.write(answerText.getBytes());
                     System.out.println(answerText);
+                    if (str.contains("Exit")) {
+                    server.close(); // переделал на выход
+                    break; }
                 }
             }
         }
