@@ -18,41 +18,26 @@ public class EchoServer {
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    String answerText = "";
+                    //String answerText;
                     String str = in.readLine();
-                    while (!str.isEmpty()) {
-                        System.out.println(str);
-                        System.out.println(System.lineSeparator());
-                        answerText = "Hello, dear friend.";
-                        if (str.contains("Hello")) {
-                            answerText = "Hello!\r\n\r\n";
-                            //writeAnswer(out, answerText);
-                        } else if (str.contains("Exit")) {
-                            answerText = "Bye";
-                            //writeAnswer(out, answerText);
-                            server.close(); // переделал на выход
-                            break;
-                        } else if (str.contains("What")) {
-                            answerText = "What?\r\n";
-                            //writeAnswer(out, answerText);
-                        }
-                        //writeAnswer(out, answerText);
-                        str = in.readLine();
+                    System.out.println(str);
+                    System.out.println(System.lineSeparator());
+                    String answerText = "Hello, dear friend.";
+                    if (str.contains("Hello")) {
+                        answerText = "Hello!\r\n\r\n";
+                    } else if (str.contains("What")) {
+                        answerText = "What?\r\n";
+                    } else if (str.contains("Exit")) {
+                        out.write("Bye".getBytes());
+                        System.out.println("Bye");
+                        server.close(); // переделал на выход
+                        break;
                     }
-                    writeAnswer(out, answerText);
+                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                    out.write(answerText.getBytes());
+                    System.out.println(answerText);
                 }
             }
         }
     }
-
-    private static void writeAnswer(OutputStream out, String answerText) throws IOException {
-        out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-        out.write(answerText.getBytes());
-    }
 }
-
-
-/*if (str.contains("/?msg=")) {
-                            String[] msg = str.split("");
-                            String[] msgText1 = msg[1].split("=", 2);
-                            String msgText = msgText1[1];*/
