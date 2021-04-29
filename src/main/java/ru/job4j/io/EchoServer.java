@@ -24,11 +24,11 @@ public class EchoServer {
                     System.out.println(System.lineSeparator());
                     String answerText = "Hello, dear friend.";
                     if (str.contains("Hello")) {
-                        answerText = "Hello!\r\n\r\n";
+                        answerText = "Hello!\r\n";
                     } else if (str.contains("What")) {
                         answerText = "What?\r\n";
                     } else if (str.contains("Exit")) {
-                        out.write("Bye".getBytes());
+                        out.write("Bye\r\n".getBytes());
                         System.out.println("Bye");
                         server.close(); // переделал на выход
                         break;
