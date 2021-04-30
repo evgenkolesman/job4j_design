@@ -22,19 +22,22 @@ public class EchoServer {
                     System.out.println(str);
                     System.out.println(System.lineSeparator());
                     String answerText = "Hello, dear friend.";
-                    if (str.contains("Hello")) {
-                        answerText = "Hello!\r\n";
-                    } else if (str.contains("What")) {
-                        answerText = "What?\r\n";
-                    } else if (str.contains("Exit")) {
-                        answerText = "Bye!\r\n";
+                    if (!str.isEmpty()) {
+                        if (str.contains("Hello")) {
+                            answerText = "Hello!\r\n";
+                        } else if (str.contains("What")) {
+                            answerText = "What?\r\n";
+                        } else if (str.contains("Exit")) {
+                            answerText = "Bye!\r\n";
+                        }
+                        out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                        out.write(answerText.getBytes());
+                        System.out.println(answerText);
+                        if (str.contains("Exit")) {
+                            server.close(); // переделал на выход
+                            break;
+                        }
                     }
-                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    out.write(answerText.getBytes());
-                    System.out.println(answerText);
-                    if (str.contains("Exit")) {
-                    server.close(); // переделал на выход
-                    break; }
                 }
             }
         }
