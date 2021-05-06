@@ -10,6 +10,7 @@ import java.net.Socket;
 /* Бот
  * Реализация простого бота, на сервере номер 9000
  * Работа бота по заданиям Hello - отвечаем Hello, What - отвечает what, Exit - заканчивает работу
+ * Ошибку бросает в LOG
  *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
