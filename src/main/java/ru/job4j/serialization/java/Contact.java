@@ -3,6 +3,12 @@ package ru.job4j.serialization.java;
 import java.io.*;
 import java.nio.file.Files;
 
+/* Сериализация
+ * Реализация простой сериализации с выводом данных в консоль
+  *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
+
 public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;
     private final int zipCode;
@@ -21,7 +27,7 @@ public class Contact implements Serializable {
         return phone;
     }
 
-    // переделал применил String.format()
+    /* Переделал метод, применил String.format()*/
     @Override
     public String toString() {
         return String.format("Contact{zipCode=%d, phone='%s'}", zipCode, phone);
