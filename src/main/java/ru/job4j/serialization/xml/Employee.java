@@ -29,7 +29,6 @@ public class Employee {
     public static void main(String[] args) {
         final Employee employee = new Employee(false, 25,
                 new Contact("8-8442-73-73-73"), new String[] {"Builder", "Slinger", "Free"});
-
         System.out.println(employee);
     }
 }
