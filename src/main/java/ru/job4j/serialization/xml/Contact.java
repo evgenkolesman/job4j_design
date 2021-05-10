@@ -1,12 +1,11 @@
-package ru.job4j.serialization.json;
+package ru.job4j.serialization.xml;
 
 /* Класс Contact
- * собирает и выводит определенный формат данных:  номер телефона
- *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
- * @version 1.0
- */
+   * собирает и выводит определенный формат данных:  номер телефона
+   *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+   * @version 1.0
+   */
 public class Contact {
-
     private final String phone;
 
     public Contact(String phone) {
