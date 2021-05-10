@@ -1,5 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" ?>
-<!-- Пробная версия написания XML файла описывает класс Employee из ru.job4j.serialization.xml.Employee-->
+<!-- Пробная версия написания XML файла описывает класс Employee из ru.job4j.serialization.xml.Employee
+@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)-->
 <employee sex="false" age="25">
     <contact phone="8-8442-73-73-73"/>
     <statuses>
