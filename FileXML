@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<employee sex="false" age="25">
+    <contact phone="8-8442-73-73-73"/>
+    <statuses>
+        <status>Builder</status>
+        <status>Slinger</status>
+        <status> Free</status>
+    </statuses>
+</employee>
