@@ -2,6 +2,12 @@ package ru.job4j.serialization.xml;
 
 import java.util.Arrays;
 
+/* XML - демонстрация
+ * метод необходим для выполнения задания по иллюстрации xml файла
+ * он собирает тип Employee: булево значение, числовое, объект типа Contact, массив строк
+ *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
 public class Employee {
     private final boolean sex;
     private final int age;
