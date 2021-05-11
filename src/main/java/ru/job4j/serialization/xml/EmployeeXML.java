@@ -23,43 +23,45 @@ import java.util.Arrays;
 public class EmployeeXML {
 
     @XmlAttribute
-        private boolean sex;
+    private boolean sex;
 
     @XmlAttribute
-        private int age;
-        private ContactXML contact;
+    private int age;
+    private ContactXML contact;
 
-        private String[] statuses;
+    private String[] statuses;
 
-        public EmployeeXML() {}
+    public EmployeeXML() {
+    }
 
-        public EmployeeXML(boolean sex, int age, ContactXML contact, String[] statuses) {
-            this.sex = sex;
-            this.age = age;
-            this.contact = contact;
-            this.statuses = statuses;
+    public EmployeeXML(boolean sex, int age, ContactXML contact, String[] statuses) {
+        this.sex = sex;
+        this.age = age;
+        this.contact = contact;
+        this.statuses = statuses;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Employee{sex=%s, age=%d, contact=%s, statuses=%s}", sex, age, contact, Arrays.toString(statuses));
+    }
+
+    public static void main(String[] args) throws JAXBException {
+        final ru.job4j.serialization.xml.EmployeeXML employee = new EmployeeXML(false, 25,
+                new ContactXML("8-8442-73-73-73"), new String[]{"Builder", "Slinger", "Free"});
+
+        // Получаем контекст для доступа к АПИ
+        JAXBContext context = JAXBContext.newInstance(EmployeeXML.class);
+        // Создаем сериализатор
+        Marshaller marshaller = context.createMarshaller();
+        // Указываем, что нам нужно форматирование
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+        try (StringWriter writer = new StringWriter()) {
+            marshaller.marshal(employee, writer);
+            String result = writer.getBuffer().toString();
+            System.out.println(result);
+        } catch (Exception e) {
         }
-
-        @Override
-        public String toString() {
-            return String.format("Employee{sex=%s, age=%d, contact=%s, statuses=%s}", sex, age, contact, Arrays.toString(statuses));
-        }
-
-        public static void main(String[] args) throws JAXBException {
-            final ru.job4j.serialization.xml.EmployeeXML employee = new EmployeeXML(false, 25,
-                    new ContactXML("8-8442-73-73-73"), new String[] {"Builder", "Slinger", "Free"});
-
-            // Получаем контекст для доступа к АПИ
-            JAXBContext context = JAXBContext.newInstance(EmployeeXML.class);
-            // Создаем сериализатор
-            Marshaller marshaller = context.createMarshaller();
-            // Указываем, что нам нужно форматирование
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-            try (StringWriter writer = new StringWriter()) {
-                marshaller.marshal(employee, writer);
-                String result = writer.getBuffer().toString();
-                System.out.println(result);
-            } catch (Exception e) {}
-        }
+    }
 }

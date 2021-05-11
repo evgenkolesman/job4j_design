@@ -15,7 +15,9 @@ public class ContactXML {
     @XmlAttribute
     private String phone;
 
-    public ContactXML() {}
+    public ContactXML() {
+    }
+
     public ContactXML(String phone) {
         this.phone = phone;
     }
