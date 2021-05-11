@@ -58,23 +58,20 @@ public class EmployeeXML {
         Marshaller marshaller = context.createMarshaller();
         // Указываем, что нам нужно форматирование
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
         String xml = "";
-
         try (StringWriter writer = new StringWriter()) {
             // Сериализуем
             marshaller.marshal(employee, writer);
-            String result = writer.getBuffer().toString();
-            xml = result;
+            xml = writer.getBuffer().toString();
             System.out.println(xml);
         } catch (Exception e) {
         }
-
+        // Для десериализации нам нужно создать десериализатор
         Unmarshaller unmarshaller = context.createUnmarshaller();
         try (StringReader reader = new StringReader(xml)) {
             // десериализуем
-            EmployeeXML result1 = (EmployeeXML) unmarshaller.unmarshal(reader);
-            System.out.println(result1);
+            EmployeeXML result = (EmployeeXML) unmarshaller.unmarshal(reader);
+            System.out.println(result);
         }
     }
 }
