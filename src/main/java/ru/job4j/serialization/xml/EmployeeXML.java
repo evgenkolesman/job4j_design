@@ -3,10 +3,12 @@ package ru.job4j.serialization.xml;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Arrays;
 
@@ -57,11 +59,22 @@ public class EmployeeXML {
         // Указываем, что нам нужно форматирование
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
+        String xml = "";
+
         try (StringWriter writer = new StringWriter()) {
+            // Сериализуем
             marshaller.marshal(employee, writer);
             String result = writer.getBuffer().toString();
-            System.out.println(result);
+            xml = result;
+            System.out.println(xml);
         } catch (Exception e) {
+        }
+
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        try (StringReader reader = new StringReader(xml)) {
+            // десериализуем
+            EmployeeXML result1 = (EmployeeXML) unmarshaller.unmarshal(reader);
+            System.out.println(result1);
         }
     }
 }
