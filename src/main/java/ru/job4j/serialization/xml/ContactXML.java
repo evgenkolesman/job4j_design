@@ -4,7 +4,7 @@ import com.sun.xml.txw2.annotation.XmlElement;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-/* Класс Contact
+/* Класс ContactXML
  * собирает и выводит определенный формат данных:  номер телефона
  * данный класс собран под возможность сериализации/десериализации основного класса EmployeeXML
  *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
