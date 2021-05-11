@@ -4,10 +4,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Arrays;
@@ -30,7 +27,8 @@ public class EmployeeXML {
     @XmlAttribute
     private int age;
     private ContactXML contact;
-
+    @XmlElementWrapper(name = "statuses")
+    @XmlElement(name = "status")
     private String[] statuses;
 
     public EmployeeXML() {
