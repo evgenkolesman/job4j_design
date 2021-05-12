@@ -32,6 +32,14 @@ public class EmployeeJSON {
         this.statuses = statuses;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isSex() {
+        return sex;
+    }
+
     @Override
     public String toString() {
         return String.format("Employee{sex=%s, age=%d, contact=%s, statuses=%s}", sex, age, contact, Arrays.toString(statuses));
