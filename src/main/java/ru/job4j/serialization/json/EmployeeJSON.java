@@ -23,7 +23,8 @@ public class EmployeeJSON {
     private ContactJSON contact;
     private String[] statuses;
 
-    public EmployeeJSON() {}
+    public EmployeeJSON() {
+    }
 
     public EmployeeJSON(boolean sex, int age, ContactJSON contact, String[] statuses) {
         this.sex = sex;

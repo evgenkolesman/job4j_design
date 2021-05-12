@@ -17,7 +17,8 @@ public class ContactJSON {
     @XmlAttribute
     private String phone;
 
-    public ContactJSON() {}
+    public ContactJSON() {
+    }
 
     public ContactJSON(String phone) {
         this.phone = phone;
