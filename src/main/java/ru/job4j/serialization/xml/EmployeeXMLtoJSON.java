@@ -6,14 +6,16 @@ import ru.job4j.serialization.json.EmployeeJSON;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-@XmlRootElement(name = "employee")
-@XmlAccessorType(XmlAccessType.FIELD)
+/* JSON - демонстрация
+ * Преобразование JSON в XML. JsonObject
+ * на основе класса EmployeeJSON И EmployeeJSON
+ *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
+
 public class EmployeeXMLtoJSON {
     public static void main(String[] args) throws Exception {
         EmployeeJSON employee = new EmployeeJSON(false, 25,
