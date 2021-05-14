@@ -24,6 +24,10 @@ public class ContactJSON {
         this.phone = phone;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     @Override
     public String toString() {
         return String.format("Contact{phone='%s'}", phone);
