@@ -34,9 +34,9 @@ public class Shell {
         for (String s : list1) {
             if (s.startsWith("/")) {
                 rsl.append(s);
+            } else {
+            rsl.append("/").append(s);
             }
-            else {
-            rsl.append("/").append(s); }
         }
         if (rsl.toString().equals("") || rsl.toString().equals(root)) {
             return "/";
