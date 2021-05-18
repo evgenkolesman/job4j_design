@@ -21,21 +21,20 @@ import java.util.function.Predicate;
  * -o - результат записать в файл.
  * Программа записывает результат в файл log.txt.
  * В программе должна быть валидация ключей и подсказка.
- *
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
 
 public class Find {
-    private static final String fileWrite = "log1.txt";
-
+    private static final String FILETOWRITE = "log1.txt"; // из-за переменной не собирал в трэвисе
+    
     public static void main(String[] args) {
         Path start = Paths.get("C:/");
         List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith("txt")));
-        try(BufferedWriter br = new BufferedWriter(new FileWriter(fileWrite))) {
+        try (BufferedWriter br = new BufferedWriter(new FileWriter(FILETOWRITE))) {
             for (Path a : pathList) {
-            br.write(a.toString());
-            br.write(System.lineSeparator());
+                br.write(a.toString());
+                br.write(System.lineSeparator());
             }
         } catch (IOException e) {
             e.printStackTrace();
