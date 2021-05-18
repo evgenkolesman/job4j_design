@@ -57,4 +57,24 @@ public class ShellTest {
                 shell.pwd(), is("/")
         );
     }
+
+    @Test
+    public void whenCdFewWays() {
+        Shell shell = new Shell();
+        shell.cd("path/to");
+        shell.cd("dir/file");
+        assertThat(
+                shell.pwd(), is("/path/to/dir/file")
+        );
+    }
+
+    @Test
+    public void whenCdFewPoints() {
+        Shell shell = new Shell();
+        shell.cd("../../../path/to/dir");
+        assertThat(
+                shell.pwd(), is("/path/to/dir")
+        );
+    }
+
 }
