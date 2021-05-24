@@ -29,8 +29,11 @@ public class Find {
     private static final String FILETOWRITE = "log1.txt"; // из-за переменной не собирал в трэвисе
     
     public static void main(String[] args) {
-        Path start = Paths.get("C:/");
-        List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith("txt")));
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Root folder is null. Usage java -jar Find.jar ROOT_FOLDER.");
+        }
+        Path start = Paths.get(args[0]);
+        List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith(args[1])));
         try (BufferedWriter br = new BufferedWriter(new FileWriter(FILETOWRITE))) {
             for (Path a : pathList) {
                 br.write(a.toString());
@@ -50,5 +53,4 @@ public class Find {
         }
         return searcher.getPaths();
     }
-
 }
