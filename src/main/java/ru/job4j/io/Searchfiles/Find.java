@@ -27,13 +27,30 @@ import java.util.function.Predicate;
 
 public class Find {
     private static final String FILETOWRITE = "log1.txt"; // из-за переменной не собирал в трэвисе
-    
+
     public static void main(String[] args) {
-        if (args.length != 2) {
+        /*if (args.length > 7) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar Find.jar ROOT_FOLDER.");
         }
         Path start = Paths.get(args[0]);
+        String path = start.toString();
+        while (path.contains("/")) {
+            String[] pathPart = path.split("/");
+            path = pathPart[1];
+        }*/
+
+        /*if (args.length != 2) {
+            throw new IllegalArgumentException("Root folder is null. Usage java -jar Find.jar ROOT_FOLDER.");
+        }*/
+        //start = Paths.get(args[0]);
+        if (args[0].contains("?") && args[0].equals("*")) {
+            start = Path.of("");
+        }
         List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith(args[1])));
+        writeLog(pathList);
+    }
+
+    private static void writeLog(List<Path> pathList) {
         try (BufferedWriter br = new BufferedWriter(new FileWriter(FILETOWRITE))) {
             for (Path a : pathList) {
                 br.write(a.toString());
