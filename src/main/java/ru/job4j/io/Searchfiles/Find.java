@@ -13,13 +13,13 @@ import java.util.function.Predicate;
 /*
  * Программа ищет данные в заданном каталоге и подкаталогах.
  * Имя файла может задаваться, целиком, по маске, по регулярному выражению(не обязательно).
- * Программа должна собираться в jar и запускаться через java -jar find.jar -d=c:/Games -n=*.txt -t=mask -o=log.txt
+ * Программа должна собираться в jar и запускаться через java -jar find.jar -d=c:/Games -n=*.txt -t= -o=log.txt
  * Ключи
  * -d - директория, в которой начинать поиск.
  * -n - имя файла, маска, либо регулярное выражение.
  * -t - тип поиска: mask искать по маске, name по полному совпадение имени, regex по регулярному выражению.
  * -o - результат записать в файл.
- * Программа записывает результат в файл log.txt.
+ * Программа записывает результат в файл log1.txt.
  * В программе должна быть валидация ключей и подсказка.
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
@@ -44,7 +44,7 @@ public class Find {
         }
         // финализируем результат и по нему ищем что нам надо обходя данные
         final String exp1 = exp;
-        System.out.println(exp);
+        //System.out.println(exp); - контролировал метод отсева по характеристикам он здесь не нужен только как доп контроль
         List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith(exp1)));
         writeLog(pathList);
     }
