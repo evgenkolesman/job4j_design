@@ -26,27 +26,15 @@ import java.util.function.Predicate;
  */
 
 public class Find {
-    private static final String FILETOWRITE = "log1.txt"; // из-за переменной не собирал в трэвисе
+    private static String FILETOWRITE; //= "log1.txt"; // из-за переменной не собирал в трэвисе
 
     public static void main(String[] args) {
-        /*if (args.length > 7) {
-            throw new IllegalArgumentException("Root folder is null. Usage java -jar Find.jar ROOT_FOLDER.");
-        }
-        Path start = Paths.get(args[0]);
-        String path = start.toString();
-        while (path.contains("/")) {
-            String[] pathPart = path.split("/");
-            path = pathPart[1];
-        }*/
+        Args newarg = new Args(args);
+        newarg.validateArgs();
+        FILETOWRITE = args[7];
+        Path start = Paths.get(args[1]);
 
-        /*if (args.length != 2) {
-            throw new IllegalArgumentException("Root folder is null. Usage java -jar Find.jar ROOT_FOLDER.");
-        }*/
-        //start = Paths.get(args[0]);
-        if (args[0].contains("?") && args[0].equals("*")) {
-            start = Path.of("");
-        }
-        List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith(args[1])));
+        List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith(getExpansion(args[7]))));
         writeLog(pathList);
     }
 
@@ -69,5 +57,18 @@ public class Find {
             e.printStackTrace();
         }
         return searcher.getPaths();
+    }
+
+    public static String getExpansion(String args) {
+         String exp = args;
+         if (args.equals("mask")) {
+             String[] expArr = args.split("\\*");
+             exp = expArr[1];
+
+         }
+         if (args.equals("name")) {
+         return args;
+         }
+     return exp;
     }
 }
