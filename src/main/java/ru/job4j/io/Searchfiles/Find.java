@@ -33,7 +33,14 @@ public class Find {
         newarg.validateArgs();
         fileToWrite = args[7];
         Path start = Paths.get(args[1]);
-        //ВМЕСТО ПРЕДИКАТА, проверка по характеру поиска
+
+        final String exp1 = getString(args);
+        //System.out.println(exp); - контролировал метод отсева по характеристикам он здесь не нужен только как доп контроль
+        List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith(exp1)));
+        writeLog(pathList);
+    }
+    //ВМЕСТО ПРЕДИКАТА, проверка по характеристикам для поиска
+    private static String getString(String[] args) {
         String exp = "";
         if (args[5].equals("mask")) {
             String[] expArr = args[3].split("\\*");
@@ -43,10 +50,7 @@ public class Find {
             exp = args[3];
         }
         // финализируем результат и по нему ищем что нам надо обходя данные
-        final String exp1 = exp;
-        //System.out.println(exp); - контролировал метод отсева по характеристикам он здесь не нужен только как доп контроль
-        List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith(exp1)));
-        writeLog(pathList);
+        return exp;
     }
 
     private static void writeLog(List<Path> pathList) {
