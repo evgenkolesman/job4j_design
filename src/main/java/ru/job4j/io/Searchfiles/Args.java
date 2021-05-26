@@ -2,6 +2,11 @@ package ru.job4j.io.searchfiles;
 
 import java.io.File;
 
+/* Класс Args необходим для валидации аргументов,
+   * под задачи класса Find
+   * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+   * @version 1.0
+   */
 public class Args {
 
     private String[] args;

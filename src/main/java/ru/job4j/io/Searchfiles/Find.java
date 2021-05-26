@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 /*
  * Программа ищет данные в заданном каталоге и подкаталогах.
  * Имя файла может задаваться, целиком, по маске, по регулярному выражению(не обязательно).
- * Программа должна собираться в jar и запускаться через java -jar find.jar -d=c:/ -n=*.txt -t=mask -o=log.txt
+ * Программа должна собираться в jar и запускаться через java -jar find.jar -d=c:/Games -n=*.txt -t=mask -o=log.txt
  * Ключи
  * -d - директория, в которой начинать поиск.
  * -n - имя файла, маска, либо регулярное выражение.
@@ -26,20 +26,31 @@ import java.util.function.Predicate;
  */
 
 public class Find {
-    private static String FILETOWRITE; //= "log1.txt"; // из-за переменной не собирал в трэвисе
+    private static String fileToWrite; // из-за переменной не собирал в трэвисе
 
     public static void main(String[] args) {
         Args newarg = new Args(args);
         newarg.validateArgs();
-        FILETOWRITE = args[7];
+        fileToWrite = args[7];
         Path start = Paths.get(args[1]);
-
-        List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith(getExpansion(args[7]))));
+        //ВМЕСТО ПРЕДИКАТА, проверка по характеру поиска
+        String exp = "";
+        if (args[5].equals("mask")) {
+            String[] expArr = args[3].split("\\*");
+            exp = expArr[1];
+        }
+        if (args[5].equals("name")) {
+            exp = args[3];
+        }
+        // финализируем результат и по нему ищем что нам надо обходя данные
+        final String exp1 = exp;
+        System.out.println(exp);
+        List<Path> pathList = new ArrayList<>(search(start, p -> p.toFile().getName().endsWith(exp1)));
         writeLog(pathList);
     }
 
     private static void writeLog(List<Path> pathList) {
-        try (BufferedWriter br = new BufferedWriter(new FileWriter(FILETOWRITE))) {
+        try (BufferedWriter br = new BufferedWriter(new FileWriter(fileToWrite))) {
             for (Path a : pathList) {
                 br.write(a.toString());
                 br.write(System.lineSeparator());
@@ -57,18 +68,5 @@ public class Find {
             e.printStackTrace();
         }
         return searcher.getPaths();
-    }
-
-    public static String getExpansion(String args) {
-         String exp = args;
-         if (args.equals("mask")) {
-             String[] expArr = args.split("\\*");
-             exp = expArr[1];
-
-         }
-         if (args.equals("name")) {
-         return args;
-         }
-     return exp;
     }
 }
