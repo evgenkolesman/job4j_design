@@ -9,7 +9,7 @@ import java.io.File;
    */
 public class Args {
 
-    private String[] args;
+    private final String[] args;
 
     public Args(String[] args) {
         this.args = args;
@@ -38,10 +38,14 @@ public class Args {
     }
 
     public String getTypeSearch() {
-        return args[3];
+        return args[5];
     }
 
     public String getLogPath() {
-        return args[6];
+        return args[7];
+    }
+    
+    public String getPattern() {
+        return args[3];
     }
 }
