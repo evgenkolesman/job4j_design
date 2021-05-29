@@ -30,7 +30,8 @@ create table item(
 	id serial primary key,
 	name varchar(255),
 	id_state int references state(id),
-	id_category int references category(id)
+	id_category int references category(id),
+	users_id int references users(id)
 );
 create table comments(
 	id serial primary key,
@@ -41,9 +42,4 @@ create table attaches(
 	id serial primary key,
 	name varchar(255),
 	id_item int references item(id)
-);
-create table users_item(
-	id serial primary key,
-	name varchar(255),
-	users_id int references users(id)
 );
