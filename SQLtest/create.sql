@@ -42,3 +42,8 @@ create table attaches(
 	name varchar(255),
 	id_item int references item(id)
 );
+create table users_item(
+	id serial primary key,
+	name varchar(255),
+	users_id int references users(id)
+);
