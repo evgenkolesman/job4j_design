@@ -1,0 +1,1 @@
+select name from teensF cross join teensM;
