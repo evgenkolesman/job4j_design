@@ -8,5 +8,9 @@ create table product(
     name varchar(255),
     epired_date DATE,
     price int,
+<<<<<<< HEAD
     type_id int references type.id
+=======
+    type_id int references type(id)
+>>>>>>> 974bfbc... Подготовил решение. Поиск файлов по критерию [#449811]
 );

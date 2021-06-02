@@ -1,0 +1,9 @@
+delete from users;
+delete from role;
+--delete from category;
+--delete from state;
+--delete from rules;
+--delete from role_rules;
+--delete from item;
+--delete from comments;
+--delete from attaches;
