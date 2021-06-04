@@ -16,6 +16,16 @@ import java.util.List;
  * далее выделяем необходимые нам
  * данные url, login, password
  * и по ним  заходим  базу данных idea_db
+ * необходиом добавить настройки в Travis:
+ * # Start PostgreSQL
+services:
+  - postgresql
+
+# Create a database
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+  * @version 1.0
  */
 public class ConnectionDemo {
     private static final File file = new File("C:\\projects\\job4j_design\\app.properties");
