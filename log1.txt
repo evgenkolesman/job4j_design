@@ -1,4 +1,0 @@
-C:\1с база\БАЗА 3\DoNotCopy.txt
-C:\Android\.android\avd\Pixel_API_24.avd\emu-launch-params.txt
-C:\Android\.android\avd\Pixel_API_24.avd\read-snapshot.txt
-C:\boot\macrium\SearchPaths.txt
