@@ -28,7 +28,7 @@ before_script:
   * @version 1.0
  */
 public class ConnectionDemo {
-    private static final File FILE = new File("C:\\projects\\job4j_design\\app.properties");
+    private static final File FILE = new File("C:\\projects\\job4j_design\\src\\main\\resources\\app.properties");
     private static String url;
     private static String login;
     private static String password;
