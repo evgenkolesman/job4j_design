@@ -18,7 +18,7 @@ import java.util.List;
  * и по ним  заходим  базу данных idea_db
  */
 public class ConnectionDemo {
-    private static File file = new File("C:\\projects\\job4j_design\\app.properties");
+    private static final File file = new File("C:\\projects\\job4j_design\\app.properties");
     private static String url;
     private static String login;
     private static String password;
