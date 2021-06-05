@@ -3,12 +3,10 @@ package ru.job4j.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class Config {
-    private final String path;
+    private static String path;
     private final Map<String, String> values = new HashMap<>();
 
     public Config(final String path) {
@@ -41,7 +39,7 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Config("app.properties"));
+        System.out.println(new Config(path));
     }
 }
 

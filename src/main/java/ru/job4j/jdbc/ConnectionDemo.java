@@ -1,9 +1,8 @@
 package ru.job4j.jdbc;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import ru.job4j.io.Config;
+
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -28,7 +27,7 @@ before_script:
   * @version 1.0
  */
 public class ConnectionDemo {
-    private static final File FILE = new File("C:\\projects\\job4j_design\\src\\main\\resources\\app.properties");
+    private static final String FILE = "C:\\projects\\job4j_design\\src\\main\\resources\\app.properties";
     private static String url;
     private static String login;
     private static String password;
@@ -36,7 +35,8 @@ public class ConnectionDemo {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Class.forName("org.postgresql.Driver");
-        readLine();
+        Config readData = new Config(FILE);
+        readLine(readData.toString());
         getData();
         System.out.printf("%s%n%s%n%s%n", password, url, login);
         /*String url = "jdbc:postgresql://localhost:5432/idea_db";
@@ -66,8 +66,8 @@ public class ConnectionDemo {
         }
     }
 
-    private static void readLine() {
-        try (BufferedReader br = new BufferedReader(new FileReader(FILE))) {
+    private static void readLine(String string) {
+        try (BufferedReader br = new BufferedReader(new StringReader(string))) {
             String a;
             while ((a = br.readLine()) != null) {
                 listadd.add(a);
