@@ -2,13 +2,17 @@ package ru.job4j.jdbc;
 
 import ru.job4j.io.Config;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /*Настройка, взаимодействие с JDBC, SQL
  *Программа считывает строки из C:\projects\job4j_design\app.properties,
@@ -32,9 +36,20 @@ public class ConnectionDemo {
     private static String login;
     private static String password;
     private static List<String> listadd = new ArrayList<>();
+    private static final Properties prs = new Properties();
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
         Class.forName("org.postgresql.Driver");
+        /*не работает способ ухождения от  абсолютного пути не пойму почему..
+        ConnectionDemo settings = new ConnectionDemo();
+        ClassLoader loader = ConnectionDemo.class.getClassLoader();
+        try(InputStream loadPath = loader.getResourceAsStream("app.properties")) {
+            settings.load(loadPath);
+            System.out.println(settings.getValue());
+        }
+            String path = settings.getValue();
+
+         */
         Config readData = new Config(FILE);
         readLine(readData.toString());
         getData();
@@ -42,6 +57,7 @@ public class ConnectionDemo {
         /*String url = "jdbc:postgresql://localhost:5432/idea_db";
         String login = "postgres";
         String password = "PassworD1";*/
+
         try (Connection connection = DriverManager.getConnection(url, login, password)) {
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
@@ -75,5 +91,17 @@ public class ConnectionDemo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void load(InputStream data) {
+        try {
+            prs.load(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getValue() {
+        return prs.getProperty(ConnectionDemo.FILE);
     }
 }
