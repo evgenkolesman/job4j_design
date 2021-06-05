@@ -18,7 +18,7 @@ public class TableEditor implements AutoCloseable {
 
     private final Properties properties;
 
-    public TableEditor(Properties properties) throws IOException  {
+    public TableEditor(Properties properties) throws IOException {
         this.properties = properties;
         initConnection();
     }
@@ -36,62 +36,35 @@ public class TableEditor implements AutoCloseable {
     }
 
     public void createTable(String tableName) throws SQLException {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "create table if not %s(%s, %s);",
-                    tableName,
-                    "id serial primary key",
-                    "name varchar(255)"
-            );
-            statement.execute(sql);
-
-        }
+        writeSQL(String.format("create table if not %s(%s, %s);",
+                tableName,
+                "id serial primary key",
+                "name varchar(255)"));
     }
 
     public void dropTable(String tableName) throws SQLException {
-        try (Statement statement = connection.createStatement()) {
-        String sql = String.format(
-                "drop table %s;",
-                tableName
-        );
-        statement.execute(sql);
-        }
+        writeSQL(String.format("drop table %s;", tableName));
     }
 
     public void addColumn(String tableName, String columnName, String type) throws SQLException {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "ALTER TABLE %s ADD %s %s;",
-                    tableName,
-                    columnName,
-                    type
-            );
-            statement.execute(sql);
-        }
+        writeSQL(String.format("ALTER TABLE %s ADD %s %s;", tableName, columnName, type));
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
-        try (Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "delete from %s where name = %s;", // как правильно удалить колонку
-                    tableName,
-                    columnName
-            );
-            statement.execute(sql);
-        }
+        writeSQL(String.format("delete from %s where name = %s;", tableName, columnName));
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
+        writeSQL(String.format(
+                "ALTER TABLE %s RENAME COLUMN %s TO %s;", tableName, columnName, newColumnName));
+    }
+
+    public boolean writeSQL(String sql) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            String sql = String.format(
-                    "ALTER TABLE %s RENAME COLUMN %s TO %s;", // как правильно удалить колонку
-                    tableName,
-                    columnName,
-                    newColumnName
-            );
-            statement.execute(sql);
+            return statement.execute(sql);
         }
     }
+
 
     public String getScheme(String tableName) throws SQLException {
         StringBuilder scheme = new StringBuilder();
