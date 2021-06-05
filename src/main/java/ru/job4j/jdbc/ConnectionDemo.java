@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Properties;
 
 /*Настройка, взаимодействие с JDBC, SQL
- *Программа считывает строки из C:\projects\job4j_design\app.properties,
+ * Программа считывает строки из C:\projects\job4j_design\app.properties,
  * далее выделяем необходимые нам
  * данные url, login, password
  * и по ним  заходим  базу данных idea_db
@@ -40,17 +40,16 @@ public class ConnectionDemo {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
         Class.forName("org.postgresql.Driver");
-        /*не работает способ ухождения от  абсолютного пути не пойму почему..
+        //не работает способ ухождения от  абсолютного пути не пойму почему..
         ConnectionDemo settings = new ConnectionDemo();
         ClassLoader loader = ConnectionDemo.class.getClassLoader();
         try(InputStream loadPath = loader.getResourceAsStream("app.properties")) {
             settings.load(loadPath);
-            System.out.println(settings.getValue());
         }
-            String path = settings.getValue();
+        String path = settings.getValue();
+        System.out.println(settings);
 
-         */
-        Config readData = new Config(FILE);
+        Config readData = new Config(path);
         readLine(readData.toString());
         getData();
         System.out.printf("%s%n%s%n%s%n", password, url, login);
