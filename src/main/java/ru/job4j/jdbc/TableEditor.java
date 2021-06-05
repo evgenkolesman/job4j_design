@@ -1,6 +1,5 @@
 package ru.job4j.jdbc;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
@@ -18,12 +17,12 @@ public class TableEditor implements AutoCloseable {
 
     private final Properties properties;
 
-    public TableEditor(Properties properties) throws IOException {
+    public TableEditor(Properties properties) {
         this.properties = properties;
         initConnection();
     }
 
-    private void initConnection() throws IOException {
+    private void initConnection() {
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(
@@ -59,9 +58,9 @@ public class TableEditor implements AutoCloseable {
                 "ALTER TABLE %s RENAME COLUMN %s TO %s;", tableName, columnName, newColumnName));
     }
 
-    public boolean writeSQL(String sql) throws SQLException {
+    public void writeSQL(String sql) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            return statement.execute(sql);
+            statement.execute(sql);
         }
     }
 
