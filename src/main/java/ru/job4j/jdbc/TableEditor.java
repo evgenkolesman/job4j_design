@@ -29,7 +29,6 @@ public class TableEditor implements AutoCloseable {
         try (InputStream loadPath = loader.getResourceAsStream(FILE)) {
             properties.load(loadPath);
         }
-        System.out.println(properties.getProperty("hibernate.connection.url"));
         connection = DriverManager.getConnection(
                 properties.getProperty("hibernate.connection.url"),
                 properties.getProperty("hibernate.connection.username"),
@@ -37,7 +36,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void createTable(String tableName) throws SQLException {
-        writeSQL(String.format("CREATE TABLE IF NOT EXISTS %s(%s, %s);",
+        writeSQL(String.format("CREATE TABLE IF NOT EXISTS %s (%s%n, %s%n);",
                 tableName,
                 "id serial primary key",
                 "name varchar(255)"));
@@ -48,16 +47,16 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void addColumn(String tableName, String columnName, String type) throws SQLException {
-        writeSQL(String.format("ALTER TABLE  %s ADD IF NOT EXISTS %s %s;",  tableName, columnName, type));
+        writeSQL(String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s;",  tableName, columnName, type));
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
-        writeSQL(String.format("ALTER DROP from %s where name = %s;", tableName, columnName));
+        writeSQL(String.format("ALTER TABLE %s DROP COLUMN IF EXISTS %s;", tableName, columnName));
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
         writeSQL(String.format(
-                "ALTER TABLE  IF NOT EXISTS %s RENAME COLUMN %s TO %s;", tableName, columnName, newColumnName));
+                "ALTER TABLE %s RENAME COLUMN IF EXISTS %s TO %s;", tableName, columnName, newColumnName));
     }
 
     public static void writeSQL(String sql) throws SQLException {
@@ -88,10 +87,11 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void main(String[] args) throws Exception {
-        //initConnection();
         TableEditor a = new TableEditor(properties);
-        a.createTable("TableEx");
-        a.addColumn("TableEx", "First", "name");
+       //a.createTable("TableEx");
+        a.addColumn("TableEx", "E", "name");
+        a.dropColumn("TableEx", "E");
+        a.renameColumn("TableEx", "Second", "Third");
         //a.dropTable("TableEx");
         System.out.println(getScheme("TableEx"));
     }
