@@ -1,5 +1,6 @@
 package ru.job4j.jdbc;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
@@ -13,40 +14,42 @@ import java.util.Properties;
 
 public class TableEditor implements AutoCloseable {
 
-    private Connection connection;
+    private static final String FILE = "app.properties";
+    private static Connection connection;
+    private static Properties PROPERTIES = new Properties();
 
-    private final Properties properties;
-
-    public TableEditor(Properties properties) {
-        this.properties = properties;
+    public TableEditor(Properties properties) throws Exception {
+        this.PROPERTIES = properties;
         initConnection();
     }
 
-    private void initConnection() {
-        try {
-            Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(
-                    properties.getProperty("url"),
-                    properties.getProperty("login"),
-                    properties.getProperty("password"));
-        } catch (Exception e) {
-            e.printStackTrace();
+    private static void initConnection() throws Exception {
+        Class.forName("org.postgresql.Driver");
+        ClassLoader loader = TableEditor.class.getClassLoader();
+        try (InputStream loadPath = loader.getResourceAsStream(FILE)) {
+            PROPERTIES.load(loadPath);
         }
+        System.out.println(PROPERTIES.getProperty("hibernate.connection.url"));
+        connection = DriverManager.getConnection(
+                PROPERTIES.getProperty("hibernate.connection.url"),
+                PROPERTIES.getProperty("hibernate.connection.username"),
+                PROPERTIES.getProperty("hibernate.connection.password"));
     }
 
-    public void createTable(String tableName) throws SQLException {
-        writeSQL(String.format("create table if not %s(%s, %s);",
+
+    public static void createTable(String tableName) throws SQLException {
+        writeSQL(String.format("CREATE TABLE IF NOT EXISTS %s(%s, %s);",
                 tableName,
                 "id serial primary key",
                 "name varchar(255)"));
     }
 
     public void dropTable(String tableName) throws SQLException {
-        writeSQL(String.format("drop table %s;", tableName));
+        writeSQL(String.format("DROP TABLE IF EXISTS %s;", tableName));
     }
 
-    public void addColumn(String tableName, String columnName, String type) throws SQLException {
-        writeSQL(String.format("ALTER TABLE %s ADD %s %s;", tableName, columnName, type));
+    public static void addColumn(String tableName, String columnName, String type) throws SQLException {
+        writeSQL(String.format("ALTER TABLE  %s ADD IF NOT EXISTS %s %s;",  tableName, columnName, type));
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
@@ -55,16 +58,16 @@ public class TableEditor implements AutoCloseable {
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
         writeSQL(String.format(
-                "ALTER TABLE %s RENAME COLUMN %s TO %s;", tableName, columnName, newColumnName));
+                "ALTER TABLE  IF NOT EXISTS %s RENAME COLUMN %s TO %s;", tableName, columnName, newColumnName));
     }
 
-    public void writeSQL(String sql) throws SQLException {
+    public static void writeSQL(String sql) throws SQLException {
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
         }
     }
 
-    public String getScheme(String tableName) throws SQLException {
+    public static String getScheme(String tableName) throws SQLException {
         StringBuilder scheme = new StringBuilder();
         DatabaseMetaData metaData = connection.getMetaData();
         try (ResultSet columns = metaData.getColumns(null, null, tableName, null)) {
@@ -83,5 +86,15 @@ public class TableEditor implements AutoCloseable {
         if (connection != null) {
             connection.close();
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        //initConnection();
+        TableEditor a = new TableEditor(PROPERTIES);
+        a.createTable("TableEx" );
+        a.addColumn("TableEx", "First", "name");
+        //a.dropTable("TableEx");
+        System.out.println(getScheme("TableEx"));
+
     }
 }

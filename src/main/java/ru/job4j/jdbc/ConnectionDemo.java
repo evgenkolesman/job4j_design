@@ -34,9 +34,8 @@ public class ConnectionDemo {
     private static final Properties PRS = new Properties();
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
+        // блок для соединения
         Class.forName("org.postgresql.Driver");
-        //не работает способ ухождения от  абсолютного пути не пойму почему..
-        ConnectionDemo settings = new ConnectionDemo();
         ClassLoader loader = ConnectionDemo.class.getClassLoader();
         try (InputStream loadPath = loader.getResourceAsStream(FILE)) {
             PRS.load(loadPath);
@@ -47,6 +46,7 @@ public class ConnectionDemo {
         //Config readData = new Config(prs.getProperty()); отключил Config так как пользуюсь Properties
         // Чтобы заработал getProperties() необходим четкий ключ то есть, key = a[0] (то есть наш Config это аналог Properties,
         // а метод values, аналог Propeties)
+
         String url = PRS.getProperty("hibernate.connection.url");
         String login = PRS.getProperty("hibernate.connection.username");
         String password = PRS.getProperty("hibernate.connection.password");
