@@ -50,7 +50,7 @@ public class TableEditor implements AutoCloseable {
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
-        writeSQL(String.format("delete from %s where name = %s;", tableName, columnName));
+        writeSQL(String.format("ALTER DELETE from %s where name = %s;", tableName, columnName));
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
