@@ -16,10 +16,10 @@ public class TableEditor implements AutoCloseable {
 
     private static final String FILE = "app.properties";
     private static Connection connection;
-    private static Properties PROPERTIES = new Properties();
+    private static Properties properties = new Properties();
 
     public TableEditor(Properties properties) throws Exception {
-        this.PROPERTIES = properties;
+        this.properties = properties;
         initConnection();
     }
 
@@ -27,15 +27,14 @@ public class TableEditor implements AutoCloseable {
         Class.forName("org.postgresql.Driver");
         ClassLoader loader = TableEditor.class.getClassLoader();
         try (InputStream loadPath = loader.getResourceAsStream(FILE)) {
-            PROPERTIES.load(loadPath);
+            properties.load(loadPath);
         }
-        System.out.println(PROPERTIES.getProperty("hibernate.connection.url"));
+        System.out.println(properties.getProperty("hibernate.connection.url"));
         connection = DriverManager.getConnection(
-                PROPERTIES.getProperty("hibernate.connection.url"),
-                PROPERTIES.getProperty("hibernate.connection.username"),
-                PROPERTIES.getProperty("hibernate.connection.password"));
+                properties.getProperty("hibernate.connection.url"),
+                properties.getProperty("hibernate.connection.username"),
+                properties.getProperty("hibernate.connection.password"));
     }
-
 
     public static void createTable(String tableName) throws SQLException {
         writeSQL(String.format("CREATE TABLE IF NOT EXISTS %s(%s, %s);",
@@ -90,11 +89,10 @@ public class TableEditor implements AutoCloseable {
 
     public static void main(String[] args) throws Exception {
         //initConnection();
-        TableEditor a = new TableEditor(PROPERTIES);
-        a.createTable("TableEx" );
+        TableEditor a = new TableEditor(properties);
+        a.createTable("TableEx");
         a.addColumn("TableEx", "First", "name");
         //a.dropTable("TableEx");
         System.out.println(getScheme("TableEx"));
-
     }
 }
