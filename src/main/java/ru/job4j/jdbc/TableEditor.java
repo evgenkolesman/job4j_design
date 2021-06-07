@@ -14,19 +14,19 @@ import java.util.Properties;
 
 public class TableEditor implements AutoCloseable {
 
-    private static final String FILE = "app.properties";
-    private static Connection connection;
-    private static Properties properties = new Properties();
+    private final String file = "app.properties";
+    private Connection connection;
+    private Properties properties = new Properties();
 
     public TableEditor(Properties properties) throws Exception {
         this.properties = properties;
         initConnection();
     }
 
-    private static void initConnection() throws Exception {
+    private void initConnection() throws Exception {
         Class.forName("org.postgresql.Driver");
         ClassLoader loader = TableEditor.class.getClassLoader();
-        try (InputStream loadPath = loader.getResourceAsStream(FILE)) {
+        try (InputStream loadPath = loader.getResourceAsStream(file)) {
             properties.load(loadPath);
         }
         connection = DriverManager.getConnection(
@@ -35,37 +35,37 @@ public class TableEditor implements AutoCloseable {
                 properties.getProperty("hibernate.connection.password"));
     }
 
-    public static void createTable(String tableName) throws SQLException {
-        writeSQL(String.format("CREATE TABLE IF NOT EXISTS %s (%s%n, %s%n);",
+    public void createTable(String tableName) throws SQLException {
+        writeSQL(String.format("create table if not exists %s (%s, %s);",
                 tableName,
                 "id serial primary key",
                 "name varchar(255)"));
     }
 
     public void dropTable(String tableName) throws SQLException {
-        writeSQL(String.format("DROP TABLE IF EXISTS %s;", tableName));
+        writeSQL(String.format("drop table if exists %s;", tableName));
     }
 
-    public static void addColumn(String tableName, String columnName, String type) throws SQLException {
-        writeSQL(String.format("ALTER TABLE %s ADD COLUMN IF NOT EXISTS %s %s;",  tableName, columnName, type));
+    public void addColumn(String tableName, String columnName, String type) throws SQLException {
+        writeSQL(String.format("alter table %s add column if not exists %s %s;", tableName, columnName, type));
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
-        writeSQL(String.format("ALTER TABLE %s DROP COLUMN IF EXISTS %s;", tableName, columnName));
+        writeSQL(String.format("alter table %s drop column if exists %s;", tableName, columnName));
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
         writeSQL(String.format(
-                "ALTER TABLE %s RENAME COLUMN IF EXISTS %s TO %s;", tableName, columnName, newColumnName));
+                "alter table %s rename column %s to %s;", tableName, columnName, newColumnName));
     }
 
-    public static void writeSQL(String sql) throws SQLException {
+    public void writeSQL(String sql) throws SQLException {
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
         }
     }
 
-    public static String getScheme(String tableName) throws SQLException {
+    public String getScheme(String tableName) throws SQLException {
         StringBuilder scheme = new StringBuilder();
         DatabaseMetaData metaData = connection.getMetaData();
         try (ResultSet columns = metaData.getColumns(null, null, tableName, null)) {
@@ -84,15 +84,5 @@ public class TableEditor implements AutoCloseable {
         if (connection != null) {
             connection.close();
         }
-    }
-
-    public static void main(String[] args) throws Exception {
-        TableEditor a = new TableEditor(properties);
-       //a.createTable("TableEx");
-        a.addColumn("TableEx", "E", "name");
-        a.dropColumn("TableEx", "E");
-        a.renameColumn("TableEx", "Second", "Third");
-        //a.dropTable("TableEx");
-        System.out.println(getScheme("TableEx"));
     }
 }
