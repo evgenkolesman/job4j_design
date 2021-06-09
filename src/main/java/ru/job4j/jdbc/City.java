@@ -42,10 +42,6 @@ public class City {
 
     @Override
     public String toString() {
-        return "City{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", population=" + population +
-                '}';
+        return String.format("City{id=%d, name='%s', population=%d}", id, name, population);
     }
 }
