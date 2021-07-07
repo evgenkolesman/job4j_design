@@ -14,9 +14,6 @@ public class RunF {
         a.insert(c2);
         City c3 = new City(3, "rostov-na-donu", 1500000);
         a.insert(c3);
-
-        //System.out.println(a.update(c1));
-        //a.findAll();
         a.delete(3);
         System.out.println(a.findAll());
     }
