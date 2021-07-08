@@ -14,7 +14,7 @@ public class User {
     public User(String name, long id, String speciality) {
         this.name = name;
         this.id = id;
-        this. speciality = speciality;
+        this.speciality = speciality;
     }
 
     public long getId() {
