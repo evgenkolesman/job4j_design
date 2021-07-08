@@ -7,9 +7,9 @@ package ru.job4j.gc;
  * @version 1.0
  */
 public class User {
-    private String name;
-    private long id;
-    private String speciality;
+    private final String name;
+    private final long id;
+    private final String speciality;
 
     public User(String name, long id, String speciality) {
         this.name = name;
@@ -31,14 +31,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", speciality='" + speciality + '\'' +
-                '}';
+        return String.format("User{name='%s', id=%d, speciality='%s'}", name, id, speciality);
     }
 
-    public void finalize() {
+    public void finalize() throws Throwable {
         System.out.printf("Removed %d %s %s%n", id, name, speciality);
     }
 }
