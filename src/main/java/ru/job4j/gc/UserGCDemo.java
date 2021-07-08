@@ -33,7 +33,7 @@ public class UserGCDemo {
         }
         System.out.printf("Size of object without fields is %s%n", sizeOf(new UserFree()));
         System.out.printf("Size of object with fields is %s%n", sizeOf(new User("N5", 5, "SP5")));
-        System.gc();
+        //System.gc();
         info();
     }
 }
