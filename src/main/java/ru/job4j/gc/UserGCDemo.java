@@ -11,6 +11,7 @@ package ru.job4j.gc;
 
 import static com.carrotsearch.sizeof.RamUsageEstimator.sizeOf;
 
+
 public class UserGCDemo {
     private static final long KB = 1000;
     //private static final long MB = KB * KB;
