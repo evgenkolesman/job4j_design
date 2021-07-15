@@ -9,13 +9,13 @@ import java.util.Map;
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
-public abstract class AbstractCache<K,V> {
+public abstract class AbstractCache<K, V> {
 
-    protected final Map<K, SoftReference <V>> cache = new HashMap<>();
+    protected final Map<K, SoftReference<V>> cache = new HashMap<>();
 
-    public void put (K key, V value) {
+    public void put(K key, V value) {
         SoftReference<V> valueMap = new SoftReference(value);
-        cache.put(key,valueMap);
+        cache.put(key, valueMap);
     }
 
     public V get(K key) {

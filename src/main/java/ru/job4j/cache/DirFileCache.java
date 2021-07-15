@@ -14,7 +14,7 @@ import java.util.Map;
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
-public class DirFileCache extends AbstractCache<String, List <String>> {
+public class DirFileCache extends AbstractCache<String, List<String>> {
 
     private final String cachingDir;
     private List<String> list = new ArrayList<>();

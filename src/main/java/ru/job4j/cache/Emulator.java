@@ -28,8 +28,9 @@ public class Emulator {
             DirFileCache dirFileCache = new DirFileCache(resDirIn);
             System.out.println("Write directory for output: ");
             var resDirOut = sc.next();
-            if(!resDirIn.isEmpty() || !dirFileCache.cache.isEmpty())
-            writerFile(resDirOut, dirFileCache.load(resDirIn));
+            if (!resDirIn.isEmpty() || !dirFileCache.cache.isEmpty()) {
+                writerFile(resDirOut, dirFileCache.load(resDirIn));
+            }
             System.out.println("If you want to get in console cache write 'Y', else write 'N'");
             var answer = sc.next();
             if (answer.equals("Y")) {
