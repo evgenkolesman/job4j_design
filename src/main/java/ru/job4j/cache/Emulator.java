@@ -1,8 +1,6 @@
 package ru.job4j.cache;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,7 +32,6 @@ public class Emulator {
             System.out.println("If you want to get in console cache write 'Y', else write 'N'");
             var answer = sc.next();
             if (answer.equals("Y")) {
-
                 System.out.println(Files.readString(Path.of(resDirIn), Charset.forName("WINDOWS-1251")));
                 System.out.println("Do you want to continue and write cache from file? Y/N");
 
@@ -45,12 +42,24 @@ public class Emulator {
         }
     }
 
-    private static void writerFile(String value, String path) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(value))) {
-            bw.write(Files.readString(Path.of(path), Charset.forName("WINDOWS-1251")));
+    private static void writerFile(String path1, String path2) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path2))) {
+            bw.write(Files.readString(Path.of(path1)));
             //bw.write(System.lineSeparator());
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
     }
+
+    /*private static String readFile(String path) {
+        String a = "";
+        try(BufferedReader br = new BufferedReader(new FileReader(path)))  {
+            a = br.lines().toString();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return a;
+    }*/
 }
