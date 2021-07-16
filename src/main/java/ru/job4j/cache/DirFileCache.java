@@ -1,6 +1,7 @@
 package ru.job4j.cache;
 
 import java.lang.ref.SoftReference;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -22,7 +23,7 @@ public class DirFileCache extends AbstractCache<String, String> {
     protected String load(String key) {
         try {
             Path path = Path.of(cachingDir);
-            cache.put(key, new SoftReference(Files.readString(path)));
+            cache.put(key, new SoftReference(Files.readString(path, Charset.forName("WINDOWS-1251"))));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -3,6 +3,7 @@ package ru.job4j.cache;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
@@ -34,7 +35,7 @@ public class Emulator {
             var answer = sc.next();
             if (answer.equals("Y")) {
 
-                System.out.println(Files.readString(Path.of(resDirIn)));
+                System.out.println(Files.readString(Path.of(resDirIn), Charset.forName("WINDOWS-1251")));
                 System.out.println("Do you want to continue and write cache from file? Y/N");
 
             } else {
@@ -46,7 +47,7 @@ public class Emulator {
 
     private static void writerFile(String value, String path) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(value))) {
-            bw.write(Files.readString(Path.of(path)));
+            bw.write(Files.readString(Path.of(path), Charset.forName("WINDOWS-1251")));
             //bw.write(System.lineSeparator());
         } catch (IOException ioException) {
             ioException.printStackTrace();
