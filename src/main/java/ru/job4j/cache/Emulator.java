@@ -19,7 +19,7 @@ public class Emulator {
         System.out.println("Hello! Do you want to write cache from file? Y/N");
         var sc = new Scanner(System.in);
 
-        while (sc.next().equals("Y")) {
+        while (sc.next().equalsIgnoreCase("Y")) {
             System.out.println("Write cache directory: ");
 
             var resDirIn = sc.next();
@@ -30,7 +30,7 @@ public class Emulator {
                 writerFile(resDirOut, dirFileCache.load(resDirIn));
             }
             System.out.println("If you want to get in console cache write 'Y', else write 'N'");
-            var answer = sc.next();
+            var answer = sc.next().toUpperCase();
             if (answer.equals("Y")) {
                 System.out.println(Files.readString(Path.of(resDirIn), Charset.forName("WINDOWS-1251")));
                 System.out.println("Do you want to continue and write cache from file? Y/N");

@@ -1,6 +1,9 @@
 package ru.job4j.cache;
 
-import java.lang.ref.SoftReference;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,20 +16,24 @@ import java.nio.file.Path;
  */
 public class DirFileCache extends AbstractCache<String, String> {
 
-    private final String cachingDir;
-
     public DirFileCache(String cachingDir) {
-        this.cachingDir = cachingDir;
     }
 
     @Override
-    protected String load(String key) {
-        try {
-            Path path = Path.of(cachingDir);
-            cache.put(key, new SoftReference(Files.readString(path, Charset.forName("WINDOWS-1251"))));
-        } catch (Exception e) {
+    protected String load(String key) throws IOException {
+        put(key, Files.readString(Path.of(key), Charset.forName("WINDOWS-1251")));
+        return cache.get(key).get();
+    }
+
+    private String readFile(String path) {
+        String a = "";
+        try(BufferedReader br = new BufferedReader(new FileReader(path)))  {
+            a = br.lines().toString();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return cache.get(key).get();
+        return a;
     }
 }
