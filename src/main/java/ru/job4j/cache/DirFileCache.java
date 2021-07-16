@@ -27,7 +27,7 @@ public class DirFileCache extends AbstractCache<String, String> {
 
     private String readFile(String path) {
         String a = "";
-        try(BufferedReader br = new BufferedReader(new FileReader(path)))  {
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             a = br.lines().toString();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
