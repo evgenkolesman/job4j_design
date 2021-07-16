@@ -34,8 +34,8 @@ public class Emulator {
             var answer = sc.next();
             if (answer.equals("Y")) {
 
-                    System.out.println(Files.readString(Path.of(resDirIn)));
-                    System.out.println("Do you want to continue and write cache from file? Y/N");
+                System.out.println(Files.readString(Path.of(resDirIn)));
+                System.out.println("Do you want to continue and write cache from file? Y/N");
 
             } else {
                 System.out.println("Hello! Do you want to write cache from file? Y/N");
@@ -46,9 +46,9 @@ public class Emulator {
 
     private static void writerFile(String value, String path) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(value))) {
-                bw.write(Files.readString(Path.of(path)));
-                //bw.write(System.lineSeparator());
-            } catch (IOException ioException) {
+            bw.write(Files.readString(Path.of(path)));
+            //bw.write(System.lineSeparator());
+        } catch (IOException ioException) {
             ioException.printStackTrace();
         }
     }

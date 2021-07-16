@@ -19,10 +19,10 @@ public class DirFileCache extends AbstractCache<String, String> {
     }
 
     @Override
-    protected String load(String key)  {
+    protected String load(String key) {
         try {
             Path path = Path.of(cachingDir);
-        cache.put(key,  new SoftReference(Files.readString(path)));
+            cache.put(key, new SoftReference(Files.readString(path)));
         } catch (Exception e) {
             e.printStackTrace();
         }
