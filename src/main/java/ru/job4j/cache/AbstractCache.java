@@ -19,7 +19,7 @@ public abstract class AbstractCache<K, V> {
     }
 
     public V get(K key) {
-        return (V) cache.get(key);
+        return cache.get(key).get();
     }
 
     protected abstract V load(K key);

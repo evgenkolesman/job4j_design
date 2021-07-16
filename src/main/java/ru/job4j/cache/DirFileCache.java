@@ -1,12 +1,8 @@
 package ru.job4j.cache;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.ref.SoftReference;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /* Реализация кэша
  * Абстрактный метод: AbstractCache
@@ -14,28 +10,22 @@ import java.util.Map;
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
-public class DirFileCache extends AbstractCache<String, List<String>> {
+public class DirFileCache extends AbstractCache<String, String> {
 
     private final String cachingDir;
-    private List<String> list = new ArrayList<>();
-    private Map<String, List<String>> map = new HashMap<>();
 
     public DirFileCache(String cachingDir) {
         this.cachingDir = cachingDir;
     }
 
     @Override
-    protected List<String> load(String key) {
-        map.put(key, readerFile(key));
-        return map.get(key);
-    }
-
-    private List<String> readerFile(String value) {
-        try (BufferedReader br = new BufferedReader(new FileReader(value))) {
-            br.lines().forEach(list::add);
-        } catch (IOException e) {
+    protected String load(String key)  {
+        try {
+            Path path = Path.of(cachingDir);
+        cache.put(key,  new SoftReference(Files.readString(path)));
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return list;
+        return cache.get(key).get();
     }
 }

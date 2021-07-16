@@ -1,8 +1,10 @@
 package ru.job4j.cache;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 /* Реализация кэша
@@ -14,10 +16,7 @@ import java.util.Scanner;
  */
 public class Emulator {
 
-    private String cacheDir; // возможно вместо сканнера просто заменить на cacheDir
-    private static List<String> list = new ArrayList<>();
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Hello! Do you want to write cache from file? Y/N");
         var sc = new Scanner(System.in);
 
@@ -34,10 +33,10 @@ public class Emulator {
             System.out.println("If you want to get in console cache write 'Y', else write 'N'");
             var answer = sc.next();
             if (answer.equals("Y")) {
-                for (String list2 : dirFileCache.load(resDirIn)) {
-                    System.out.println(list2);
+
+                    System.out.println(Files.readString(Path.of(resDirIn)));
                     System.out.println("Do you want to continue and write cache from file? Y/N");
-                }
+
             } else {
                 System.out.println("Hello! Do you want to write cache from file? Y/N");
 
@@ -45,14 +44,12 @@ public class Emulator {
         }
     }
 
-    private static void writerFile(String value, List<String> listMap) {
+    private static void writerFile(String value, String path) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(value))) {
-            for (String list1 : listMap) {
-                bw.write(list1);
-                bw.write(System.lineSeparator());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+                bw.write(Files.readString(Path.of(path)));
+                //bw.write(System.lineSeparator());
+            } catch (IOException ioException) {
+            ioException.printStackTrace();
         }
     }
 }
