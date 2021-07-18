@@ -21,15 +21,16 @@ public class Emulator {
         while (sc.next().equalsIgnoreCase("Y")) {
             System.out.println("Write cache directory: ");
             var resDirIn = sc.next();
-            System.out.println("Write cache file for input: ");
+            System.out.println("Write file for input: ");
             var resDirIn1 = sc.next();
             DirFileCache dirFileCache = new DirFileCache(resDirIn);
             System.out.println("Write path for output: ");
             var resDirOut = sc.next();
             if (!resDirIn1.isEmpty() || !dirFileCache.cache.isEmpty()) {
                 dirFileCache.writerFile(resDirIn1, resDirOut);
+            } else {
+                System.out.println("Wrong file or directory!");
             }
-            else System.out.println("Wrong file or directory!");
             System.out.println("If you want to get in console cache write 'Y', else write 'N'");
             var answer = sc.next().toUpperCase();
             if (answer.equals("Y")) {
