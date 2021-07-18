@@ -16,50 +16,30 @@ import java.util.Scanner;
 public class Emulator {
 
     public static void main(String[] args) throws IOException {
-        System.out.println("Hello! Do you want to write cache from file? Y/N");
+        System.out.println("Hello! Do you want to write cache from file? Y/N, else program will close");
         var sc = new Scanner(System.in);
-
         while (sc.next().equalsIgnoreCase("Y")) {
             System.out.println("Write cache directory: ");
-
             var resDirIn = sc.next();
+            System.out.println("Write cache file for input: ");
+            var resDirIn1 = sc.next();
             DirFileCache dirFileCache = new DirFileCache(resDirIn);
-            System.out.println("Write directory for output: ");
+            System.out.println("Write path for output: ");
             var resDirOut = sc.next();
-            if (!resDirIn.isEmpty() || !dirFileCache.cache.isEmpty()) {
-                writerFile(resDirOut, dirFileCache.load(resDirIn));
+            if (!resDirIn1.isEmpty() || !dirFileCache.cache.isEmpty()) {
+                dirFileCache.writerFile(resDirIn1, resDirOut);
             }
+            else System.out.println("Wrong file or directory!");
             System.out.println("If you want to get in console cache write 'Y', else write 'N'");
             var answer = sc.next().toUpperCase();
             if (answer.equals("Y")) {
-                System.out.println(Files.readString(Path.of(resDirIn), Charset.forName("WINDOWS-1251")));
+                System.out.println(Files.readString(Path.of(resDirIn, resDirIn1), Charset.forName("WINDOWS-1251")));
                 System.out.println("Do you want to continue and write cache from file? Y/N");
 
             } else {
                 System.out.println("Hello! Do you want to write cache from file? Y/N");
-
             }
         }
     }
-
-    private static void writerFile(String path1, String path2) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path2))) {
-            bw.write(Files.readString(Path.of(path1)));
-            //bw.write(System.lineSeparator());
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-    }
-
-    /*private static String readFile(String path) {
-        String a = "";
-        try(BufferedReader br = new BufferedReader(new FileReader(path)))  {
-            a = br.lines().toString();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return a;
-    }*/
 }
+

@@ -1,8 +1,7 @@
 package ru.job4j.cache;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -16,24 +15,27 @@ import java.nio.file.Path;
  */
 public class DirFileCache extends AbstractCache<String, String> {
 
+    String cachingDir;
+
     public DirFileCache(String cachingDir) {
+        this.cachingDir = cachingDir;
     }
 
     @Override
-    protected String load(String key) throws IOException {
-        put(key, Files.readString(Path.of(key), Charset.forName("WINDOWS-1251")));
-        return cache.get(key).get();
-    }
-
-    private String readFile(String path) {
-        String a = "";
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            a = br.lines().toString();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    protected String load(String key) {
+        try {
+            put(key, Files.readString(Path.of(cachingDir, key), Charset.forName("WINDOWS-1251")));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return a;
+        return cache.get(key).get();
+    }
+
+    protected void writerFile(String path1, String path2) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path2))) {
+            bw.write(Files.readString(Path.of(cachingDir, path1)));
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
     }
 }
