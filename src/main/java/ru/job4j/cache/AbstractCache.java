@@ -3,6 +3,7 @@ package ru.job4j.cache;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /* Реализация кэша
  * Абстрактный метод реализация: ключ - адрес, значение - список данных файла
@@ -19,7 +20,7 @@ public abstract class AbstractCache<K, V> {
     }
 
     public V get(K key) {
-        if (cache.get(key) == null || cache.get(key).get() == null) {
+        if (Objects.equals(cache.get(key),null) || Objects.equals(cache.get(key).get(),(null))) {
             load(key);
         }
         return cache.get(key).get();
