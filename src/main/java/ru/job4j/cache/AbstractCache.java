@@ -20,7 +20,7 @@ public abstract class AbstractCache<K, V> {
     }
 
     public V get(K key) {
-        if (Objects.equals(cache.get(key),null) || Objects.equals(cache.get(key).get(),(null))) {
+        if (Objects.equals(cache.get(key), null) || Objects.equals(cache.get(key).get(), null)) {
             load(key);
         }
         return cache.get(key).get();
