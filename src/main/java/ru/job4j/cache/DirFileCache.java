@@ -3,7 +3,6 @@ package ru.job4j.cache;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -23,11 +22,6 @@ public class DirFileCache extends AbstractCache<String, String> {
 
     @Override
     protected String load(String key) {
-        try {
-            put(key, Files.readString(Path.of(cachingDir, key), Charset.forName("WINDOWS-1251")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return cache.get(key).get();
     }
 
