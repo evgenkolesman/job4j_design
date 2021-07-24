@@ -3,7 +3,6 @@ package ru.job4j.cache;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.ref.SoftReference;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -23,14 +22,13 @@ public class DirFileCache extends AbstractCache<String, String> {
 
     @Override
     protected String load(String key) {
-        String data = null;
-        if (cache.containsKey(key)) {
-            data = cache.get(key).get();
-        } else if (data == null || !cache.containsKey(key)) {
-            data = load(key);
-            cache.put(key, new SoftReference<>(data));
+        String value = "";
+        try {
+            value = Files.readString(Path.of(cachingDir, key));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return data;
+        return value;
     }
 
     protected void writerFile(String path1, String path2) {
