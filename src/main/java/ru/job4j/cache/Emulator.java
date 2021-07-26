@@ -21,10 +21,10 @@ public class Emulator {
         var ans = sc.next();
         System.out.println("Write cache directory: ");
         var resDirIn = sc.next();
+        DirFileCache dirFileCache = new DirFileCache(resDirIn);
         while (ans.equalsIgnoreCase("Y")) {
             System.out.println("Write file for input: ");
             var resDirIn1 = sc.next();
-            DirFileCache dirFileCache = new DirFileCache(resDirIn);
             System.out.println("Write path for output: ");
             var resDirOut = sc.next();
             if (!dirFileCache.cache.isEmpty() || !resDirIn.isEmpty()) {
