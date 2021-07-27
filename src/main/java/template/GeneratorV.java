@@ -1,4 +1,4 @@
-package ru.job4j.template;
+package template;
 
 import java.util.Map;
 
