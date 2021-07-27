@@ -2,8 +2,6 @@ package ru.job4j.template;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import template.Generator;
-import template.GeneratorV;
 
 import java.util.Map;
 
