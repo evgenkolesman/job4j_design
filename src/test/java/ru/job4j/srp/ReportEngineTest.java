@@ -13,22 +13,7 @@ import static org.junit.Assert.assertThat;
 public class ReportEngineTest {
 
     @Test
-    public void whenNewGenerated() {
-        MemStore store = new MemStore();
-        Employee worker = new Employee("Ivan", 100);
-        store.add(worker);
-        Report engine = new ReportEngine(store);
-        StringBuilder expect = new StringBuilder()
-                .append("Name; Salary;")
-                .append(System.lineSeparator())
-                .append(worker.getName()).append(";")
-                .append(worker.getSalary()).append(";")
-                .append(System.lineSeparator());
-        assertThat(engine.generate(em -> true), is(expect.toString()));
-    }
-
-    @Test
-    public void whenNewGeneratedTwo() {
+    public void whenNewGeneratedThree() {
         MemStore store = new MemStore();
         Employee worker = new Employee("Ivan", 100);
         Employee worker2 = new Employee("Semen", 1000);
