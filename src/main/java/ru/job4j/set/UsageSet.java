@@ -1,8 +1,6 @@
 package ru.job4j.set;
 
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 public class UsageSet {
@@ -16,7 +14,15 @@ public class UsageSet {
         for (String s : strings) {
             System.out.println("Текущий элемент: " + s);
         }
-        /*strings.addAll(List.of("one", "four", "five"));
+        strings.removeIf(s -> s.startsWith("t"));
+        System.out.println("Вывод в консоль после удаления...");
+        for (String s : strings) {
+            System.out.println("Текущий элемент: " + s);
+        }
+    }
+}
+
+/*strings.addAll(List.of("one", "four", "five"));
         for (String s : strings) {
             System.out.println("Текущий элемент: " + s);
         }*/
@@ -36,11 +42,3 @@ public class UsageSet {
         for (String s : strings) {
             System.out.println("Текущий элемент: " + s);
         }*/
-
-        strings.removeIf(s -> s.startsWith("t"));
-        System.out.println("Вывод в консоль после удаления...");
-        for (String s : strings) {
-            System.out.println("Текущий элемент: " + s);
-        }
-    }
-}

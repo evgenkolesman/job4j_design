@@ -39,7 +39,5 @@ public class EmployeeJSONtoString {
         //Преобразуем объект person в json-строку  - так не получается,
         // преобразовывает только 2 значения объекта типы int и String, а объекты не видит
         System.out.println(new JSONObject(employee).toString());
-
-
     }
 }

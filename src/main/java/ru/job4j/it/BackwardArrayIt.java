@@ -26,7 +26,5 @@ public class BackwardArrayIt implements Iterator<Integer> {
 return data.next(Arrays.sort(data, Comparator.reverseOrder())); - варианты решения
 else for (int a= data.length-1;a>=point;a--) {
 return data[data.length - 1 - point++ ];
-//import java.util.Collections;
-//import java.util.Arrays;
-//import java.util.Comparator;
+
 }- варианты решения не верные*/
