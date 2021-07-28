@@ -38,5 +38,4 @@ public class ReportEngineTest {
 
         assertThat(engine.generate(em -> true), is(String.format("%s%s%s%s", heading, expect2, expect1, expect3)));
     }
-
 }
