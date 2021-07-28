@@ -6,20 +6,18 @@ import java.util.function.Predicate;
 
 public class MaxMin {
     public <T> T max(List<T> value, Comparator<T> comparator) {
-        T v = value.get(0);
         Predicate<Integer> predicate = a -> a < 0;
-        v = getT(value, comparator, v, predicate);
-        return v;
+        return getT(value, comparator, predicate);
     }
 
     public <T> T min(List<T> value, Comparator<T> comparator) {
-        T v = value.get(0);
         Predicate<Integer> predicate = a -> a > 0;
-        v = getT(value, comparator, v, predicate);
-        return v;
+        return getT(value, comparator, predicate);
+
     }
 
-    private <T> T getT(List<T> value, Comparator<T> comparator, T v, Predicate<Integer> predicate) {
+    private <T> T getT(List<T> value, Comparator<T> comparator, Predicate<Integer> predicate) {
+        T v = value.get(0);
         for (int i = 0; i < value.size() - 1; i++) {
             if (predicate.test(comparator.compare(v, value.get(i + 1)))) {
                 v = value.get(i + 1);
