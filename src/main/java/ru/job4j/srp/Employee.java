@@ -1,18 +1,19 @@
 package ru.job4j.srp;
 
-import java.util.Calendar;
 import java.util.Objects;
+
+/*
+ * Сотрудники класс реализующий
+ * хранение данных по модели
+ *
+ */
 
 public class Employee {
     private String name;
-    private Calendar hired;
-    private Calendar fired;
-    private double salary;
+    private float salary;
 
-    public Employee(String name, Calendar hired, Calendar fired, double salary) {
+    public Employee(String name, float salary) {
         this.name = name;
-        this.hired = hired;
-        this.fired = fired;
         this.salary = salary;
     }
 
@@ -24,28 +25,8 @@ public class Employee {
         this.name = name;
     }
 
-    public Calendar getHired() {
-        return hired;
-    }
-
-    public void setHired(Calendar hired) {
-        this.hired = hired;
-    }
-
-    public Calendar getFired() {
-        return fired;
-    }
-
-    public void setFired(Calendar fired) {
-        this.fired = fired;
-    }
-
-    public double getSalary() {
+    public float getSalary() {
         return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
     }
 
     @Override
