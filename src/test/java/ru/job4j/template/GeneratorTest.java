@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import java.util.Map;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 public class GeneratorTest {
@@ -36,9 +36,36 @@ public class GeneratorTest {
 
     @Test(expected = NullPointerException.class)
     @Ignore
-    public void whenWrongMap() {
+    public void whenWrongNullMap() {
         Generator gen = new GeneratorV();
         gen.produce(new String(), Map.of(null, new String()));
         assertThat(gen, is(new GeneratorV()));
+    }
+
+    @Test
+    @Ignore
+    public void whenAllRight() {
+        Generator gen = new GeneratorV();
+        String t = "I am a ${name}, Who are ${subject}? ";
+        Map v = Map.of("name", "Vick","subject", "you");
+        assertThat(gen.produce(t, v), is("I am a Vick, Who are you? "));
+    }
+
+    @Test
+    @Ignore
+    public void whenNotEnoughDataMap() {
+        Generator gen = new GeneratorV();
+        String t = "I am a ${name}, Who are ${subject}? ";
+        Map v = Map.of("name", "Vick");
+        assertThat(gen.produce(t, v), is("I am a Vick, Who are you? "));
+    }
+
+    @Test
+    @Ignore
+    public void whenTooManyDataMap() {
+        Generator gen = new GeneratorV();
+        String t = "I am a ${name}, Who are ${subject}? ";
+        Map v = Map.of("name", "Vick", "subject", "you", "subject2.0", "him");
+        assertThat(gen.produce(t, v), is("I am a Vick, Who are you? "));
     }
 }
