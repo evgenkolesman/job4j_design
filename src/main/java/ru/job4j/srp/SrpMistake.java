@@ -2,6 +2,12 @@ package ru.job4j.srp;
 
 import java.io.*;
 
+/* Принципы SOLID
+ * Пример ошибка SRP
+ *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
+
 public class SrpMistake {
 
     private static File fileInPut;

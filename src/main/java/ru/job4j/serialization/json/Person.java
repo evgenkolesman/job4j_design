@@ -12,6 +12,7 @@ import java.util.List;
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
+
 public class Person {
     private final boolean sex;
     private final int age;

@@ -8,6 +8,7 @@ import org.json.JSONObject;
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
+
 public class B {
     private A a;
 

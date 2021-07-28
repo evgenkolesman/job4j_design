@@ -9,6 +9,13 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
+/* TDD
+ * отработка TDD, написание тестов для возможной реализации в классах
+ * отработка шаблонирование
+ * @template = "I am a ${name}, Who are ${subject}? "
+ *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
 public class GeneratorTest {
 
     @Test
@@ -47,7 +54,7 @@ public class GeneratorTest {
     public void whenAllRight() {
         Generator gen = new GeneratorV();
         String t = "I am a ${name}, Who are ${subject}? ";
-        Map v = Map.of("name", "Vick","subject", "you");
+        Map v = Map.of("name", "Vick", "subject", "you");
         assertThat(gen.produce(t, v), is("I am a Vick, Who are you? "));
     }
 

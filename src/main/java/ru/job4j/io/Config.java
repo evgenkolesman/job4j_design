@@ -7,6 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 
+/* Аналог класса для работы с
+ * ***.properties
+ *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
+
 public class Config {
     private static String path;
     private final Map<String, String> values = new HashMap<>();

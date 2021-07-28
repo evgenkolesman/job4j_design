@@ -10,6 +10,12 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+/* TDD
+ * отработка TDD, написание тестов для возможной реализации в классах
+ *@author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
+
 public class Cinema3DTest {
 
     @Test
@@ -63,7 +69,7 @@ public class Cinema3DTest {
 
     @Test(expected = IllegalArgumentException.class)
     @Ignore
-    public void whenDoublePlace () {
+    public void whenDoublePlace() {
         Account account = new AccountCinema();
         Cinema cinema = new Cinema3D();
         Calendar date = Calendar.getInstance();
