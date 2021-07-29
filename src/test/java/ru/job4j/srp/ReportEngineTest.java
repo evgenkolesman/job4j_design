@@ -5,8 +5,7 @@ import org.junit.Test;
 import java.util.Calendar;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 /*
  * Тест
@@ -75,6 +74,6 @@ public class ReportEngineTest {
                 .append(worker.getFired()).append(";")
                 .append(worker.getSalary()).append(";")
                 .append(System.lineSeparator());
-        assertEquals(engine.generateIT(em -> true).getClass(), expect.toString().getClass());
+        assertNotEquals(engine.generateIT(em -> true), expect);
     }
 }
