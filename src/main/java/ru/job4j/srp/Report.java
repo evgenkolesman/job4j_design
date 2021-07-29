@@ -6,5 +6,9 @@ import java.util.function.Predicate;
  * отчеты интерфейс
  */
 public interface Report {
-    String generate(Predicate<Employee> filter);
+    String generateIT(Predicate<Employee> filter);
+
+    String generateHR(Predicate<Employee> filter);
+
+    String generateBuh(Predicate<Employee> filter);
 }

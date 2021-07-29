@@ -1,5 +1,6 @@
 package ru.job4j.srp;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 /*
@@ -10,10 +11,19 @@ import java.util.Objects;
 
 public class Employee {
     private String name;
-    private float salary;
+    private Calendar hired;
+    private Calendar fired;
+    private double salary;
 
-    public Employee(String name, float salary) {
+    public Employee(String name, double salary) {
         this.name = name;
+        this.salary = salary;
+    }
+
+    public Employee(String name, Calendar hired, Calendar fired, float salary1) {
+        this.name = name;
+        this.hired = hired;
+        this.fired = fired;
         this.salary = salary;
     }
 
@@ -25,13 +35,33 @@ public class Employee {
         this.name = name;
     }
 
-    public float getSalary() {
+    public Calendar getHired() {
+        return hired;
+    }
+
+    public void setHired(Calendar hired) {
+        this.hired = hired;
+    }
+
+    public Calendar getFired() {
+        return fired;
+    }
+
+    public void setFired(Calendar fired) {
+        this.fired = fired;
+    }
+
+    public double getSalary() {
         return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)  {
+        if (this == o) {
             return true;
         }
         if (o == null || getClass() != o.getClass()) {

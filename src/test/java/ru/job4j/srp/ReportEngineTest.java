@@ -2,7 +2,10 @@ package ru.job4j.srp;
 
 import org.junit.Test;
 
+import java.util.Calendar;
+
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /*
@@ -13,7 +16,7 @@ import static org.junit.Assert.assertThat;
 public class ReportEngineTest {
 
     @Test
-    public void whenNewGeneratedThree() {
+    public void whenNewGeneratedThreeHR() {
         MemStore store = new MemStore();
         Employee worker = new Employee("Ivan", 100);
         Employee worker2 = new Employee("Semen", 1000);
@@ -36,6 +39,42 @@ public class ReportEngineTest {
                 .append(worker3.getSalary()).append(";")
                 .append(System.lineSeparator());
 
-        assertThat(engine.generate(em -> true), is(String.format("%s%s%s%s", heading, expect2, expect1, expect3)));
+        assertThat(engine.generateHR(em -> true), is(String.format("%s%s%s%s", heading, expect2, expect1, expect3)));
+    }
+
+    @Test
+    public void whenGeneratedBUH() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        Report engine = new ReportEngine(store);
+        StringBuilder heading = new StringBuilder().append("Name; Hired; Fired; Salary;");
+        StringBuilder expect = new StringBuilder()
+                .append(System.lineSeparator())
+                .append(worker.getName()).append(";")
+                .append(worker.getHired()).append(";")
+                .append(worker.getFired()).append(";")
+                .append(worker.getSalary()).append(";")
+                .append(System.lineSeparator());
+        assertThat(engine.generateBuh(em -> true), is((heading.append(expect).toString())));
+    }
+
+    @Test
+    public void whenGeneratedIT() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 100);
+        store.add(worker);
+        Report engine = new ReportEngine(store);
+        StringBuilder expect = new StringBuilder()
+                .append("Name; Hired; Fired; Salary;")
+                .append(System.lineSeparator())
+                .append(worker.getName()).append(";")
+                .append(worker.getHired()).append(";")
+                .append(worker.getFired()).append(";")
+                .append(worker.getSalary()).append(";")
+                .append(System.lineSeparator());
+        assertEquals(engine.generateIT(em -> true).getClass(), expect.toString().getClass());
     }
 }

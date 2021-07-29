@@ -13,9 +13,11 @@ public class MemStore implements Store {
 
     public void add(Employee em) {
         employees.add(em);
-        //employees.stream().sorted(Comparator.comparing(Employee::getSalary));
+    }
+
+    public void sort() {
         employees.sort(Comparator.comparing(Employee::getSalary));
-        Collections.reverse(employees); // в принципе он и так сортирует
+        Collections.reverse(employees);
     }
 
     @Override
