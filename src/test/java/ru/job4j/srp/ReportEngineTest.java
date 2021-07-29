@@ -1,11 +1,15 @@
 package ru.job4j.srp;
 
 import org.junit.Test;
+import ru.job4j.srp.report.Report;
+import ru.job4j.srp.report.ReportEngine;
+import ru.job4j.srp.store.MemStore;
 
 import java.util.Calendar;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertThat;
 
 /*
  * Тест

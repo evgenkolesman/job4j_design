@@ -6,7 +6,6 @@ package ru.job4j.serialization.json;
  * @version 1.0
  */
 
-
 import com.sun.xml.txw2.annotation.XmlElement;
 
 import javax.xml.bind.annotation.XmlAttribute;
