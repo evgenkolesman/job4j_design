@@ -12,7 +12,7 @@ public class Shop implements Store {
     @Override
     public void add(Food food) {
         ControllQuality cq = new ControllQuality(food);
-        if (cq.getFreshness() >= 75 && cq.getFreshness() >= 25) {
+        if (cq.getFreshness() <= 75 && cq.getFreshness() >= 25) {
             list.add(food);
         } else if (cq.getFreshness() > 75 && cq.getFreshness() < 100) {
             food.setPrice(food.getPrice() * food.getDiscount());
