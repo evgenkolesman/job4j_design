@@ -9,12 +9,12 @@ import java.util.List;
 
 public class FoodStoreWork {
     public static void main(String[] args) {
-        Food milk = new Food("Milk", new GregorianCalendar(2020, 04, 21),
+        Food milk = new Food("Milk", new GregorianCalendar(2021, 9, 21),
                 new GregorianCalendar(2020, 00, 21), 100, 0.5);
         Food cheese = new Food("Cheese", new GregorianCalendar(2022, 04, 21),
                 new GregorianCalendar(2021, 0, 19), 200, 0.3);
-        Food tomato = new Food("Tomato", new GregorianCalendar(2021, 8, 01),
-                new GregorianCalendar(2021, 7, 19), 190, 0.3);
+        Food tomato = new Food("Tomato", new GregorianCalendar(2020, 8, 01),
+                new GregorianCalendar(2020, 10, 19), 190, 0.3);
         Warehouse warehouse = new Warehouse();
         Trash trash = new Trash();
         Shop shop = new Shop();
