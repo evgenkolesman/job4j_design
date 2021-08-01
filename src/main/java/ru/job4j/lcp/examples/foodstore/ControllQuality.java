@@ -9,12 +9,18 @@ public class ControllQuality {
 
     public ControllQuality(Food food) {
         // конструктор получает данные в днях
-        this.diffProc = (int) ((food.getExpirityDate().getTime().getTime() - food.getCreateDate().getTime().getTime()) / (24 * 60 * 60 * 1000));
-        this.nowDateControlProc = (int) (date.getTime() - food.getCreateDate().getTime().getTime()) / (24 * 60 * 60 * 1000);
+        this.diffProc = (int) ((food.getExpirityDate().getTimeInMillis() - food.getCreateDate().getTimeInMillis()) / (24 * 60 * 60 * 1000));
+        this.nowDateControlProc = (int) (date.getTime() - food.getCreateDate().getTimeInMillis()) / (24 * 60 * 60 * 1000);
     }
 
     public long getFreshness() {
-        return diffProc / nowDateControlProc * 100; // получаем процентаж
+        if (nowDateControlProc > 0 && diffProc > 0) {
+        return nowDateControlProc / diffProc  * 100; }
+        else if(diffProc < 0) {
+            return 100; }
+        else throw new IllegalArgumentException("Не верные данные о товаре,"
+                + " дата производства еще не пришла");// получаем процентаж
+        }
     }
-}
+
 

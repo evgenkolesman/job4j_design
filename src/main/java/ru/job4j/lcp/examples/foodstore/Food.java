@@ -9,11 +9,11 @@ public class Food {
     private double price;
     private double discount;
 
-    public Food(String name, Calendar expirityDate,
-                Calendar createDate, double price, double discount) {
+    public Food(String name, Calendar createDate,
+                Calendar expirityDate, double price, double discount) {
         this.name = name;
-        this.expirityDate = expirityDate;
         this.createDate = createDate;
+        this.expirityDate = expirityDate;
         this.price = price;
         this.discount = discount;
     }
