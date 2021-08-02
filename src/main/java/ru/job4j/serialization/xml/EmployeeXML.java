@@ -10,7 +10,7 @@ import java.io.StringWriter;
 import java.util.Arrays;
 
 /* JAXB. Преобразование XML в POJO.
- *  Класс EmployeeXML
+ * Класс EmployeeXML
  * это пример работы с классом для производства сериализации/десериализации и перевода в тип
  * данных из ХМL в pojo c выводом результата в консоль
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
@@ -23,7 +23,6 @@ public class EmployeeXML {
 
     @XmlAttribute
     private boolean sex;
-
     @XmlAttribute
     private int age;
     private ContactXML contact;

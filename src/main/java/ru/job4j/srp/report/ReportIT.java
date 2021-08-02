@@ -1,7 +1,7 @@
 package ru.job4j.srp.report;
 
 import ru.job4j.srp.Employee;
-import ru.job4j.srp.formating.FormatingText;
+import ru.job4j.srp.formating.TranslateToHTML;
 import ru.job4j.srp.store.Store;
 
 import java.util.function.Predicate;
@@ -25,8 +25,9 @@ public class ReportIT implements Report{
 
     @Override
     public String generateReport(Predicate<Employee> filter) {
-        FormatingText formatingText = new FormatingText();
-        return formatingText.toHTML(generateReportFunc(filter));
+        String result = generateReportFunc(filter);
+        TranslateToHTML formatingText = new TranslateToHTML(result);
+        return formatingText.translation();
     }
 
     //генерируем отчет

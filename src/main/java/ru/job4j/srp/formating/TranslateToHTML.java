@@ -1,26 +1,14 @@
 package ru.job4j.srp.formating;
 
-import org.json.JSONObject;
-import ru.job4j.srp.Employee;
+public class TranslateToHTML implements Formatting {
+    String text;
 
-/**
- * Форматирование текста  в формат Json,
- * и возможность записи в формат XML объекта класса Employee
- */
-public class FormatingText implements Formatting {
-    @Override
-    public JSONObject toJson(String text) {
-        JSONObject jsonText = new JSONObject(text);
-        return jsonText;
+    public TranslateToHTML(String text) {
+        this.text = text;
     }
 
     @Override
-    public String toXML(Employee employee) {
-        return String.format("Employee{name=%s, hired=%d, fired=%s, salary=%s}", employee.getName(), employee.getHired(), employee.getFired(), employee.getSalary());
-    }
-
-    @Override
-    public String toHTML(String text) {
+    public String translation() {
         StringBuilder builder = new StringBuilder();
         boolean previousWasASpace = false;
         for (char c : text.toCharArray()) {
