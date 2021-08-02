@@ -1,14 +1,14 @@
 package ru.job4j.srp.formating;
 
-public class TranslateToHTML implements Formatting {
+public class FormatToHTML implements Formatting {
     String text;
 
-    public TranslateToHTML(String text) {
+    public FormatToHTML(String text) {
         this.text = text;
     }
 
     @Override
-    public String translation() {
+    public String format() {
         StringBuilder builder = new StringBuilder();
         boolean previousWasASpace = false;
         for (char c : text.toCharArray()) {

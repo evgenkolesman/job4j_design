@@ -1,6 +1,15 @@
 package ru.job4j.srp.formating;
 
+/*
+ * Интерфейс для преобразования теста в различные форматы
+ * JSON -> FormateToJSON
+ * XML -> FormateToXML
+ * HTML -> FormateToHTML
+ * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
+ * @version 1.0
+ */
+
 public interface Formatting {
 
-    public String translation();
+    String format();
 }
