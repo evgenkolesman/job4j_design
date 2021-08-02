@@ -1,11 +1,11 @@
-package ru.job4j.srp;
+package ru.job4j.solid.srp;
 
 import org.junit.Test;
-import ru.job4j.srp.report.Report;
-import ru.job4j.srp.report.ReportBUH;
-import ru.job4j.srp.report.ReportHR;
-import ru.job4j.srp.report.ReportIT;
-import ru.job4j.srp.store.MemStore;
+import ru.job4j.solid.srp.report.Report;
+import ru.job4j.solid.srp.report.ReportBUH;
+import ru.job4j.solid.srp.report.ReportHR;
+import ru.job4j.solid.srp.report.ReportIT;
+import ru.job4j.solid.srp.store.MemStore;
 
 import java.util.Calendar;
 

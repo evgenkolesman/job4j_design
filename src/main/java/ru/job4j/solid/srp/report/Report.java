@@ -1,6 +1,6 @@
-package ru.job4j.srp.report;
+package ru.job4j.solid.srp.report;
 
-import ru.job4j.srp.Employee;
+import ru.job4j.solid.srp.Employee;
 
 import java.util.function.Predicate;
 

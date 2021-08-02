@@ -1,4 +1,4 @@
-package ru.job4j.srp.formating;
+package ru.job4j.solid.srp.formating;
 
 /*
  * Интерфейс для преобразования теста в различные форматы

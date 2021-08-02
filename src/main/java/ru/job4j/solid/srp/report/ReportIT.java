@@ -1,8 +1,8 @@
-package ru.job4j.srp.report;
+package ru.job4j.solid.srp.report;
 
-import ru.job4j.srp.Employee;
-import ru.job4j.srp.formating.FormatToHTML;
-import ru.job4j.srp.store.Store;
+import ru.job4j.solid.srp.Employee;
+import ru.job4j.solid.srp.formating.FormatToHTML;
+import ru.job4j.solid.srp.store.Store;
 
 import java.util.function.Predicate;
 
@@ -16,7 +16,7 @@ import java.util.function.Predicate;
  *
  */
 
-public class ReportIT implements Report{
+public class ReportIT implements Report {
     private Store store;
 
     public ReportIT(Store store) {

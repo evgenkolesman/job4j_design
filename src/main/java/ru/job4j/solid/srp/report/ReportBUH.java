@@ -1,9 +1,10 @@
-package ru.job4j.srp.report;
+package ru.job4j.solid.srp.report;
 
-import ru.job4j.srp.Employee;
-import ru.job4j.srp.store.Store;
+import ru.job4j.solid.srp.Employee;
+import ru.job4j.solid.srp.store.Store;
 
 import java.util.function.Predicate;
+
 /*
  * Производство отчетов
  * класс реализация интерфейса Report
@@ -14,23 +15,30 @@ import java.util.function.Predicate;
  *
  */
 
-public class ReportHR implements Report{
-    Store store;
+public class ReportBUH implements Report {
+    private Store store;
 
-    public ReportHR(Store store) {
+    public ReportBUH(Store store) {
         this.store = store;
     }
 
     @Override
     public String generateReport(Predicate<Employee> filter) {
+        return generateReportFunc(filter);
+    }
+
+    //генерируем отчет
+    private String generateReportFunc(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
-        text.append("Name; Salary;").append(System.lineSeparator());
-        store.sort();
+        text.append("Name; Hired; Fired; Salary;" + System.lineSeparator());
         for (Employee employee : store.findBy(filter)) {
             text.append(employee.getName()).append(";")
+                    .append(employee.getHired()).append(";")
+                    .append(employee.getFired()).append(";")
                     .append(employee.getSalary()).append(";")
                     .append(System.lineSeparator());
         }
         return text.toString();
     }
 }
+

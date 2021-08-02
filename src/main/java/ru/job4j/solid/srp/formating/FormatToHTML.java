@@ -1,4 +1,4 @@
-package ru.job4j.srp.formating;
+package ru.job4j.solid.srp.formating;
 
 public class FormatToHTML implements Formatting {
     String text;

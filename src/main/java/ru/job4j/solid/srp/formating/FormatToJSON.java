@@ -1,4 +1,4 @@
-package ru.job4j.srp.formating;
+package ru.job4j.solid.srp.formating;
 
 import org.json.JSONObject;
 
@@ -9,10 +9,10 @@ import org.json.JSONObject;
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
-public class FormatToJSON implements Formatting{
+public class FormatToJSON implements Formatting {
     String text;
 
-    public FormatToJSON (String text) {
+    public FormatToJSON(String text) {
         this.text = text;
     }
 

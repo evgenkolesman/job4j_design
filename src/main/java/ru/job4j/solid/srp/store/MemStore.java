@@ -1,6 +1,6 @@
-package ru.job4j.srp.store;
+package ru.job4j.solid.srp.store;
 
-import ru.job4j.srp.Employee;
+import ru.job4j.solid.srp.Employee;
 
 import java.util.ArrayList;
 import java.util.Collections;

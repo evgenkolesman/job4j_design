@@ -1,4 +1,4 @@
-package ru.job4j.srp.formating;
+package ru.job4j.solid.srp.formating;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -13,13 +13,12 @@ import java.io.StringWriter;
  * @author Kolesnikov Evgeniy (evgeniysanich@mail.ru)
  * @version 1.0
  */
-public class FormatToXML implements Formatting{
+public class FormatToXML implements Formatting {
     String text;
 
     public FormatToXML(String text) {
         this.text = text;
     }
-
 
     @Override
     public String format() {
@@ -35,6 +34,6 @@ public class FormatToXML implements Formatting{
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-    return  sw.toString();
+        return sw.toString();
     }
 }
