@@ -2,7 +2,9 @@ package ru.job4j.srp;
 
 import org.junit.Test;
 import ru.job4j.srp.report.Report;
-import ru.job4j.srp.report.ReportEngine;
+import ru.job4j.srp.report.ReportBUH;
+import ru.job4j.srp.report.ReportHR;
+import ru.job4j.srp.report.ReportIT;
 import ru.job4j.srp.store.MemStore;
 
 import java.util.Calendar;
@@ -27,7 +29,7 @@ public class ReportEngineTest {
         store.add(worker);
         store.add(worker2);
         store.add(worker3);
-        Report engine = new ReportEngine(store);
+        Report engine = new ReportHR(store);
         StringBuilder heading = new StringBuilder().append("Name; Salary;").append(System.lineSeparator());
         var expect1 = new StringBuilder()
                 .append(worker.getName()).append(";")
@@ -42,7 +44,7 @@ public class ReportEngineTest {
                 .append(worker3.getSalary()).append(";")
                 .append(System.lineSeparator());
 
-        assertThat(engine.generateHR(em -> true), is(String.format("%s%s%s%s", heading, expect2, expect1, expect3)));
+        assertThat(engine.generateReport(em -> true), is(String.format("%s%s%s%s", heading, expect2, expect1, expect3)));
     }
 
     @Test
@@ -51,7 +53,7 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
-        Report engine = new ReportEngine(store);
+        Report engine = new ReportBUH(store);
         StringBuilder heading = new StringBuilder().append("Name; Hired; Fired; Salary;");
         StringBuilder expect = new StringBuilder()
                 .append(System.lineSeparator())
@@ -60,7 +62,7 @@ public class ReportEngineTest {
                 .append(worker.getFired()).append(";")
                 .append(worker.getSalary()).append(";")
                 .append(System.lineSeparator());
-        assertThat(engine.generateBuh(em -> true), is((heading.append(expect).toString())));
+        assertThat(engine.generateReport(em -> true), is((heading.append(expect).toString())));
     }
 
     @Test
@@ -69,7 +71,7 @@ public class ReportEngineTest {
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
-        Report engine = new ReportEngine(store);
+        Report engine = new ReportIT(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
@@ -78,6 +80,6 @@ public class ReportEngineTest {
                 .append(worker.getFired()).append(";")
                 .append(worker.getSalary()).append(";")
                 .append(System.lineSeparator());
-        assertNotEquals(engine.generateIT(em -> true), expect);
+        assertNotEquals(engine.generateReport(em -> true), expect);
     }
 }

@@ -15,39 +15,22 @@ import java.util.function.Predicate;
  * Отдел HR попросил выводить сотрудников в порядке убывания зарплаты и убрать поля даты найма и увольнения.
  *
  */
-public class ReportEngine implements Report {
+
+public class ReportIT implements Report{
     private Store store;
 
-    public ReportEngine(Store store) {
+    public ReportIT(Store store) {
         this.store = store;
     }
 
     @Override
-    public String generateIT(Predicate<Employee> filter) {
+    public String generateReport(Predicate<Employee> filter) {
         FormatingText formatingText = new FormatingText();
-        return formatingText.toHTML(generateReport(filter));
-    }
-
-    @Override
-    public String generateHR(Predicate<Employee> filter) {
-        StringBuilder text = new StringBuilder();
-        text.append("Name; Salary;").append(System.lineSeparator());
-        store.sort();
-        for (Employee employee : store.findBy(filter)) {
-            text.append(employee.getName()).append(";")
-                    .append(employee.getSalary()).append(";")
-                    .append(System.lineSeparator());
-        }
-        return text.toString();
-    }
-
-    @Override
-    public String generateBuh(Predicate<Employee> filter) {
-        return generateReport(filter);
+        return formatingText.toHTML(generateReportFunc(filter));
     }
 
     //генерируем отчет
-    private String generateReport(Predicate<Employee> filter) {
+    private String generateReportFunc(Predicate<Employee> filter) {
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;" + System.lineSeparator());
         for (Employee employee : store.findBy(filter)) {
