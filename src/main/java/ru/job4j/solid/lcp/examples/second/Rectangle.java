@@ -1,4 +1,4 @@
-package ru.job4j.solid.srp.lcp.examples.second;
+package ru.job4j.solid.lcp.examples.second;
 
 class Rectangle {
 

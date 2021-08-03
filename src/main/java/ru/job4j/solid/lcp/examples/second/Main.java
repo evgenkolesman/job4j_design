@@ -1,4 +1,4 @@
-package ru.job4j.solid.srp.lcp.examples.second;
+package ru.job4j.solid.lcp.examples.second;
 
 public class Main {
     static void resize(Rectangle r, int newWidth, int newHeight) {

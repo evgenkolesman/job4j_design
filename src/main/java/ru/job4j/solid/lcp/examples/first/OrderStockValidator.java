@@ -1,4 +1,4 @@
-package ru.job4j.solid.srp.lcp.examples.first;
+package ru.job4j.solid.lcp.examples.first;
 
 public class OrderStockValidator {
 
