@@ -2,7 +2,7 @@ package ru.job4j.solid.icp.examples.first;
 
 public interface Algotrading {
 
-    String analyzeSellersData (); // анализируем продажи
+    String analyzeSellersData(); // анализируем продажи
 
     String analyzeBuyersData(); // аналищируем закпкупи и затраты
 
