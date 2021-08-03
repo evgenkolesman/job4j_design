@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Item {
     private String name;
+    private List<String> items;
 
     public Item(String name, List<String> items) {
         this.name = name;
@@ -14,7 +15,11 @@ public class Item {
         this.name = name;
     }
 
-    private List<String> items;
+    public List<String> getItems() {
+        return items;
+    }
 
-
+    public String getName() {
+        return name;
+    }
 }
