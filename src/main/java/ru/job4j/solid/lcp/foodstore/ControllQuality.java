@@ -22,7 +22,7 @@ public class ControllQuality<countFreshnes> {
     }
 
     public void countFreshness() {
-        if( !food.isEmpty()) {
+        if (!food.isEmpty()) {
             for (Food first : food) {
                 storageLife = (int) ((first.getExpirityDate().getTimeInMillis() - first.getCreateDate().getTimeInMillis()) / (24 * 60 * 60 * 1000));
                 nowDateProductLife = (int) (date.getTime()
