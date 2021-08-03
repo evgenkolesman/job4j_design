@@ -4,7 +4,7 @@ public interface Algotrading {
 
     String analyzeSellersData(); // анализируем продажи
 
-    String analyzeBuyersData(); // аналищируем закпкупи и затраты
+    String analyzeBuyersData(); // анализируем закпкупи и затраты
 
     String analyzeWhatToBuy(); // анализируем какой продукт лучше купить
 
