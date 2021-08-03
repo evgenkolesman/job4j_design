@@ -1,6 +1,5 @@
 package ru.job4j.solid.lcp.foodstore.store;
 
-import ru.job4j.solid.lcp.foodstore.ControllQuality;
 import ru.job4j.solid.lcp.foodstore.Food;
 
 import java.util.ArrayList;
@@ -12,10 +11,9 @@ public class Shop implements Store {
 
     @Override
     public void add(Food food) {
-        ControllQuality cq = new ControllQuality(food);
-        if (cq.getFreshness() <= 75 && cq.getFreshness() >= 25) {
+        if (food.getFreshness() <= 75 && food.getFreshness() >= 25) {
             list.add(food);
-        } else if (cq.getFreshness() > 75 && cq.getFreshness() < 100) {
+        } else if (food.getFreshness() > 75 && food.getFreshness() < 100) {
             food.setPrice(food.getPrice() * food.getDiscount());
             list.add(food);
         }

@@ -8,6 +8,7 @@ public class Food {
     private Calendar createDate;
     private double price;
     private double discount;
+    private int freshness;
 
     public Food(String name, Calendar createDate,
                 Calendar expirityDate, double price, double discount) {
@@ -16,6 +17,7 @@ public class Food {
         this.expirityDate = expirityDate;
         this.price = price;
         this.discount = discount;
+        this.freshness = freshness;
     }
 
     public Calendar getExpirityDate() {
@@ -45,5 +47,13 @@ public class Food {
 
     public String getName() {
         return name;
+    }
+
+    public int getFreshness() {
+        return freshness;
+    }
+
+    public void setFreshness(int freshness) {
+        this.freshness = freshness;
     }
 }
