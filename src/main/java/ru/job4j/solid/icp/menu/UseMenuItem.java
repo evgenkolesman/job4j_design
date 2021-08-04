@@ -1,7 +1,7 @@
 package ru.job4j.solid.icp.menu;
 
 public interface UseMenuItem {
-    void select(String name);
+    Item select(Item name);
 
     void execute(Item item);
 }

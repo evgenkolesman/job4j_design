@@ -19,9 +19,9 @@ public class MenuRealization implements MenuCreation, ShowMenu, UseMenuItem {
             String name = data.poll();
             if (!data.contains(name)) {
                 Item submenu = menu.get(name);
-                List<String> list = submenu.getItems();
+                List<Item> list = submenu.getItems();
                 if (list != null) {
-                    list.stream().forEach((s) -> fullMenu.add(name.concat(s)));
+                    list.stream().forEach((s) -> fullMenu.add(name.concat(String.valueOf(s))));
                 }
                 fullMenu.add(submenu.getName());
             }
@@ -46,15 +46,15 @@ public class MenuRealization implements MenuCreation, ShowMenu, UseMenuItem {
     }
 
     @Override
-    public void select(String name) {
-        Item item = null;
+    public Item select(Item item) {
         int i = 0;
         while (item == null && itemList != null && i < itemList.size()) {
-            if (itemList.get(i++).getName().equals(name)) {
+            if (itemList.get(i++).equals(item)) {
                 item = itemList.get(i++);
             }
         }
         execute(item);
+        return item;
     }
 
     @Override

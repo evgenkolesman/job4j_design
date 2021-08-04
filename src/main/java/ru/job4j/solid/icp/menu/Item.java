@@ -4,18 +4,20 @@ import java.util.List;
 
 public class Item {
     private String name;
-    private List<String> items;
+    private List<Item> items;
+    private Action action;
 
-    public Item(String name, List<String> items) {
+    public Item(String name, List<Item> items) {
         this.name = name;
         this.items = items;
+        this.action = action;
     }
 
     public Item(String name) {
         this.name = name;
     }
 
-    public List<String> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 

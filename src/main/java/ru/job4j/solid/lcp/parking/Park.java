@@ -36,7 +36,6 @@ public class Park implements Parking {
         return false;
     }
 
-
     public int getBigCarPlace() {
         return bigCarPlace;
     }
