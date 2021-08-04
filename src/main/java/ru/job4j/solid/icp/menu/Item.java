@@ -24,4 +24,8 @@ public class Item {
     public String getName() {
         return name;
     }
+
+    public Action getAction() {
+        return action;
+    }
 }

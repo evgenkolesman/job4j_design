@@ -59,6 +59,7 @@ public class MenuRealization implements MenuCreation, ShowMenu, UseMenuItem {
 
     @Override
     public void execute(Item item) {
+        item.getAction().act();
         System.out.println("Здесь должна быть реализация меню с объектом " + item.toString());
     }
 }
