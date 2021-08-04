@@ -1,8 +1,7 @@
 package ru.job4j.solid.lcp.parking;
 
 public class BigCar implements Vehicle {
-
-
+    private int n;
 
     public BigCar(int n) {
         this.n = n;
@@ -12,7 +11,6 @@ public class BigCar implements Vehicle {
         return n;
     }
 
-    private int n;
     @Override
     public int size() {
         return n;
