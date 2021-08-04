@@ -4,7 +4,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.*;
 
-public class MenuRealization implements  MenuCreation, ShowMenu, UseMenuItem{
+public class MenuRealization implements MenuCreation, ShowMenu, UseMenuItem {
     private List<Item> itemList;
 
     public MenuRealization(List<Item> itemList) {
@@ -59,6 +59,6 @@ public class MenuRealization implements  MenuCreation, ShowMenu, UseMenuItem{
 
     @Override
     public void execute(Item item) {
-        System.out.println("Здесь должна быть реализация меню с объектом " + item.toString() );
+        System.out.println("Здесь должна быть реализация меню с объектом " + item.toString());
     }
 }

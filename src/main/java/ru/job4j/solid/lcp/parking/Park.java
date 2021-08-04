@@ -9,41 +9,39 @@ import java.util.List;
  * countPlace() - возможность планирования потока исходя из бизнес плана
  */
 public class Park implements Parking {
-    private int freeSize = 5;
-    int freeSizePark;
+    private int bigCarPlace;
+    private int smallCarPlace;
+    int freeBigCarPlace = bigCarPlace;
+    int freeSmallCarPlace = smallCarPlace;
     private List<Vehicle> list = new ArrayList<>();
+
+    public Park(int bigCarPlace, int smallCarPrice) {
+        this.bigCarPlace = bigCarPlace;
+        this.smallCarPlace = smallCarPrice;
+    }
 
     @Override
     public boolean park(Vehicle vehicle) {
-        freeSizePark = freeSize;
-        for (Vehicle a : list) {
-            freeSizePark -= a.size();
-            if (freeSizePark < 0) {
-                return false;
-            } else {
-                list.add(vehicle);
-                return true;
+        if (vehicle.getClass() == BigCar.class) {
+            freeBigCarPlace = freeBigCarPlace - 1;
+            if (freeBigCarPlace == 0) {
+                System.out.println("Грузовых мест нет");
+            }
+        } else if (vehicle.getClass() == LittleCar.class) {
+            freeSmallCarPlace = freeSmallCarPlace - 1;
+            if (freeSmallCarPlace == 0) {
+                System.out.println("Легковых мест нет");
             }
         }
         return false;
     }
 
-    public void countFreeSize(List<Vehicle> vehicleList) {
-        int freeSizeCount = 0;
-        if (!vehicleList.isEmpty()) {
-            for (Vehicle a : vehicleList) {
-                freeSizeCount += a.size();
-            }
-            if (freeSizeCount > freeSize) {
-                freeSize = freeSizeCount;
-            } else {
-                System.out.println("При расчетах получилось значение меньше стандартного," +
-                        " оставляем стандарт");
-            }
-        }
+
+    public int getBigCarPlace() {
+        return bigCarPlace;
     }
 
-    public int getFreeSize() {
-        return freeSize;
+    public int getSmallCarPlace() {
+        return smallCarPlace;
     }
 }
