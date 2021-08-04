@@ -1,5 +1,7 @@
 package ru.job4j.solid.lcp.foodstore;
 
+import ru.job4j.solid.lcp.foodstore.store.Store;
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,32 +12,35 @@ import java.util.List;
  * @ Kolesnikov Evgeniy evgeniysanich@mail.ru
  * @ version 1
  */
-public class ControllQuality<countFreshnes> {
+public class ControllQuality {
     private int storageLife; // количество в днях годности продукта
     private int nowDateProductLife; // осталось времени в днях годности
     private Date date = new Date();
-    private List<Food> food;
+    private List<Store> storesList;
 
-    public ControllQuality(List<Food> food) {
-        // конструктор получает данные в днях
-        this.food = food;
+    public ControllQuality(List<Store> storesList) {
+        this.storesList = storesList;
     }
 
-    public void countFreshness() {
-        if (!food.isEmpty()) {
-            for (Food first : food) {
-                storageLife = (int) ((first.getExpirityDate().getTimeInMillis() - first.getCreateDate().getTimeInMillis()) / (24 * 60 * 60 * 1000));
-                nowDateProductLife = (int) (date.getTime()
-                        - first.getCreateDate().getTimeInMillis()) / (24 * 60 * 60 * 1000);
-                if (date.after(first.getExpirityDate().getTime())) {
-                    first.setFreshness(100);
-                } else {
-                    first.setFreshness(nowDateProductLife * 100 / storageLife);
-                }   // получаем процентаж
-            }
+    public void countFreshness(Food food) {
+        storageLife = (int) ((food.getExpirityDate().getTimeInMillis() - food.getCreateDate().getTimeInMillis()) / (24 * 60 * 60 * 1000));
+        nowDateProductLife = (int) (date.getTime()
+                - food.getCreateDate().getTimeInMillis()) / (24 * 60 * 60 * 1000);
+        if (date.after(food.getExpirityDate().getTime())) {
+            food.setFreshness(100);
+        } else {
+            food.setFreshness(nowDateProductLife * 100 / storageLife);
+        }   // получаем процентаж
+    }
+
+    public void distribute(Food food) {
+        countFreshness(food);
+        for (Store s : storesList) {
+            s.add(food);
         }
     }
-
 }
+
+
 
 

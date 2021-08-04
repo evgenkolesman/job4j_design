@@ -1,6 +1,7 @@
 package ru.job4j.solid.lcp.foodstore;
 
 import ru.job4j.solid.lcp.foodstore.store.Shop;
+import ru.job4j.solid.lcp.foodstore.store.Store;
 import ru.job4j.solid.lcp.foodstore.store.Trash;
 import ru.job4j.solid.lcp.foodstore.store.Warehouse;
 
@@ -19,23 +20,22 @@ public class FoodStoreWork {
         Warehouse warehouse = new Warehouse();
         Trash trash = new Trash();
         Shop shop = new Shop();
+        List<Store> storeList = List.of(warehouse, shop, trash);
         List<Food> foodList = List.of(milk, cheese, tomato);
-        ControllQuality cq = new ControllQuality(foodList);
-        cq.countFreshness();
+        ControllQuality cq = new ControllQuality(storeList);
         for (Food a : foodList) {
-            shop.add(a);
-            trash.add(a);
-            warehouse.add(a);
+            cq.distribute(a);
         }
-        if (shop.getAll() != null) {
+
+        if (!shop.getAll().isEmpty()) {
             System.out.println("Shop consists of: ");
             shop.getAll().stream().forEach(System.out::println);
         }
-        if (trash.getAll() != null) {
+        if (!trash.getAll().isEmpty()) {
             System.out.println("Trash consists of: ");
             trash.getAll().stream().forEach(System.out::println);
         }
-        if (warehouse.getAll() != null) {
+        if (!warehouse.getAll().isEmpty()) {
             System.out.println("Warehouse consists of: ");
             warehouse.getAll().stream().forEach(System.out::println);
         }

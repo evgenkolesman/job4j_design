@@ -9,19 +9,18 @@ public class Warehouse implements Store {
     private List<Food> list = new ArrayList<>();
 
     @Override
-    public void add(Food food) {
+    public boolean add(Food food) {
+        boolean flag = false;
         if (food.getFreshness() < 25) {
             list.add(food);
+            flag = true;
         }
+        return flag;
     }
 
     @Override
     public List<Food> getAll() {
-        if (list.size() != 0) {
-            for (int i = 0; i < list.size(); i++) {
-                return list;
-            }
-        }
-        return null;
+        return list;
     }
 }
+
