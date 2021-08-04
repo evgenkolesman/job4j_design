@@ -4,37 +4,43 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ParkingTest {
 
    @Test
    public void carParkingTest() {
-       Parking parking = new Park();
+       Parking parking = new Park(2, 1);
        Vehicle litleCar = new LittleCar();
-       Vehicle bigCar = new BigCar();
+       int n = 2;
+       Vehicle bigCar = new BigCar(2);
        assertEquals(parking.park(litleCar), true);
        assertEquals(parking.park(bigCar), true);
    }
 
    @Test
     public void carParkingTooMany() {
-       Park parkPlace = new Park();
+       Park parkPlace = new Park(2, 1);
        Vehicle litleCar = new LittleCar();
-       Vehicle bigCar = new BigCar();
-       Vehicle bigCar1 = new BigCar();
-       Vehicle bigCar2 = new BigCar();
-       Vehicle bigCar3 = new BigCar();
+       Vehicle bigCar = new BigCar(2);
+       Vehicle bigCar1 = new BigCar(2);
+       Vehicle bigCar2 = new BigCar(2);
+       Vehicle bigCar3 = new BigCar(2);
        List<Vehicle> vehicleList = List.of(litleCar, bigCar, bigCar1, bigCar2, bigCar3);
 
        assertEquals(parkPlace.park(vehicleList.get(0)), true);
        assertEquals(parkPlace.park(vehicleList.get(1)), true);
        assertEquals(parkPlace.park(vehicleList.get(2)), true);
        assertEquals(parkPlace.park(vehicleList.get(3)), false);
-       parkPlace.countFreeSize(vehicleList);
-       assertEquals(parkPlace.park(bigCar3), true);
    }
 
-
-
+   @Test
+    public void carBigToLitlePlace() {
+       Park parkPlace = new Park(0, 4);
+      List<Vehicle> list = List.of(new BigCar(2), new BigCar(2));
+       assertEquals(parkPlace.park(list.get(0)), true);
+       assertEquals(parkPlace.park(list.get(1)), true);
+       Vehicle bigCarOver = new BigCar(2);
+       assertEquals(parkPlace.park(bigCarOver), false);
+   }
 }
