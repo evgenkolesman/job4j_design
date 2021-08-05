@@ -11,7 +11,6 @@ public class Park implements Parking {
     private Vehicle[] freeBigCarPlace;
     private Vehicle[] freeSmallCarPlace;
 
-
     public Park(int bigCarPlaceIn, int smallCarPlaceIn) {
         this.bigCarPlace = 0;
         this.smallCarPlace = 0;
@@ -22,15 +21,15 @@ public class Park implements Parking {
     @Override
     public boolean park(Vehicle vehicle) {
         boolean flag = false;
-        if(vehicle.size() == 1 && smallCarPlace< freeSmallCarPlace.length) {
+        if (vehicle.size() == 1 && smallCarPlace < freeSmallCarPlace.length) {
             freeSmallCarPlace[smallCarPlace++] = vehicle;
             flag = true;
         }
-        if (vehicle.size() >1 && bigCarPlace < freeBigCarPlace.length) {
+        if (vehicle.size() > 1 && bigCarPlace < freeBigCarPlace.length) {
             freeBigCarPlace[bigCarPlace++] = vehicle;
             flag = true;
         } else if (vehicle.size() <= freeSmallCarPlace.length - smallCarPlace) {
-            for (int i = 0; i < vehicle.size(); i++ ) {
+            for (int i = 0; i < vehicle.size(); i++) {
                 freeSmallCarPlace[smallCarPlace++] = vehicle;
                 flag = true;
             }
