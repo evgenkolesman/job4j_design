@@ -1,8 +1,5 @@
 package ru.job4j.solid.lcp.parking;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
  * класс реализация интерфэйса парковки Parking
  * по умолчанию у нас 5 мест, но мы можем расшириться если применим метод
@@ -11,36 +8,33 @@ import java.util.List;
 public class Park implements Parking {
     private int bigCarPlace;
     private int smallCarPlace;
-    int freeBigCarPlace = bigCarPlace;
-    int freeSmallCarPlace = smallCarPlace;
-    private List<Vehicle> list = new ArrayList<>();
+    private Vehicle[] freeBigCarPlace;
+    private Vehicle[] freeSmallCarPlace;
 
-    public Park(int bigCarPlace, int smallCarPrice) {
-        this.bigCarPlace = bigCarPlace;
-        this.smallCarPlace = smallCarPrice;
+
+    public Park(int bigCarPlaceIn, int smallCarPlaceIn) {
+        this.bigCarPlace = 0;
+        this.smallCarPlace = 0;
+        this.freeBigCarPlace = new Vehicle[bigCarPlaceIn];
+        this.freeSmallCarPlace = new Vehicle[smallCarPlaceIn];
     }
 
     @Override
     public boolean park(Vehicle vehicle) {
-        if (vehicle.getClass() == BigCar.class) {
-            freeBigCarPlace = freeBigCarPlace - 1;
-            if (freeBigCarPlace == 0) {
-                System.out.println("Грузовых мест нет");
-            }
-        } else if (vehicle.getClass() == LittleCar.class) {
-            freeSmallCarPlace = freeSmallCarPlace - 1;
-            if (freeSmallCarPlace == 0) {
-                System.out.println("Легковых мест нет");
+        boolean flag = false;
+        if(vehicle.size() == 1 && smallCarPlace< freeSmallCarPlace.length) {
+            freeSmallCarPlace[smallCarPlace++] = vehicle;
+            flag = true;
+        }
+        if (vehicle.size() >1 && bigCarPlace < freeBigCarPlace.length) {
+            freeBigCarPlace[bigCarPlace++] = vehicle;
+            flag = true;
+        } else if (vehicle.size() <= freeSmallCarPlace.length - smallCarPlace) {
+            for (int i = 0; i < vehicle.size(); i++ ) {
+                freeSmallCarPlace[smallCarPlace++] = vehicle;
+                flag = true;
             }
         }
-        return false;
-    }
-
-    public int getBigCarPlace() {
-        return bigCarPlace;
-    }
-
-    public int getSmallCarPlace() {
-        return smallCarPlace;
+        return flag;
     }
 }
