@@ -34,7 +34,7 @@ public class ParkingTest {
     }
 
     @Test
-    public void carBigToLitlePlace() {
+    public void carBigToLitllePlace() {
         Park parkPlace = new Park(0, 4);
         List<Vehicle> list = List.of(new BigCar(2, "1"), new BigCar(2, "2"));
         assertEquals(parkPlace.park(list.get(0)), true);

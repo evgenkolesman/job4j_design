@@ -22,5 +22,10 @@ public class Warehouse implements Store {
     public List<Food> getAll() {
         return list;
     }
+
+    @Override
+    public void clear() {
+        list.clear();
+    }
 }
 

@@ -2,6 +2,7 @@ package ru.job4j.solid.lcp.foodstore;
 
 import ru.job4j.solid.lcp.foodstore.store.Store;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,8 +10,8 @@ import java.util.List;
  * Этот метод делает ярлычки свежести для нашей системы хранения исходя,
  * каждый ярлычок мы вносим в продукт путем setFreshness()
  * на основании этого ярлычка будет произведена сортировка
- * @ Kolesnikov Evgeniy evgeniysanich@mail.ru
- * @ version 1
+ * @Kolesnikov Evgeniy evgeniysanich@mail.ru
+ * @version 1
  */
 public class ControllQuality {
     private int storageLife; // количество в днях годности продукта
@@ -37,6 +38,15 @@ public class ControllQuality {
         countFreshness(food);
         for (Store s : storesList) {
             s.add(food);
+        }
+    }
+
+    public void resort() {
+        List<Food> foodList = new ArrayList<>();
+        for(Store s : storesList) {
+            s.getAll().forEach(foodList :: add);
+            s.clear();
+            foodList.forEach(this::distribute);
         }
     }
 }

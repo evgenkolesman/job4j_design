@@ -27,6 +27,13 @@ public class FoodStoreWork {
             cq.distribute(a);
         }
 
+        printStorageConsistance(warehouse, trash, shop);
+        cq.resort();
+        printStorageConsistance(warehouse, trash, shop);
+
+    }
+
+    private static void printStorageConsistance(Warehouse warehouse, Trash trash, Shop shop) {
         if (!shop.getAll().isEmpty()) {
             System.out.println("Shop consists of: ");
             shop.getAll().stream().forEach(System.out::println);
