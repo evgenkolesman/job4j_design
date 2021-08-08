@@ -46,8 +46,8 @@ public class ControllQuality {
         for(Store s : storesList) {
             s.getAll().forEach(foodList :: add);
             s.clear();
-            foodList.forEach(this::distribute);
         }
+        foodList.forEach(this::distribute);
     }
 }
 
